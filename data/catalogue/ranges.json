@@ -1,0 +1,12 @@
+[
+  { "slug": "tablets-capsules", "shortName": "Tablets & Capsules", "sourceHeading": "TABLETS:", "icon": "pill" },
+  { "slug": "syrups-suspensions", "shortName": "Syrups & Suspensions", "sourceHeading": "SYRUP/PEDIATRIC SYRUP/DRY SYP/SUSP.", "icon": "bottle" },
+  { "slug": "softgel-capsules", "shortName": "Softgel Capsules", "sourceHeading": "SOFTGEL CAPSULES:", "icon": "softgel" },
+  { "slug": "injectables", "shortName": "Injectables", "sourceHeading": "INJECTABLES:", "icon": "syringe" },
+  { "slug": "ayurvedic", "shortName": "Ayurvedic Range", "sourceHeading": "AYURVEDIC PRODUCTS:", "icon": "leaf" },
+  { "slug": "dental", "shortName": "Dental Range", "sourceHeading": "DENTAL RANGE:", "icon": "tooth" },
+  { "slug": "topicals", "shortName": "Gels, Ointments & Soaps", "sourceHeading": "GEL/OINT./SOAP/DUSTING POWDER", "icon": "tube" },
+  { "slug": "nutrition", "shortName": "Sachets & Nutrition", "sourceHeading": "SACHET/PROTEIN POWDER/ENERGY DRINKS:", "icon": "jar" },
+  { "slug": "derma-cosmetics", "shortName": "Derma & Cosmetics", "sourceHeading": "DERMA & COSMETICS:", "icon": "sparkles" },
+  { "slug": "eye-ear-nasal", "shortName": "Eye, Ear & Nasal Drops", "sourceHeading": "EYE/EAR DROPS:", "icon": "droplet" }
+]

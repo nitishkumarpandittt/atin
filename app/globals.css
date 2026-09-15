@@ -1,26 +1,153 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ---------------------------------------------------------------
+   Atin HealthCare design tokens (sampled from the logo)
+   Accent greens (leaf, sky) are decorative only, never text.
+---------------------------------------------------------------- */
+@theme {
+  --color-navy-950: #061340;
+  --color-navy: #0a1f66;
+  --color-blue-800: #003f8a;
+  --color-brand: #0054b4;
+  --color-brand-600: #0a63c9;
+  --color-sky: #1e8fe1;
+  --color-sky-100: #e3f1fd;
+  --color-green: #008424;
+  --color-green-700: #006b1d;
+  --color-leaf: #4caa1c;
+  --color-leaf-100: #e8f5e0;
+  --color-ink: #16203a;
+  --color-muted: #5b6784;
+  --color-line: #e2e8f3;
+  --color-surface: #f3f6fc;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-jakarta), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --shadow-card: 0 10px 30px -12px rgb(10 31 102 / 0.18);
+  --shadow-lift: 0 22px 45px -18px rgb(10 31 102 / 0.28);
+  --radius-card: 1rem;
+
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: #fff;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--color-navy);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+  :focus-visible {
+    outline: 3px solid var(--color-sky);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  ::selection { background: var(--color-sky-100); color: var(--color-navy); }
+}
+
+@layer components {
+  .container-site {
+    width: 100%;
+    max-width: 76rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-site { padding-inline: 2rem; }
+  }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    padding: 0.85rem 1.6rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1;
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+    white-space: nowrap;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-green { background: var(--color-green); color: #fff; box-shadow: 0 10px 24px -10px rgb(0 132 36 / 0.6); }
+  .btn-green:hover { background: var(--color-green-700); }
+  .btn-outline-light { color: #fff; box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.7); }
+  .btn-outline-light:hover { background: #fff; color: var(--color-navy); }
+  .btn-blue { background: var(--color-brand); color: #fff; }
+  .btn-blue:hover { background: var(--color-navy); }
+  .btn-white { background: #fff; color: var(--color-navy); }
+  .btn-white:hover { background: var(--color-sky-100); }
+
+  .link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 600;
+    color: var(--color-brand);
+  }
+  .link-arrow svg { transition: transform 0.2s; }
+  .link-arrow:hover svg { transform: translateX(3px); }
+
+  /* Hexagon molecule pattern used on blue grounds (Remedial reference) */
+  .hex-pattern {
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='98' viewBox='0 0 56 98'%3E%3Cpath d='M28 66L0 50V17L28 1l28 16v33L28 66zm0 32L0 82V66l28 16 28-16v16L28 98z' fill='none' stroke='%23ffffff' stroke-opacity='.08' stroke-width='1.2'/%3E%3C/svg%3E");
+    background-size: 56px 98px;
+  }
+  /* Dot grid texture (Pavilion reference) */
+  .dot-grid {
+    background-image: radial-gradient(circle, rgb(10 31 102 / 0.14) 1.2px, transparent 1.4px);
+    background-size: 16px 16px;
+  }
+}
+
+/* Scroll reveal: content is visible without JS; only hidden once JS has flagged the document. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.js [data-reveal][data-shown] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .js [data-reveal] { opacity: 1; transform: none; }
 }
