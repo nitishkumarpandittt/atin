@@ -32,6 +32,9 @@ export const ranges = mysqlTable(
     shortName: varchar("short_name", { length: 120 }).notNull(),
     sourceHeading: varchar("source_heading", { length: 191 }).notNull().default(""),
     icon: varchar("icon", { length: 40 }).notNull().default("pill"),
+    /** Master image for the segment: used on the home cards, the range page banner and product pages. */
+    imagePath: varchar("image_path", { length: 255 }).notNull().default(""),
+    imageAlt: varchar("image_alt", { length: 255 }).notNull().default(""),
     sortOrder: int("sort_order").notNull().default(0),
     ...timestamps,
   },

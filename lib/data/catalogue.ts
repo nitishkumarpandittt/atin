@@ -11,6 +11,9 @@ export type Range = {
   slug: string;
   shortName: string;
   icon: string;
+  /** Uploaded master image; pages fall back to the stock photo for the segment when empty. */
+  image: string;
+  imageAlt: string;
   productCount: number;
   dosageForms: string[];
 };
@@ -64,6 +67,8 @@ export const getRanges = cache(async (): Promise<Range[]> => {
         slug: r.slug,
         shortName: r.shortName,
         icon: r.icon,
+        image: r.imagePath ? uploadUrl(r.imagePath) : "",
+        imageAlt: r.imageAlt,
         productCount: inRange.length,
         dosageForms: [...new Set(inRange.map((p) => p.dosageForm).filter(Boolean))],
       };

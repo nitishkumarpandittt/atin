@@ -64,6 +64,16 @@
     border-radius: 6px;
   }
   ::selection { background: var(--color-sky-100); color: var(--color-navy); }
+
+  /*
+   * Page scrollbar: standard properties only. Adding any ::-webkit-scrollbar rule makes Chrome fall
+   * back to its legacy scrollbar, which paints a solid track and square stepper arrows; the standard
+   * properties keep the modern overlay style (transparent track, rounded thumb, no arrows).
+   */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(0 84 180 / 0.5) transparent;
+  }
 }
 
 @layer components {
@@ -203,6 +213,7 @@ html:not(.js) [data-collapse-toggle] { display: none; }
   font-size: 0.9375rem;
 }
 .admin-theme h1, .admin-theme h2, .admin-theme h3 { letter-spacing: -0.01em; }
+.admin-theme { scrollbar-color: rgb(100 116 139 / 0.45) transparent; }
 .admin-input {
   width: 100%;
   border-radius: 0.625rem;
@@ -231,3 +242,9 @@ html:not(.js) [data-collapse-toggle] { display: none; }
 .admin-btn-danger:hover:not(:disabled) { background: #fef2f2; }
 .admin-btn-ghost { color: var(--color-muted); }
 .admin-btn-ghost:hover:not(:disabled) { background: #e2e8f0; color: var(--color-ink); }
+
+/* Dark sidebar scrollbar: standard properties only, so Chrome keeps its arrow-free scrollbar. */
+.admin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(148 163 184 / 0.4) transparent;
+}

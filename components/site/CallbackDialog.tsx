@@ -8,20 +8,29 @@ import type { FormState } from "@/lib/enquiries/schema";
 import { SelectField, SpamGuards, TextField } from "@/components/site/FormField";
 
 export const OPEN_CALLBACK_EVENT = "atin:open-callback";
-const QUIET_KEY = "atin-callback-dismissed-at";
-const QUIET_MS = 30 * 24 * 60 * 60 * 1000;
+
+/** Seconds before the popup opens by itself. */
 const AUTO_OPEN_MS = 8000;
-const NO_AUTO_OPEN = ["/contact", "/disclaimer"];
+/** Pages where it opens on its own. Set to null to auto-open on every page. */
+const AUTO_OPEN_PATHS: string[] | null = ["/"];
+/**
+ * Open on every visit. Set a number of days instead (e.g. 30) to stop nagging someone who has
+ * already seen it; that remembers the dismissal in the browser.
+ */
+const QUIET_DAYS: number | false = false;
+const QUIET_KEY = "atin-callback-dismissed-at";
 
 const readQuiet = () => {
+  if (QUIET_DAYS === false) return false;
   try {
     const at = Number(localStorage.getItem(QUIET_KEY));
-    return Boolean(at) && Date.now() - at < QUIET_MS;
+    return Boolean(at) && Date.now() - at < QUIET_DAYS * 24 * 60 * 60 * 1000;
   } catch {
     return true; // storage blocked: never nag
   }
 };
 const writeQuiet = () => {
+  if (QUIET_DAYS === false) return;
   try {
     localStorage.setItem(QUIET_KEY, String(Date.now()));
   } catch {}
@@ -44,7 +53,8 @@ export function CallbackDialog() {
   }, [open]);
 
   useEffect(() => {
-    if (NO_AUTO_OPEN.some((p) => pathname.startsWith(p)) || readQuiet()) return;
+    const allowed = AUTO_OPEN_PATHS === null ? pathname !== "/contact" && pathname !== "/disclaimer" : AUTO_OPEN_PATHS.includes(pathname);
+    if (!allowed || readQuiet()) return;
     const t = setTimeout(() => {
       if (document.querySelector("dialog[open]")) return;
       writeQuiet();

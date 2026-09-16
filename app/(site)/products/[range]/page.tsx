@@ -11,7 +11,7 @@ import { CollapseToggle } from "@/components/site/CollapseToggle";
 import { RangeIcon } from "@/components/primitives/RangeIcon";
 import { SectionHeading } from "@/components/primitives/SectionHeading";
 import { getProductsInRange, getRange, getRanges } from "@/lib/data/catalogue";
-import { photo } from "@/lib/site/photos";
+import { rangePhoto } from "@/lib/site/photos";
 
 export const dynamicParams = false;
 
@@ -35,7 +35,7 @@ export default async function RangePage({ params }: PageProps<"/products/[range]
   if (!range) notFound();
   const products = await getProductsInRange(slug);
   const others = ranges.filter((r) => r.slug !== slug);
-  const img = photo(slug);
+  const img = rangePhoto(range);
   const formCounts = range.dosageForms
     .map((f) => ({ form: f, count: products.filter((p) => p.dosageForm === f).length }))
     .sort((a, b) => b.count - a.count);

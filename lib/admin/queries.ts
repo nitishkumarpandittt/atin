@@ -29,7 +29,7 @@ export async function getDashboardData() {
     db
       .select({ n: count() })
       .from(products)
-      .where(and(eq(products.isPublished, true), sql`not exists (select 1 from ${productImages} where ${productImages.productId} = ${products.id})`)),
+      .where(and(eq(products.isPublished, true), sql`not exists (select 1 from product_images pi where pi.product_id = products.id)`)),
     db.select({ n: count() }).from(products).where(isNull(products.rangeId)),
     db.select().from(enquiries).orderBy(desc(enquiries.createdAt)).limit(6),
     db.select({ n: count() }).from(enquiries).where(and(eq(enquiries.kind, "enquiry"), eq(enquiries.status, "new"))),
@@ -99,7 +99,7 @@ export async function listProducts(f: ProductFilters) {
   if (f.status === "new") where.push(eq(products.isNew, true));
   if (f.mrp === "set") where.push(or(isNotNull(products.mrp), isNotNull(products.mrpNote))!);
   if (f.mrp === "missing") where.push(and(isNull(products.mrp), isNull(products.mrpNote))!);
-  if (f.images === "none") where.push(sql`not exists (select 1 from ${productImages} where ${productImages.productId} = ${products.id})`);
+  if (f.images === "none") where.push(sql`not exists (select 1 from product_images pi where pi.product_id = products.id)`);
 
   const order =
     f.sort === "updated"
@@ -130,7 +130,7 @@ export async function listProducts(f: ProductFilters) {
         updatedAt: products.updatedAt,
         rangeName: ranges.shortName,
         rangeSlug: ranges.slug,
-        image: sql<string | null>`(select ${productImages.filePath} from ${productImages} where ${productImages.productId} = ${products.id} order by ${productImages.sortOrder}, ${productImages.id} limit 1)`,
+        image: sql<string | null>`(select pi.file_path from product_images pi where pi.product_id = products.id order by pi.sort_order, pi.id limit 1)`,
       })
       .from(products)
       .leftJoin(ranges, eq(products.rangeId, ranges.id))
@@ -151,19 +151,26 @@ export async function getProductForEdit(id: number) {
 }
 
 export async function listRangesWithCounts() {
-  return db
+  // Joined + grouped rather than correlated subqueries: Drizzle renders unqualified column names
+  // inside a sql`` subquery, which silently resolves them against the inner table.
+  const rows = await db
     .select({
       id: ranges.id,
       slug: ranges.slug,
       shortName: ranges.shortName,
       sourceHeading: ranges.sourceHeading,
       icon: ranges.icon,
+      imagePath: ranges.imagePath,
+      imageAlt: ranges.imageAlt,
       sortOrder: ranges.sortOrder,
-      productCount: sql<number>`(select count(*) from ${products} where ${products.rangeId} = ${ranges.id})`,
-      publishedCount: sql<number>`(select count(*) from ${products} where ${products.rangeId} = ${ranges.id} and ${products.isPublished} = 1)`,
+      productCount: sql<number>`count(${products.id})`,
+      publishedCount: sql<number>`coalesce(sum(${products.isPublished} = 1), 0)`,
     })
     .from(ranges)
+    .leftJoin(products, eq(products.rangeId, ranges.id))
+    .groupBy(ranges.id)
     .orderBy(asc(ranges.sortOrder), asc(ranges.shortName));
+  return rows.map((r) => ({ ...r, productCount: Number(r.productCount), publishedCount: Number(r.publishedCount) }));
 }
 
 export async function listEnquiries(kind: "enquiry" | "callback", status: "new" | "handled" | "all", page = 1) {

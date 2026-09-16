@@ -4,7 +4,7 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import type { Range } from "@/lib/data/catalogue";
 import { RangeIcon } from "@/components/primitives/RangeIcon";
 import { SectionHeading } from "@/components/primitives/SectionHeading";
-import { photo } from "@/lib/site/photos";
+import { rangePhoto } from "@/lib/site/photos";
 
 export function SegmentGrid({ ranges, totalProducts }: { ranges: Range[]; totalProducts: number }) {
   return (
@@ -27,7 +27,7 @@ export function SegmentGrid({ ranges, totalProducts }: { ranges: Range[]; totalP
           </li>
 
           {ranges.map((r, i) => {
-            const img = photo(r.slug);
+            const img = rangePhoto(r);
             return (
               <li key={r.slug} data-reveal style={{ "--reveal-delay": `${(i % 3) * 70}ms` } as React.CSSProperties}>
                 <Link

@@ -39,12 +39,38 @@ export async function saveRange(_prev: ActionState, fd: FormData): Promise<Actio
   });
 }
 
+export async function saveRangeImage(_prev: ActionState, fd: FormData): Promise<ActionState> {
+  return guarded(undefined, async () => {
+    const id = Number(str(fd, "id"));
+    const [range] = await db.select().from(schema.ranges).where(eq(schema.ranges.id, id)).limit(1);
+    if (!range) return fail("Range not found.");
+
+    const alt = str(fd, "imageAlt").trim().slice(0, 255);
+    const file = fd.get("image");
+    let imagePath = range.imagePath;
+    if (file instanceof File && file.size > 0) {
+      const stored = await storeImage(file, "site").catch((e: Error) => e);
+      if (stored instanceof Error) return fail(stored.message, { image: stored.message });
+      if (imagePath) await deleteImage(imagePath);
+      imagePath = stored.filePath;
+    } else if (bool(fd, "removeImage") && imagePath) {
+      await deleteImage(imagePath);
+      imagePath = "";
+    }
+    await db.update(schema.ranges).set({ imagePath, imageAlt: alt }).where(eq(schema.ranges.id, id));
+    refreshSite();
+    return ok(imagePath ? "Range image saved." : "Range image removed.");
+  });
+}
+
 export async function deleteRange(_prev: ActionState, fd: FormData): Promise<ActionState> {
   return guarded(undefined, async () => {
     const id = Number(str(fd, "id"));
     const [{ n }] = await db.select({ n: count() }).from(schema.products).where(eq(schema.products.rangeId, id));
     if (Number(n) > 0) return fail(`Move or delete its ${n} product(s) first.`);
+    const [row] = await db.select({ imagePath: schema.ranges.imagePath }).from(schema.ranges).where(eq(schema.ranges.id, id)).limit(1);
     await db.delete(schema.ranges).where(eq(schema.ranges.id, id));
+    if (row?.imagePath) await deleteImage(row.imagePath);
     refreshSite();
     return ok("Range deleted.");
   });

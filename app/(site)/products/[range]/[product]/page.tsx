@@ -12,7 +12,7 @@ import { displayFlags, getProductBySlug, getProductImages, getPublishedProducts,
 import { ProductGallery } from "@/components/site/ProductGallery";
 import { site } from "@/lib/site/config";
 import { brandIncludesForm, productTitle } from "@/lib/utils/text";
-import { photo } from "@/lib/site/photos";
+import { rangePhoto } from "@/lib/site/photos";
 
 // Unlisted range/product pairs render on demand so a product that changed range can redirect.
 export const dynamicParams = true;
@@ -40,7 +40,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[rang
 
   const [range, related, images] = await Promise.all([getRange(product.rangeSlug), getRelatedProducts(product), getProductImages(product.id)]);
   if (!range) notFound();
-  const segmentPhoto = photo(range.slug);
+  const segmentPhoto = rangePhoto(range);
 
   const facts = [
     { icon: Package, label: "Brand", value: product.brand },

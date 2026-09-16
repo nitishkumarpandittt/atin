@@ -156,7 +156,8 @@ export function Header({ items, phone, overlay = false }: Props) {
                       </button>
                       {active && <span aria-hidden className="absolute -bottom-0.5 left-3 right-8 h-0.5 rounded-full bg-leaf xl:left-4" />}
                     </div>
-                    <div id={menuId} hidden={!open} className="absolute left-0 top-full pt-3">
+                    {/* suppressHydrationWarning: extensions such as Bitdefender add attributes to hidden wrappers before hydration. */}
+                    <div id={menuId} hidden={!open} suppressHydrationWarning className="absolute left-0 top-full pt-3">
                       <ul className="min-w-60 rounded-2xl bg-white p-2 text-navy shadow-lift ring-1 ring-line">
                         {item.children.map((c) => (
                           <li key={c.href}>
@@ -205,9 +206,11 @@ export function Header({ items, phone, overlay = false }: Props) {
           </div>
         </div>
 
+        {/* suppressHydrationWarning: see the dropdown above. */}
         <div
           id="mobile-menu"
           hidden={!mobileOpen}
+          suppressHydrationWarning
           className="h-[calc(100dvh-4.5rem)] overflow-y-auto overscroll-contain border-t border-line bg-white pb-[env(safe-area-inset-bottom)] text-navy md:h-[calc(100dvh-5rem)] lg:hidden"
         >
           <nav aria-label="Mobile" className="container-site py-6">

@@ -67,3 +67,9 @@ export function photo(slot: string): Photo | undefined {
   return PHOTOS[slot as Slot];
 }
 
+
+/** Uploaded range image when set, otherwise the stock photo for that segment. */
+export function rangePhoto(range: { slug: string; shortName: string; image?: string; imageAlt?: string }): Photo | undefined {
+  if (range.image) return { src: range.image, alt: range.imageAlt || range.shortName };
+  return photo(range.slug);
+}

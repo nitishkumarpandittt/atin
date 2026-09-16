@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Card, PageHeader } from "@/components/admin/ui";
 import { ActionButton } from "@/components/admin/form";
-import { RangeFields } from "@/components/admin/RangeRow";
+import { RangeFields, RangeImageForm } from "@/components/admin/RangeRow";
 import { deleteRange } from "@/lib/admin/actions/content";
 import { listRangesWithCounts } from "@/lib/admin/queries";
+import { uploadUrl } from "@/lib/uploads/url";
 import { requireStaff } from "@/lib/auth/dal";
 
 export const metadata: Metadata = { title: "Ranges" };
@@ -16,7 +17,7 @@ export default async function RangesPage() {
 
   return (
     <>
-      <PageHeader title="Ranges" description="Product segments shown on the website. Use drug-class or format names only, never disease names." />
+      <PageHeader title="Ranges" description="Product segments shown on the website. Each can have a master image; without one the website uses its stock photo." />
 
       <Card title="Add a range" className="mb-6">
         <div className="p-4 sm:p-5">
@@ -29,6 +30,9 @@ export default async function RangesPage() {
           {ranges.map((r) => (
             <li key={r.id} className="p-4 sm:p-5">
               <RangeFields range={r} submitLabel="Save" />
+              <div className="mt-4 border-t border-line pt-4">
+                <RangeImageForm id={r.id} image={r.imagePath ? uploadUrl(r.imagePath) : ""} imageAlt={r.imageAlt} name={r.shortName} />
+              </div>
               <div className="mt-3 flex flex-wrap items-center gap-3 text-sm">
                 <Link href={`/admin/products?range=${r.slug}`} className="font-medium text-blue-700 hover:underline">
                   {r.productCount} products ({r.publishedCount} published)

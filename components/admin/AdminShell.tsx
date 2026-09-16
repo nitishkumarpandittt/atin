@@ -21,6 +21,7 @@ import {
   X,
 } from "lucide-react";
 import logo from "@/public/brand/atin-logo.png";
+import logoWhite from "@/public/brand/atin-logo-white.png";
 import { authClient } from "@/lib/auth/client";
 
 type Props = {
@@ -85,7 +86,7 @@ export function AdminShell({ children, user, counts }: Props) {
   };
 
   const nav = (
-    <nav aria-label="Admin" className="flex-1 overflow-y-auto px-3 py-4">
+    <nav aria-label="Admin" className="admin-scroll flex-1 overflow-y-auto px-3 py-4">
       {groups.map((g, gi) => {
         const items = g.items.filter((i) => !i.adminOnly || user.role === "admin");
         if (!items.length) return null;
@@ -142,11 +143,9 @@ export function AdminShell({ children, user, counts }: Props) {
     <div className="admin-theme min-h-screen">
       {/* Desktop sidebar */}
       <aside className="fixed inset-y-0 left-0 z-30 hidden w-64 flex-col bg-navy-950 lg:flex">
-        <Link href="/admin" className="flex h-16 items-center gap-2 border-b border-white/10 px-5">
-          <span className="rounded-md bg-white px-2 py-1">
-            <Image src={logo} alt="Atin HealthCare" className="h-7 w-auto" sizes="80px" />
-          </span>
-          <span className="text-sm font-semibold text-slate-300">Admin</span>
+        <Link href="/admin" className="flex h-16 items-center gap-2.5 border-b border-white/10 px-5">
+          <Image src={logoWhite} alt="Atin HealthCare" className="h-9 w-auto" sizes="100px" />
+          <span className="border-l border-white/20 pl-2.5 text-sm font-semibold text-slate-300">Admin</span>
         </Link>
         {nav}
         {footer}
@@ -167,7 +166,10 @@ export function AdminShell({ children, user, counts }: Props) {
           <button type="button" aria-label="Close menu" className="absolute inset-0 bg-slate-950/50" onClick={() => setOpen(false)} />
           <aside className="absolute inset-y-0 left-0 flex w-72 max-w-[85vw] flex-col bg-navy-950">
             <div className="flex h-14 items-center justify-between border-b border-white/10 px-4">
-              <span className="text-sm font-semibold text-white">Atin HealthCare admin</span>
+              <span className="flex items-center gap-2.5">
+                <Image src={logoWhite} alt="Atin HealthCare" className="h-8 w-auto" sizes="100px" />
+                <span className="border-l border-white/20 pl-2.5 text-sm font-semibold text-slate-300">Admin</span>
+              </span>
               <button type="button" onClick={() => setOpen(false)} aria-label="Close menu" className="grid size-10 place-items-center rounded-lg text-slate-300 hover:bg-white/10">
                 <X aria-hidden className="size-5" />
               </button>
