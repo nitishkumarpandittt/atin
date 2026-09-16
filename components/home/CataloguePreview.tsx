@@ -9,18 +9,18 @@ type Item = { product: Product; range: Range };
 export function CataloguePreview({ items, title, eyebrow }: { items: Item[]; title: string; eyebrow: string }) {
   if (!items.length) return null;
   return (
-    <section aria-labelledby="preview-title" className="py-20 md:py-28">
+    <section aria-labelledby="preview-title" className="py-14 md:py-20 lg:py-28">
       <div className="container-site">
-        <div className="flex flex-wrap items-end justify-between gap-6">
+        <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-5">
           <SectionHeading id="preview-title" eyebrow={eyebrow} title={title} intro="A sample from each segment. Every listing shows composition and pack details." />
           <Link href="/products" className="btn btn-blue" data-reveal>
             All products <ArrowRight aria-hidden className="size-4" />
           </Link>
         </div>
 
-        <ul className="-mx-5 mt-12 flex snap-x snap-mandatory scroll-px-5 gap-5 overflow-x-auto px-5 pb-6 [scrollbar-width:thin] md:-mx-8 md:scroll-px-8 md:px-8">
+        <ul className="-mx-5 mt-8 flex md:mt-12 snap-x snap-mandatory scroll-px-5 gap-5 overflow-x-auto px-5 pb-6 [scrollbar-width:thin] md:-mx-8 md:scroll-px-8 md:px-8">
           {items.map(({ product: p, range: r }, i) => (
-            <li key={p.slug} className="w-[17.5rem] shrink-0 snap-start" data-reveal style={{ "--reveal-delay": `${Math.min(i, 4) * 60}ms` } as React.CSSProperties}>
+            <li key={p.slug} className="w-[78%] max-w-[17.5rem] shrink-0 snap-start sm:w-[17.5rem]" data-reveal style={{ "--reveal-delay": `${Math.min(i, 4) * 60}ms` } as React.CSSProperties}>
               <article className="group flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] bg-white shadow-card ring-1 ring-line transition hover:-translate-y-1 hover:shadow-lift">
                 <div className={`relative grid h-36 place-items-center ${i % 2 ? "bg-leaf-100" : "bg-sky-100"}`}>
                   <svg aria-hidden viewBox="0 0 120 120" className={`absolute -bottom-10 -right-8 size-40 ${i % 2 ? "text-leaf/25" : "text-sky/25"}`}>

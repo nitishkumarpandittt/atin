@@ -127,7 +127,7 @@ export function ProductSearch({ ranges }: Props) {
             aria-activedescendant={showList && active >= 0 ? `${id}-opt-${active}` : undefined}
             autoComplete="off"
             enterKeyHint="search"
-            placeholder="Search by brand or composition, e.g. Cefixime"
+            placeholder="Brand or composition"
             value={query}
             onChange={(e) => {
               setQuery(e.target.value);
@@ -135,7 +135,7 @@ export function ProductSearch({ ranges }: Props) {
             }}
             onFocus={() => setOpen(true)}
             onKeyDown={onKeyDown}
-            className="h-14 w-full rounded-xl border border-line bg-surface pl-12 pr-10 text-[0.95rem] text-ink placeholder:text-muted/80 focus:border-brand focus:bg-white focus:outline-none focus:ring-4 focus:ring-sky-100"
+            className="h-14 w-full rounded-xl border border-line bg-surface pl-12 pr-10 text-base text-ink sm:text-[0.95rem] placeholder:text-muted/80 focus:border-brand focus:bg-white focus:outline-none focus:ring-4 focus:ring-sky-100"
           />
           {loading && <Loader2 aria-hidden className="absolute right-4 top-1/2 size-4 -translate-y-1/2 animate-spin text-muted" />}
         </div>
@@ -147,7 +147,7 @@ export function ProductSearch({ ranges }: Props) {
             id={`${id}-range`}
             value={range}
             onChange={(e) => setRange(e.target.value)}
-            className="h-14 w-full rounded-xl border border-line bg-surface px-4 text-[0.95rem] text-ink focus:border-brand focus:bg-white focus:outline-none focus:ring-4 focus:ring-sky-100 md:w-52"
+            className="h-14 w-full rounded-xl border border-line bg-surface px-4 text-base text-ink sm:text-[0.95rem] focus:border-brand focus:bg-white focus:outline-none focus:ring-4 focus:ring-sky-100 md:w-52"
           >
             <option value="">All segments</option>
             {ranges.map((r) => (

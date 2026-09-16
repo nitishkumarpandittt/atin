@@ -82,12 +82,12 @@ export function Header({ items, phone, overlay = false }: Props) {
           solid ? "bg-white/95 text-navy shadow-[0_6px_24px_-12px_rgb(10_31_102/0.25)] backdrop-blur" : "bg-transparent text-white"
         }`}
       >
-        <div className="container-site flex h-20 items-center justify-between gap-6">
+        <div className="container-site flex h-[4.5rem] items-center justify-between gap-4 md:h-20 xl:gap-6">
           <Link href="/" className="relative shrink-0" aria-label="Atin HealthCare home">
             <Image
               src={solid ? logo : logoWhite}
               alt=""
-              className="h-12 w-auto md:h-[3.4rem]"
+              className="h-11 w-auto md:h-[3.4rem]"
               loading="eager"
               sizes="100px"
             />
@@ -103,12 +103,12 @@ export function Header({ items, phone, overlay = false }: Props) {
                       <Link
                         href={item.href}
                         aria-current={active ? "page" : undefined}
-                        className={`relative rounded-full px-4 py-2 text-[0.95rem] font-medium transition-colors ${
+                        className={`relative rounded-full px-3 py-2 text-[0.95rem] font-medium transition-colors xl:px-4 ${
                           solid ? "hover:text-brand" : "hover:text-white/75"
                         } ${active ? (solid ? "text-brand" : "") : ""}`}
                       >
                         {item.label}
-                        {active && <span aria-hidden className="absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full bg-leaf" />}
+                        {active && <span aria-hidden className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-leaf xl:inset-x-4" />}
                       </Link>
                     </li>
                   );
@@ -130,22 +130,32 @@ export function Header({ items, phone, overlay = false }: Props) {
                       setOpenMenu((m) => (m === item.label ? null : m));
                     }}
                   >
-                    <button
-                      type="button"
-                      aria-expanded={open}
-                      aria-controls={menuId}
-                      onClick={() => {
-                        if (open && hoverOpened.current) return;
-                        setOpenMenu(open ? null : item.label);
-                      }}
-                      className={`relative flex items-center gap-1 rounded-full px-4 py-2 text-[0.95rem] font-medium transition-colors ${
-                        solid ? "hover:text-brand" : "hover:text-white/75"
-                      } ${active && solid ? "text-brand" : ""}`}
-                    >
-                      {item.label}
-                      <ChevronDown aria-hidden className={`size-4 transition-transform ${open ? "rotate-180" : ""}`} />
-                      {active && <span aria-hidden className="absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full bg-leaf" />}
-                    </button>
+                    {/* The label is a real link to the section page; the chevron toggles the menu. */}
+                    <div className={`relative flex items-center ${active && solid ? "text-brand" : ""}`}>
+                      <Link
+                        href={item.href}
+                        aria-current={pathname === item.href ? "page" : undefined}
+                        className={`rounded-full py-2 pl-3 pr-0.5 text-[0.95rem] font-medium transition-colors xl:pl-4 ${
+                          solid ? "hover:text-brand" : "hover:text-white/75"
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                      <button
+                        type="button"
+                        aria-expanded={open}
+                        aria-controls={menuId}
+                        aria-label={`${item.label} menu`}
+                        onClick={() => {
+                          if (open && hoverOpened.current) return;
+                          setOpenMenu(open ? null : item.label);
+                        }}
+                        className={`grid size-8 place-items-center rounded-full transition-colors ${solid ? "hover:bg-surface" : "hover:bg-white/15"}`}
+                      >
+                        <ChevronDown aria-hidden className={`size-4 transition-transform ${open ? "rotate-180" : ""}`} />
+                      </button>
+                      {active && <span aria-hidden className="absolute -bottom-0.5 left-3 right-8 h-0.5 rounded-full bg-leaf xl:left-4" />}
+                    </div>
                     <div id={menuId} hidden={!open} className="absolute left-0 top-full pt-3">
                       <ul className="min-w-60 rounded-2xl bg-white p-2 text-navy shadow-lift ring-1 ring-line">
                         {item.children.map((c) => (
@@ -179,7 +189,7 @@ export function Header({ items, phone, overlay = false }: Props) {
                 {phone.label}
               </a>
             )}
-            <Link href="/contact" className="btn btn-green hidden sm:inline-flex">
+            <Link href="/contact" className="btn btn-green hidden px-5 sm:inline-flex xl:px-[1.6rem]">
               Send an enquiry
             </Link>
             <button
@@ -198,7 +208,7 @@ export function Header({ items, phone, overlay = false }: Props) {
         <div
           id="mobile-menu"
           hidden={!mobileOpen}
-          className="h-[calc(100dvh-5rem)] overflow-y-auto border-t border-line bg-white text-navy lg:hidden"
+          className="h-[calc(100dvh-4.5rem)] overflow-y-auto overscroll-contain border-t border-line bg-white pb-[env(safe-area-inset-bottom)] text-navy md:h-[calc(100dvh-5rem)] lg:hidden"
         >
           <nav aria-label="Mobile" className="container-site py-6">
             <ul className="space-y-1">

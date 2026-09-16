@@ -13,25 +13,28 @@ const quickLinks = [
   { label: "Contact", href: "/contact" },
 ];
 
+const linkClass = "inline-block py-2 hover:text-white lg:py-1";
+
 export function Footer({ ranges }: { ranges: Range[] }) {
   const year = new Date().getFullYear();
   return (
-    <footer className="relative bg-navy-950 text-white/75">
+    <footer className="relative bg-navy-950 pb-[env(safe-area-inset-bottom)] text-white/75">
       <div className="hex-pattern absolute inset-0 opacity-40" aria-hidden />
-      <div className="container-site relative grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1.2fr_1.1fr]">
-        <div>
-          <Image src={logoWhite} alt="Atin HealthCare" className="h-16 w-auto" sizes="120px" />
-          <p className="mt-5 max-w-xs text-sm leading-relaxed">
+      {/* Phones/tablets: brand, then quick links beside contact, then segments in two columns. Desktop: four columns. */}
+      <div className="container-site relative grid grid-cols-2 gap-x-6 gap-y-10 py-12 md:py-16 lg:grid-cols-[1.3fr_1fr_1.2fr_1.1fr] lg:gap-12">
+        <div className="col-span-2 lg:col-span-1">
+          <Image src={logoWhite} alt="Atin HealthCare" className="h-14 w-auto md:h-16" sizes="120px" />
+          <p className="mt-4 max-w-sm text-sm leading-relaxed md:mt-5">
             A pharmaceutical marketing and distribution company serving distributors, chemists, hospitals and institutions.
           </p>
         </div>
 
         <div>
           <h2 className="text-base font-bold !text-white">Quick links</h2>
-          <ul className="mt-5 space-y-2.5 text-sm">
+          <ul className="mt-3 text-sm md:mt-4">
             {quickLinks.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="hover:text-white">
+                <Link href={l.href} className={linkClass}>
                   {l.label}
                 </Link>
               </li>
@@ -39,12 +42,12 @@ export function Footer({ ranges }: { ranges: Range[] }) {
           </ul>
         </div>
 
-        <div>
+        <div className="order-last col-span-2 lg:order-none lg:col-span-1">
           <h2 className="text-base font-bold !text-white">Product segments</h2>
-          <ul className="mt-5 grid gap-2.5 text-sm">
+          <ul className="mt-3 grid grid-cols-2 gap-x-6 text-sm md:mt-4 md:grid-cols-3 lg:grid-cols-1">
             {ranges.map((r) => (
               <li key={r.slug}>
-                <Link href={`/products/${r.slug}`} className="hover:text-white">
+                <Link href={`/products/${r.slug}`} className={linkClass}>
                   {r.shortName}
                 </Link>
               </li>
@@ -54,36 +57,36 @@ export function Footer({ ranges }: { ranges: Range[] }) {
 
         <div>
           <h2 className="text-base font-bold !text-white">Get in touch</h2>
-          <ul className="mt-5 space-y-3.5 text-sm">
+          <ul className="mt-3 space-y-2 text-sm md:mt-4">
             {site.address && (
-              <li className="flex gap-3">
+              <li className="flex gap-3 py-1">
                 <MapPin aria-hidden className="mt-0.5 size-4 shrink-0 text-leaf" />
                 <span>{site.address}</span>
               </li>
             )}
             {site.phone && (
               <li className="flex gap-3">
-                <Phone aria-hidden className="mt-0.5 size-4 shrink-0 text-leaf" />
-                <a href={telHref(site.phone)} className="hover:text-white">
+                <Phone aria-hidden className="mt-2 size-4 shrink-0 text-leaf" />
+                <a href={telHref(site.phone)} className={linkClass}>
                   {site.phone}
                 </a>
               </li>
             )}
             {site.email && (
               <li className="flex gap-3">
-                <Mail aria-hidden className="mt-0.5 size-4 shrink-0 text-leaf" />
-                <a href={`mailto:${site.email}`} className="hover:text-white">
+                <Mail aria-hidden className="mt-2 size-4 shrink-0 text-leaf" />
+                <a href={`mailto:${site.email}`} className={`${linkClass} break-all`}>
                   {site.email}
                 </a>
               </li>
             )}
-            <li className="flex gap-3">
+            <li className="flex gap-3 py-1">
               <Clock aria-hidden className="mt-0.5 size-4 shrink-0 text-leaf" />
               <span>{site.hours}</span>
             </li>
             <li className="flex gap-3">
-              <MessageCircle aria-hidden className="mt-0.5 size-4 shrink-0 text-leaf" />
-              <Link href="/contact" className="hover:text-white">
+              <MessageCircle aria-hidden className="mt-2 size-4 shrink-0 text-leaf" />
+              <Link href="/contact" className={linkClass}>
                 Send a trade enquiry
               </Link>
             </li>
@@ -92,13 +95,13 @@ export function Footer({ ranges }: { ranges: Range[] }) {
       </div>
 
       <div className="relative border-t border-white/10">
-        <div className="container-site flex flex-col gap-3 py-6 text-xs md:flex-row md:items-center md:justify-between">
+        <div className="container-site flex flex-col gap-2 py-6 text-xs md:flex-row md:items-center md:justify-between md:gap-6">
           <p>
             © {year} {site.legalName}. All rights reserved.
           </p>
           <p className="max-w-2xl text-white/55 md:text-right">
             Product information is for trade reference only and is not medical advice.{" "}
-            <Link href="/disclaimer" className="underline underline-offset-2 hover:text-white">
+            <Link href="/disclaimer" className="inline-block py-2 underline underline-offset-2 hover:text-white md:py-0">
               Disclaimer
             </Link>
           </p>

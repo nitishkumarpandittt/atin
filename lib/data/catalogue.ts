@@ -120,3 +120,29 @@ export async function searchProducts(query: string, rangeSlug?: string, limit = 
     })),
   };
 }
+
+export const getRange = cache(async (slug: string) => (await getRanges()).find((r) => r.slug === slug) ?? null);
+
+export const getProductsInRange = cache(async (rangeSlug: string) =>
+  (await getPublishedProducts()).filter((p) => p.rangeSlug === rangeSlug),
+);
+
+/** Finds a product by slug regardless of range, so pages can redirect when a product moves range. */
+export const getProductBySlug = cache(async (slug: string) => (await getPublishedProducts()).find((p) => p.slug === slug) ?? null);
+
+export const getRelatedProducts = cache(async (product: Product, limit = 4) => {
+  const inRange = (await getProductsInRange(product.rangeSlug)).filter((p) => p.slug !== product.slug);
+  const sameForm = inRange.filter((p) => p.dosageForm === product.dosageForm);
+  const rest = inRange.filter((p) => p.dosageForm !== product.dosageForm);
+  // Start near the product's own position so neighbours in the catalogue appear first.
+  const byDistance = (a: Product, b: Product) => Math.abs(a.sortOrder - product.sortOrder) - Math.abs(b.sortOrder - product.sortOrder);
+  return [...sameForm.sort(byDistance), ...rest.sort(byDistance)].slice(0, limit);
+});
+
+export type CatalogueItem = Product & { rangeName: string };
+
+export const getCatalogueItems = cache(async (): Promise<CatalogueItem[]> => {
+  const [products, ranges] = await Promise.all([getPublishedProducts(), getRanges()]);
+  const names = new Map(ranges.map((r) => [r.slug, r.shortName]));
+  return products.map((p) => ({ ...p, rangeName: names.get(p.rangeSlug) ?? "" }));
+});

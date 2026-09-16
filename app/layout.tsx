@@ -29,6 +29,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: "#0054b4",
+  // Lets content use the full screen on notched phones; fixed elements add safe-area padding.
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
