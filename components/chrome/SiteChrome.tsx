@@ -4,14 +4,15 @@ import { CallbackDialog } from "@/components/site/CallbackDialog";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { RevealObserver } from "@/components/motion/RevealObserver";
 import { getRanges } from "@/lib/data/catalogue";
-import { nav, site, telHref } from "@/lib/site/config";
+import { getPublicCompany } from "@/lib/data/site";
+import { nav, telHref } from "@/lib/site/config";
 
 /**
  * Public page shell. Every public page opens with a dark hero (home hero or PageHero), so the
  * header is always transparent at the top and turns solid on scroll.
  */
 export async function SiteChrome({ children }: { children: React.ReactNode }) {
-  const ranges = await getRanges();
+  const [ranges, company] = await Promise.all([getRanges(), getPublicCompany()]);
   const topRanges = [...ranges].sort((a, b) => b.productCount - a.productCount).slice(0, 6);
 
   const items: NavItem[] = nav.map((item) => {
@@ -27,7 +28,10 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
         ],
       };
     }
-    return { label: item.label, href: item.href, children: [...item.children] };
+    const children: { label: string; href: string }[] = [...item.children];
+    // Director's message appears in the menu only once it has been filled in.
+    if (item.href === "/about" && company.director) children.splice(2, 0, { label: "Director's message", href: "/about#director" });
+    return { label: item.label, href: item.href, children };
   });
 
   return (
@@ -38,12 +42,12 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
       >
         Skip to content
       </a>
-      <Header items={items} overlay phone={site.phone ? { label: site.phone, href: telHref(site.phone) } : undefined} />
+      <Header items={items} overlay phone={company.phone ? { label: company.phone, href: telHref(company.phone) } : undefined} />
       <main id="main" className="overflow-x-clip">
         {children}
       </main>
-      <Footer ranges={ranges} />
-      {site.whatsapp && <WhatsAppButton number={site.whatsapp} />}
+      <Footer ranges={ranges} company={company} />
+      {company.whatsapp && <WhatsAppButton number={company.whatsapp} />}
       <CallbackDialog />
       <RevealObserver />
     </>

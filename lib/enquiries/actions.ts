@@ -3,7 +3,7 @@
 import { headers } from "next/headers";
 import { callbackSchema, enquirySchema, toFieldErrors, type FormState } from "@/lib/enquiries/schema";
 import { rateLimit } from "@/lib/enquiries/rate-limit";
-import { newRecord, saveEmailStatus, saveRecord } from "@/lib/enquiries/store";
+import { saveEmailStatus, saveEnquiry, type EnquiryInput } from "@/lib/enquiries/store";
 import { sendNotification } from "@/lib/enquiries/mail";
 
 const MIN_FILL_MS = 3000;
@@ -16,12 +16,12 @@ async function clientKey() {
 const fields = (formData: FormData, keys: string[]) =>
   Object.fromEntries(keys.map((k) => [k, typeof formData.get(k) === "string" ? (formData.get(k) as string) : undefined]));
 
-async function persist(kind: "enquiry" | "callback", data: Record<string, string>) {
-  const record = newRecord(kind, data);
-  const saved = await saveRecord(record);
-  const emailStatus = await sendNotification(record);
-  if (saved) await saveEmailStatus(record.id, emailStatus);
-  return saved || emailStatus === "sent";
+async function persist(input: EnquiryInput) {
+  // Save first so no enquiry is lost if email fails; success if either path worked.
+  const id = await saveEnquiry(input);
+  const mail = await sendNotification(id, input);
+  if (id) await saveEmailStatus(id, mail.status, mail.error);
+  return id !== null || mail.status === "sent";
 }
 
 // Order: field validation first, then honeypot and timing, then rate limit (only counts valid input).
@@ -41,8 +41,9 @@ export async function submitEnquiry(_prev: FormState, formData: FormData): Promi
     return { status: "error", message: "Too many enquiries from this connection. Please try again in a few minutes." };
   }
 
-  const data = Object.fromEntries(Object.entries(parsed.data).filter(([key]) => key !== "consent")) as Record<string, string>;
-  const ok = await persist("enquiry", data);
+  const { name, organisation, role, email, phone, city, message, product } = parsed.data;
+  const productSlug = String(formData.get("product_slug") ?? "").slice(0, 160);
+  const ok = await persist({ kind: "enquiry", name, organisation, role, email, phone, city, message, productLabel: product, productSlug: /^[a-z0-9-]+$/.test(productSlug) ? productSlug : undefined });
   return ok
     ? { status: "success", message: "Thank you. Your enquiry has been received and our team will get back to you." }
     : { status: "error", message: "We could not send your enquiry right now. Please try again shortly." };
@@ -64,7 +65,7 @@ export async function submitCallback(_prev: FormState, formData: FormData): Prom
     return { status: "error", message: "Too many requests from this connection. Please try again in a few minutes." };
   }
 
-  const ok = await persist("callback", parsed.data);
+  const ok = await persist({ kind: "callback", ...parsed.data });
   return ok
     ? { status: "success", message: "Thank you. Our team will call you back during business hours." }
     : { status: "error", message: "We could not send your request right now. Please try again shortly." };

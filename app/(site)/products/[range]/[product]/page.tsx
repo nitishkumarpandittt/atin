@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
-import { ArrowRight, Boxes, FlaskConical, Layers, Package } from "lucide-react";
+import { ArrowRight, Boxes, FlaskConical, IndianRupee, Layers, Package, Stethoscope } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { ProductCard } from "@/components/site/ProductCard";
 import { CatalogueNote } from "@/components/site/CatalogueNote";
 import { RequestCallButton } from "@/components/site/RequestCallButton";
 import { RangeIcon } from "@/components/primitives/RangeIcon";
-import { getProductBySlug, getPublishedProducts, getRange, getRelatedProducts } from "@/lib/data/catalogue";
+import { displayFlags, getProductBySlug, getProductImages, getPublishedProducts, getRange, getRelatedProducts } from "@/lib/data/catalogue";
+import { ProductGallery } from "@/components/site/ProductGallery";
 import { site } from "@/lib/site/config";
 import { brandIncludesForm, productTitle } from "@/lib/utils/text";
 import { photo } from "@/lib/site/photos";
@@ -37,7 +38,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[rang
   if (!product) notFound();
   if (product.rangeSlug !== rangeSlug) permanentRedirect(`/products/${product.rangeSlug}/${product.slug}`);
 
-  const [range, related] = await Promise.all([getRange(product.rangeSlug), getRelatedProducts(product)]);
+  const [range, related, images] = await Promise.all([getRange(product.rangeSlug), getRelatedProducts(product), getProductImages(product.id)]);
   if (!range) notFound();
   const segmentPhoto = photo(range.slug);
 
@@ -46,6 +47,20 @@ export default async function ProductPage({ params }: PageProps<"/products/[rang
     { icon: Layers, label: "Dosage form", value: product.dosageForm },
     { icon: FlaskConical, label: "Composition", value: product.composition },
     { icon: Boxes, label: "Pack", value: product.pack },
+    // Price and specialities stay hidden publicly until switched on (pending counsel review).
+    // Only a "DPCO" note is shown as a price note.
+    {
+      icon: IndianRupee,
+      label: "MRP",
+      value: displayFlags.showMrp
+        ? product.mrp != null
+          ? `₹${product.mrp.toFixed(2)}`
+          : product.mrpNote?.toUpperCase() === "DPCO"
+            ? "DPCO"
+            : ""
+        : "",
+    },
+    { icon: Stethoscope, label: "Prescribing specialities", value: displayFlags.showSpecialities ? (product.prescribingSpecialities ?? "") : "" },
   ].filter((f) => f.value);
 
   const jsonLd = {
@@ -76,6 +91,10 @@ export default async function ProductPage({ params }: PageProps<"/products/[rang
 
       <section className="container-site relative z-10 -mt-24 pb-12 md:pb-20">
         <div className="grid gap-6 rounded-3xl bg-white p-4 shadow-lift ring-1 ring-line sm:gap-8 sm:p-6 md:rounded-[2rem] md:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
+          {images.length > 0 ? (
+            <ProductGallery images={images} fallbackAlt={productTitle(product.brand, product.dosageForm)} />
+          ) : (
+            <>
           {/* Visual: segment icon on a brand tile (no stock photo is presented as the product itself).
               Compact row on phones and tablets, tall centred tile beside the details on desktop. */}
           <div className="relative isolate overflow-hidden rounded-2xl bg-gradient-to-br from-sky-100 via-white to-leaf-100 p-4 sm:rounded-3xl sm:p-6 lg:grid lg:min-h-[26rem] lg:place-items-center lg:p-8">
@@ -95,6 +114,8 @@ export default async function ProductPage({ params }: PageProps<"/products/[rang
             </div>
             <p className="absolute inset-x-0 bottom-4 hidden text-center text-xs text-muted lg:block">Pack image available on request</p>
           </div>
+            </>
+          )}
 
           <div className="flex flex-col">
             <p className="eyebrow text-green">Product details</p>
@@ -129,7 +150,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[rang
             </dl>
 
             <div className="btn-row mt-6 sm:mt-8">
-              <Link href={`/contact?product=${encodeURIComponent(productTitle(product.brand, product.dosageForm))}`} className="btn btn-green">
+              <Link href={`/contact?product=${encodeURIComponent(product.slug)}`} className="btn btn-green">
                 Enquire about this product <ArrowRight aria-hidden className="size-4" />
               </Link>
               <RequestCallButton className="btn btn-blue" />

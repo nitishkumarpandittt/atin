@@ -17,12 +17,11 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<"/blog/[slug]">): Promise<Metadata> {
   const post = await getPost((await params).slug);
   if (!post) return {};
-  const cover = photo(post.cover);
   return {
     title: post.title,
     description: post.excerpt,
     alternates: { canonical: `/blog/${post.slug}` },
-    openGraph: { type: "article", title: post.title, description: post.excerpt, images: cover ? [cover.src] : undefined },
+    openGraph: { type: "article", title: post.title, description: post.excerpt, images: post.cover ? [post.cover] : undefined },
   };
 }
 
@@ -30,7 +29,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
   const { slug } = await params;
   const [post, posts] = await Promise.all([getPost(slug), getPosts()]);
   if (!post) notFound();
-  const cover = photo(post.cover);
+  const cover = post.cover ? { src: post.cover, alt: post.coverAlt } : null;
   const html = renderMarkdown(post.content);
   const more = posts.filter((p) => p.slug !== slug).slice(0, 2);
 
@@ -51,7 +50,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
       <PageHero
         eyebrow="Blog"
         title={post.title}
-        photo={cover}
+        photo={cover ?? photo("blog-2")}
         overlap
         crumbs={[{ label: "Blog", href: "/blog" }, { label: post.title }]}
       >
@@ -94,12 +93,11 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
           </div>
           <ul className="mt-6 grid gap-4 md:mt-8 md:grid-cols-2 md:gap-6">
             {more.map((p) => {
-              const img = photo(p.cover);
               return (
                 <li key={p.slug}>
                   <Link href={`/blog/${p.slug}`} className="group flex gap-5 rounded-3xl bg-white p-4 shadow-card ring-1 ring-line transition hover:shadow-lift">
                     <span className="relative size-20 shrink-0 overflow-hidden rounded-2xl bg-surface sm:size-28">
-                      {img && <Image src={img.src} alt="" fill sizes="112px" className="object-cover" />}
+                      {p.cover && <Image src={p.cover} alt="" fill sizes="112px" className="object-cover" />}
                     </span>
                     <span className="flex flex-col justify-center">
                       <span className="font-bold leading-snug text-navy group-hover:text-brand">{p.title}</span>

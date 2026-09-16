@@ -3,7 +3,6 @@ import Link from "next/link";
 import { ArrowRight, CalendarDays } from "lucide-react";
 import { SectionHeading } from "@/components/primitives/SectionHeading";
 import { formatDate, type BlogPost } from "@/lib/data/blog";
-import { photo } from "@/lib/site/photos";
 
 export function LatestPosts({ posts }: { posts: BlogPost[] }) {
   if (!posts.length) return null;
@@ -18,12 +17,11 @@ export function LatestPosts({ posts }: { posts: BlogPost[] }) {
         </div>
         <ul className="-mx-5 mt-8 flex snap-x snap-mandatory scroll-px-5 gap-4 overflow-x-auto px-5 pb-4 [scrollbar-width:thin] md:mx-0 md:mt-12 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
           {posts.slice(0, 3).map((post, i) => {
-            const img = photo(post.cover);
             return (
               <li key={post.slug} className="w-[82%] max-w-sm shrink-0 snap-start md:w-auto md:max-w-none" data-reveal style={{ "--reveal-delay": `${i * 80}ms` } as React.CSSProperties}>
                 <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-card ring-1 ring-line transition hover:-translate-y-1 hover:shadow-lift">
                   <div className="relative aspect-[16/10] overflow-hidden bg-surface">
-                    {img && <Image src={img.src} alt={img.alt} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover transition duration-500 group-hover:scale-105" />}
+                    {post.cover && <Image src={post.cover} alt={post.coverAlt} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover transition duration-500 group-hover:scale-105" />}
                   </div>
                   <div className="flex flex-1 flex-col p-5 lg:p-6">
                     <h3 className="text-lg font-bold leading-snug">

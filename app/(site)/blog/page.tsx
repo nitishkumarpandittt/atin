@@ -32,7 +32,7 @@ export default async function BlogPage() {
           <>
             <article className="group relative grid overflow-hidden rounded-3xl bg-white shadow-card ring-1 ring-line transition hover:shadow-lift md:rounded-[2rem] lg:grid-cols-2">
               <div className="relative aspect-[16/10] lg:aspect-auto lg:min-h-[24rem]">
-                <Cover slot={featured.cover} sizes="(min-width: 1024px) 50vw, 100vw" />
+                <Cover src={featured.cover} alt={featured.coverAlt} sizes="(min-width: 1024px) 50vw, 100vw" />
               </div>
               <div className="flex flex-col justify-center p-5 sm:p-8 lg:p-12">
                 <p className="eyebrow text-green">Latest article</p>
@@ -55,7 +55,7 @@ export default async function BlogPage() {
                   <li key={post.slug} data-reveal style={{ "--reveal-delay": `${i * 70}ms` } as React.CSSProperties}>
                     <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-card ring-1 ring-line transition hover:-translate-y-1 hover:shadow-lift">
                       <div className="relative aspect-[16/10] overflow-hidden">
-                        <Cover slot={post.cover} sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+                        <Cover src={post.cover} alt={post.coverAlt} sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
                       </div>
                       <div className="flex flex-1 flex-col p-5 lg:p-6">
                         <h3 className="text-lg font-bold leading-snug">
@@ -80,10 +80,9 @@ export default async function BlogPage() {
   );
 }
 
-function Cover({ slot, sizes }: { slot: string; sizes: string }) {
-  const img = photo(slot);
-  if (!img) return <div className="h-full w-full bg-gradient-to-br from-brand to-navy" />;
-  return <Image src={img.src} alt={img.alt} fill sizes={sizes} className="object-cover transition duration-500 group-hover:scale-105" />;
+function Cover({ src, alt, sizes }: { src: string; alt: string; sizes: string }) {
+  if (!src) return <div className="h-full w-full bg-gradient-to-br from-brand to-navy" />;
+  return <Image src={src} alt={alt} fill sizes={sizes} className="object-cover transition duration-500 group-hover:scale-105" />;
 }
 
 function Meta({ date, minutes }: { date: string; minutes: number }) {

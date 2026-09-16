@@ -6,20 +6,19 @@ import { PageHero } from "@/components/site/PageHero";
 import { SectionHeading } from "@/components/primitives/SectionHeading";
 import { qualityPractices } from "@/lib/site/content";
 import { photo } from "@/lib/site/photos";
+import { getPublishedCredentials } from "@/lib/data/site";
+import { formatDate } from "@/lib/data/blog";
 
 export const metadata: Metadata = {
   title: "Quality & certifications",
   description: "How Atin HealthCare handles product information and documentation, and how to request licences and certificates.",
 };
 
-type Credential = { name: string; issuingAuthority: string; number: string; validUntil: string };
-
-// Published credentials. Empty until the client provides verified licence details.
-const credentials: Credential[] = [];
 
 const practiceIcons = [FileText, ClipboardCheck, PackageCheck, ShieldCheck];
 
-export default function QualityPage() {
+export default async function QualityPage() {
+  const credentials = await getPublishedCredentials();
   const lab = photo("lab-quality");
   const storage = photo("blog-2");
 
@@ -77,11 +76,11 @@ export default function QualityPage() {
                 </thead>
                 <tbody className="divide-y divide-line">
                   {credentials.map((c) => (
-                    <tr key={c.number}>
+                    <tr key={c.id}>
                       <td className="px-5 py-4 font-medium text-navy">{c.name}</td>
-                      <td className="px-5 py-4 text-muted">{c.issuingAuthority}</td>
-                      <td className="px-5 py-4 font-mono text-ink">{c.number}</td>
-                      <td className="px-5 py-4 text-muted">{c.validUntil}</td>
+                      <td className="px-5 py-4 text-muted">{c.issuingAuthority || "—"}</td>
+                      <td className="px-5 py-4 font-mono text-ink">{c.number || "—"}</td>
+                      <td className="px-5 py-4 text-muted">{c.validUntil ? formatDate(c.validUntil) : "—"}</td>
                     </tr>
                   ))}
                 </tbody>

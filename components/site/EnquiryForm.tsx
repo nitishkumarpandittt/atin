@@ -8,7 +8,7 @@ import { SelectField, SpamGuards, TextAreaField, TextField } from "@/components/
 
 const initial: FormState = { status: "idle" };
 
-export function EnquiryForm({ product }: { product?: string }) {
+export function EnquiryForm({ product, productSlug }: { product?: string; productSlug?: string }) {
   const [state, formAction, pending] = useActionState(submitEnquiry, initial);
   const [startedAt] = useState(() => Date.now());
   const errors = state.status === "error" ? (state.fieldErrors ?? {}) : {};
@@ -35,6 +35,7 @@ export function EnquiryForm({ product }: { product?: string }) {
       }}
     >
       <SpamGuards startedAt={startedAt} idPrefix="enq" />
+      {productSlug && <input type="hidden" name="product_slug" value={productSlug} />}
 
       {state.status === "error" && (
         <p role="alert" className="rounded-xl bg-red-50 px-4 py-3 text-sm font-medium text-red-800 sm:col-span-2">

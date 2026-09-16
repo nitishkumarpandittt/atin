@@ -1,43 +1,57 @@
 import "server-only";
-import { randomUUID } from "node:crypto";
-import { appendFile, mkdir } from "node:fs/promises";
-import path from "node:path";
+import { eq } from "drizzle-orm";
+import { db, schema } from "@/lib/db";
 
-export type EnquiryRecord = {
-  id: string;
+export type EnquiryInput = {
   kind: "enquiry" | "callback";
-  createdAt: string;
-  emailStatus: "pending" | "sent" | "failed" | "not-configured";
-  data: Record<string, string>;
+  name: string;
+  phone: string;
+  organisation?: string;
+  role?: string;
+  email?: string;
+  city?: string;
+  preferredTime?: string;
+  message?: string;
+  productLabel?: string;
+  productSlug?: string;
 };
 
-// Interim storage until the MySQL `enquiries` table lands: one JSON object per line.
-const dir = () => path.resolve(/*turbopackIgnore: true*/ process.env.ENQUIRY_STORE_DIR ?? path.join(process.cwd(), "storage"));
+export type EmailStatus = "pending" | "sent" | "failed" | "not-configured";
 
-export function newRecord(kind: EnquiryRecord["kind"], data: Record<string, string>): EnquiryRecord {
-  return { id: randomUUID(), kind, createdAt: new Date().toISOString(), emailStatus: "pending", data };
-}
-
-async function appendLine(line: object) {
-  const target = dir();
-  await mkdir(target, { recursive: true });
-  await appendFile(path.join(target, "enquiries.jsonl"), JSON.stringify(line) + "\n", "utf8");
-}
-
-export async function saveRecord(record: EnquiryRecord): Promise<boolean> {
+/** Saves the enquiry and returns its id, or null when the database write failed. */
+export async function saveEnquiry(input: EnquiryInput): Promise<number | null> {
   try {
-    await appendLine(record);
-    return true;
+    let productId: number | null = null;
+    if (input.productSlug) {
+      const [match] = await db.select({ id: schema.products.id }).from(schema.products).where(eq(schema.products.slug, input.productSlug)).limit(1);
+      productId = match?.id ?? null;
+    }
+    const [res] = await db.insert(schema.enquiries).values({
+      kind: input.kind,
+      name: input.name,
+      phone: input.phone,
+      organisation: input.organisation ?? "",
+      role: input.role ?? "",
+      email: input.email || null,
+      city: input.city ?? "",
+      preferredTime: input.preferredTime ?? "",
+      message: input.message ?? null,
+      productId,
+      productLabel: (input.productLabel ?? "").trim(),
+    });
+    return res.insertId;
   } catch (error) {
-    console.error("[enquiries] could not save record", record.id, error);
-    return false;
+    console.error("[enquiries] could not save enquiry", error);
+    return null;
   }
 }
 
-/** Appends a status event; the latest event for an id wins when the file is imported. */
-export async function saveEmailStatus(id: string, emailStatus: EnquiryRecord["emailStatus"]) {
+export async function saveEmailStatus(id: number, emailStatus: EmailStatus, emailError?: string) {
   try {
-    await appendLine({ id, event: "email-status", emailStatus, at: new Date().toISOString() });
+    await db
+      .update(schema.enquiries)
+      .set({ emailStatus, emailError: emailError?.slice(0, 500) ?? null })
+      .where(eq(schema.enquiries.id, id));
   } catch (error) {
     console.error("[enquiries] could not save email status", id, error);
   }

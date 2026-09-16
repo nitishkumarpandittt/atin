@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Phone } from "lucide-react";
-import { site, telHref } from "@/lib/site/config";
+import { telHref } from "@/lib/site/config";
 import type { Photo } from "@/lib/site/photos";
 import { RequestCallButton } from "@/components/site/RequestCallButton";
 
-export function EnquiryBand({ photo }: { photo: Photo }) {
+export function EnquiryBand({ photo, phone }: { photo: Photo; phone: string }) {
   return (
     <section aria-labelledby="enquiry-title" className="relative mt-10 bg-navy-950">
       {/* White sweep into the footer colour (Remedial curved footer) */}
@@ -29,9 +29,9 @@ export function EnquiryBand({ photo }: { photo: Photo }) {
             <Link href="/contact" className="btn btn-green">
               Send an enquiry <ArrowRight aria-hidden className="size-4" />
             </Link>
-            {site.phone ? (
-              <a href={telHref(site.phone)} className="btn btn-white">
-                <Phone aria-hidden className="size-4" /> {site.phone}
+            {phone ? (
+              <a href={telHref(phone)} className="btn btn-white">
+                <Phone aria-hidden className="size-4" /> {phone}
               </a>
             ) : (
               <RequestCallButton className="btn btn-outline-light" />

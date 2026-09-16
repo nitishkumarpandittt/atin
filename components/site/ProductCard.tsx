@@ -1,9 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { RangeIcon } from "@/components/primitives/RangeIcon";
 
 type Props = {
-  product: { slug: string; brand: string; dosageForm: string; composition: string; pack: string; rangeSlug: string; isNew?: boolean };
+  product: { slug: string; brand: string; dosageForm: string; composition: string; pack: string; rangeSlug: string; isNew?: boolean; image?: string };
   rangeName?: string;
   icon: string;
   tone?: "blue" | "green";
@@ -14,9 +15,15 @@ export function ProductCard({ product: p, rangeName, icon, tone = "blue" }: Prop
   return (
     <article className="group relative flex h-full flex-col rounded-[var(--radius-card)] bg-white p-4 shadow-card ring-1 ring-line transition hover:-translate-y-1 hover:shadow-lift hover:ring-sky/40 sm:p-5">
       <div className="flex items-start gap-3 sm:justify-between">
-        <span className={`grid size-10 shrink-0 place-items-center rounded-xl sm:size-12 ${green ? "bg-leaf-100 text-green" : "bg-sky-100 text-brand"}`}>
-          <RangeIcon icon={icon} className="size-5 sm:size-6" />
-        </span>
+        {p.image ? (
+          <span className="relative size-10 shrink-0 overflow-hidden rounded-xl bg-surface ring-1 ring-line sm:size-12">
+            <Image src={p.image} alt="" fill sizes="48px" className="object-cover" />
+          </span>
+        ) : (
+          <span className={`grid size-10 shrink-0 place-items-center rounded-xl sm:size-12 ${green ? "bg-leaf-100 text-green" : "bg-sky-100 text-brand"}`}>
+            <RangeIcon icon={icon} className="size-5 sm:size-6" />
+          </span>
+        )}
         {/* Phones: title sits beside the icon to keep cards short. */}
         <div className="min-w-0 flex-1 sm:hidden">
           <h3 className="text-base font-bold leading-snug">

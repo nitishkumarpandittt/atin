@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import logoWhite from "@/public/brand/atin-logo-white.png";
 import type { Range } from "@/lib/data/catalogue";
+import type { PublicCompany } from "@/lib/data/site";
 import { site, telHref } from "@/lib/site/config";
 
 const quickLinks = [
@@ -15,7 +16,7 @@ const quickLinks = [
 
 const linkClass = "inline-block py-2 hover:text-white lg:py-1";
 
-export function Footer({ ranges }: { ranges: Range[] }) {
+export function Footer({ ranges, company }: { ranges: Range[]; company: PublicCompany }) {
   const year = new Date().getFullYear();
   return (
     <footer className="relative bg-navy-950 pb-[env(safe-area-inset-bottom)] text-white/75">
@@ -58,32 +59,34 @@ export function Footer({ ranges }: { ranges: Range[] }) {
         <div>
           <h2 className="text-base font-bold !text-white">Get in touch</h2>
           <ul className="mt-3 space-y-2 text-sm md:mt-4">
-            {site.address && (
+            {company.address && (
               <li className="flex gap-3 py-1">
                 <MapPin aria-hidden className="mt-0.5 size-4 shrink-0 text-leaf" />
-                <span>{site.address}</span>
+                <span>{company.address}</span>
               </li>
             )}
-            {site.phone && (
+            {company.phone && (
               <li className="flex gap-3">
                 <Phone aria-hidden className="mt-2 size-4 shrink-0 text-leaf" />
-                <a href={telHref(site.phone)} className={linkClass}>
-                  {site.phone}
+                <a href={telHref(company.phone)} className={linkClass}>
+                  {company.phone}
                 </a>
               </li>
             )}
-            {site.email && (
+            {company.email && (
               <li className="flex gap-3">
                 <Mail aria-hidden className="mt-2 size-4 shrink-0 text-leaf" />
-                <a href={`mailto:${site.email}`} className={`${linkClass} break-all`}>
-                  {site.email}
+                <a href={`mailto:${company.email}`} className={`${linkClass} break-all`}>
+                  {company.email}
                 </a>
               </li>
             )}
+            {company.hours && (
             <li className="flex gap-3 py-1">
               <Clock aria-hidden className="mt-0.5 size-4 shrink-0 text-leaf" />
-              <span>{site.hours}</span>
+              <span>{company.hours}</span>
             </li>
+            )}
             <li className="flex gap-3">
               <MessageCircle aria-hidden className="mt-2 size-4 shrink-0 text-leaf" />
               <Link href="/contact" className={linkClass}>

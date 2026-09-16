@@ -38,13 +38,16 @@ const unsplash = (id: string, alt: string, extra: Partial<Photo> = {}): Photo =>
 });
 
 const PHOTOS: Record<Slot, Photo> = {
+  // copy-check: photographer credit (Unsplash account name), not marketing copy
   "hero": unsplash("photo-1580281657527-47f249e8f4df", "Pharmacist in a white coat reaching for a medicine box on a pharmacy shelf", { credit: "National Cancer Institute", position: "center 30%" }),
   "warehouse": unsplash("photo-1587293852726-70cdb56c2866", "Cardboard boxes stacked on warehouse racks", { credit: "CHUTTERSNAP" }),
   "team": unsplash("photo-1577962917302-cd874c4e31d2", "Business team in a meeting around an office table", { credit: "Smartworks Coworking" }),
   "lab-quality": unsplash("photo-1532187643603-ba119ca4109e", "Scientist pouring liquid into laboratory glassware", { credit: "Louis Reed" }),
+  // copy-check: photographer credit (Unsplash account name), not marketing copy
   "chemist-counter": unsplash("photo-1576091358783-a212ec293ff3", "Pharmacist talking with a customer at a pharmacy counter", { credit: "National Cancer Institute" }),
   "hospital-corridor": unsplash("photo-1777269749032-d8d458ae594d", "Empty hospital corridor with benches and doors", { credit: "Tasha Kostyuk" }),
   "contact": unsplash("photo-1626863905121-3b0c0ed7b94c", "Support team wearing headsets in a bright office", { credit: "Charanjeet Dhiman" }),
+  // copy-check: photographer credit (Unsplash account name), not marketing copy
   "blog-1": unsplash("photo-1580281658223-9b93f18ae9ae", "Pharmacist checking stock at a pharmacy display case", { credit: "National Cancer Institute" }),
   "blog-2": unsplash("photo-1642055514517-7b52288890ec", "Storage room with shelves of neatly organised boxes", { credit: "Árpád Czapp" }),
   "blog-3": unsplash("photo-1471864190281-a93a3070b6de", "Assorted tablets and capsules in different colours", { credit: "freestocks" }),

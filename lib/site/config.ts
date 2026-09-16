@@ -1,16 +1,11 @@
-// Company facts shown on the public site. Contact fields that are empty are hidden, never
-// replaced with placeholder text. These move to the `site_settings` table with the admin panel.
+// Static site identity. Editable company details (contact, profile, director) live in the
+// `site_settings` table and are read with getPublicCompany() from lib/data/site.ts.
 export const site = {
   name: "Atin HealthCare",
   legalName: "Atin HealthCare Pvt Ltd",
   url: process.env.SITE_URL ?? "http://localhost:3000",
   description:
     "Atin HealthCare is a pharmaceutical marketing and distribution company offering a multi-segment range of tablets, syrups, injectables, ayurvedic, dental, derma and eye-care products for the pharma trade.",
-  phone: process.env.NEXT_PUBLIC_COMPANY_PHONE ?? "",
-  email: process.env.NEXT_PUBLIC_COMPANY_EMAIL ?? "",
-  whatsapp: process.env.NEXT_PUBLIC_COMPANY_WHATSAPP ?? "",
-  address: process.env.NEXT_PUBLIC_COMPANY_ADDRESS ?? "",
-  hours: "Mon – Sat, 10:00 am – 6:30 pm",
 } as const;
 
 export const nav = [

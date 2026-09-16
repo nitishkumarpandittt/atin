@@ -7,7 +7,8 @@ import { SectionHeading } from "@/components/primitives/SectionHeading";
 import { CountUp } from "@/components/motion/CountUp";
 import { RequestCallButton } from "@/components/site/RequestCallButton";
 import { getCatalogueFigures, getRanges } from "@/lib/data/catalogue";
-import { companyProfile, director, mission, values, vision } from "@/lib/site/content";
+import { values } from "@/lib/site/content";
+import { getPublicCompany } from "@/lib/data/site";
 import { photo } from "@/lib/site/photos";
 
 export const metadata: Metadata = {
@@ -18,7 +19,8 @@ export const metadata: Metadata = {
 const valueIcons = [Compass, ShieldCheck, Sparkles, Handshake];
 
 export default async function AboutPage() {
-  const [figures, ranges] = await Promise.all([getCatalogueFigures(), getRanges()]);
+  const [figures, ranges, company] = await Promise.all([getCatalogueFigures(), getRanges(), getPublicCompany()]);
+  const { profile: companyProfile, vision, mission, director } = company;
   const team = photo("team");
   const warehouse = photo("warehouse");
   const counter = photo("chemist-counter");
@@ -60,9 +62,11 @@ export default async function AboutPage() {
           <div className="order-1 lg:order-2">
             <SectionHeading eyebrow="Company profile" title="Who we are" />
             <div className="mt-5 space-y-4 text-base leading-relaxed text-muted md:mt-6 md:text-lg" data-reveal>
-              {companyProfile.map((p) => (
-                <p key={p.slice(0, 24)}>{p}</p>
-              ))}
+              {companyProfile.length ? (
+                companyProfile.map((p) => <p key={p.slice(0, 24)}>{p}</p>)
+              ) : (
+                <p>Atin HealthCare is a pharmaceutical marketing and distribution company serving the pharma trade.</p>
+              )}
             </div>
           </div>
         </div>
@@ -91,7 +95,9 @@ export default async function AboutPage() {
       <section id="vision" className="scroll-mt-24 py-14 md:py-20 lg:py-28">
         <div className="container-site">
           <SectionHeading align="center" eyebrow="Vision & mission" title="What guides our work" />
-          <div className="mt-10 grid gap-4 sm:gap-6 md:mt-14 lg:grid-cols-2">
+          {(vision || mission.length > 0) && (
+          <div className={`mt-10 grid gap-4 sm:gap-6 md:mt-14 ${vision && mission.length ? "lg:grid-cols-2" : ""}`}>
+            {vision && (
             <article className="relative overflow-hidden rounded-3xl bg-navy p-6 text-white shadow-lift sm:p-8 md:rounded-[2rem] md:p-10" data-reveal>
               <div aria-hidden className="hex-pattern absolute inset-0" />
               <span className="relative grid size-14 place-items-center rounded-2xl bg-white/10">
@@ -100,6 +106,8 @@ export default async function AboutPage() {
               <h3 className="relative mt-6 text-2xl font-bold !text-white">Our vision</h3>
               <p className="relative mt-4 text-lg leading-relaxed text-white/85">{vision}</p>
             </article>
+            )}
+            {mission.length > 0 && (
             <article className="rounded-3xl bg-white p-6 shadow-card ring-1 ring-line sm:p-8 md:rounded-[2rem] md:p-10" data-reveal style={{ "--reveal-delay": "100ms" } as React.CSSProperties}>
               <span className="grid size-14 place-items-center rounded-2xl bg-leaf-100 text-green">
                 <Target aria-hidden className="size-7" />
@@ -114,7 +122,9 @@ export default async function AboutPage() {
                 ))}
               </ul>
             </article>
+            )}
           </div>
+          )}
 
           <ul className="mt-4 grid grid-cols-1 gap-3 min-[380px]:grid-cols-2 sm:mt-6 sm:gap-6 lg:grid-cols-4">
             {values.map((v, i) => {
@@ -132,13 +142,20 @@ export default async function AboutPage() {
       </section>
 
       {director && (
-        <section id="director" className="scroll-mt-24 bg-surface py-20 md:py-28">
-          <div className="container-site max-w-4xl">
-            <SectionHeading eyebrow="Director's message" title={director.name} intro={director.role} />
-            <div className="mt-8 space-y-4 text-lg leading-relaxed text-ink">
-              {director.message.map((p) => (
-                <p key={p.slice(0, 24)}>{p}</p>
-              ))}
+        <section id="director" className="scroll-mt-24 bg-surface py-14 md:py-20 lg:py-28">
+          <div className={`container-site grid items-start gap-8 md:gap-12 ${director.photo ? "lg:grid-cols-[20rem_1fr]" : "max-w-4xl"}`}>
+            {director.photo && (
+              <div className="relative mx-auto aspect-[4/5] w-full max-w-xs overflow-hidden rounded-3xl bg-white shadow-lift ring-1 ring-line">
+                <Image src={director.photo} alt={director.name} fill sizes="320px" className="object-cover" />
+              </div>
+            )}
+            <div>
+              <SectionHeading eyebrow="Director's message" title={director.name} intro={director.role} />
+              <div className="mt-6 space-y-4 text-base leading-relaxed text-ink md:mt-8 md:text-lg">
+                {director.message.map((p) => (
+                  <p key={p.slice(0, 24)}>{p}</p>
+                ))}
+              </div>
             </div>
           </div>
         </section>

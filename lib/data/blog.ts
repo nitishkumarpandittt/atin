@@ -1,8 +1,10 @@
 import "server-only";
-import { readdir, readFile } from "node:fs/promises";
-import path from "node:path";
-import { cache } from "react";
+import { and, desc, eq } from "drizzle-orm";
 import { Marked, type Tokens } from "marked";
+import { cache } from "react";
+import { db, schema } from "@/lib/db";
+import { photo } from "@/lib/site/photos";
+import { uploadUrl } from "@/lib/uploads/url";
 
 export type BlogPost = {
   slug: string;
@@ -11,49 +13,50 @@ export type BlogPost = {
   author: string;
   publishedOn: string;
   cover: string;
+  coverAlt: string;
   content: string;
   readingMinutes: number;
 };
 
-const BLOG_DIR = path.join(process.cwd(), "content", "blog");
-
-function parseFrontmatter(raw: string) {
-  const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
-  if (!match) return { meta: {} as Record<string, string>, body: raw };
-  const meta: Record<string, string> = {};
-  for (const line of match[1].split(/\r?\n/)) {
-    const i = line.indexOf(":");
-    if (i > 0) meta[line.slice(0, i).trim()] = line.slice(i + 1).trim();
-  }
-  return { meta, body: match[2] };
+/** Covers are either an uploaded file ("blog/<uuid>.webp") or a stock photo slot name ("blog-1"). */
+export function resolveCover(coverPath: string, title: string): { src: string; alt: string } {
+  const stock = photo(coverPath);
+  if (stock) return { src: stock.src, alt: stock.alt };
+  return { src: uploadUrl(coverPath), alt: coverPath ? title : "" };
 }
 
 export const getPosts = cache(async (): Promise<BlogPost[]> => {
-  let files: string[] = [];
-  try {
-    files = (await readdir(BLOG_DIR)).filter((f) => f.endsWith(".md"));
-  } catch {
-    return [];
-  }
-  const posts = await Promise.all(
-    files.map(async (file) => {
-      const { meta, body } = parseFrontmatter(await readFile(path.join(BLOG_DIR, file), "utf8"));
+  const today = new Date().toISOString().slice(0, 10);
+  const rows = await db
+    .select()
+    .from(schema.blogPosts)
+    .where(eq(schema.blogPosts.isPublished, true))
+    .orderBy(desc(schema.blogPosts.publishedOn), desc(schema.blogPosts.id));
+  return rows
+    .filter((r) => !r.publishedOn || r.publishedOn <= today)
+    .map((r) => {
+      const cover = resolveCover(r.coverPath, r.title);
       return {
-        slug: file.replace(/\.md$/, ""),
-        title: meta.title ?? file,
-        excerpt: meta.excerpt ?? "",
-        author: meta.author ?? "Atin HealthCare",
-        publishedOn: meta.publishedOn ?? "",
-        cover: meta.cover ?? "",
-        content: body,
-        readingMinutes: Math.max(1, Math.round(body.split(/\s+/).length / 220)),
+        slug: r.slug,
+        title: r.title,
+        excerpt: r.excerpt,
+        author: r.author,
+        publishedOn: r.publishedOn,
+        cover: cover.src,
+        coverAlt: cover.alt,
+        content: r.content,
+        readingMinutes: Math.max(1, Math.round(r.content.split(/\s+/).length / 220)),
       };
-    }),
-  );
-  return posts.sort((a, b) => b.publishedOn.localeCompare(a.publishedOn));
+    });
 });
 
 export const getPost = cache(async (slug: string) => (await getPosts()).find((p) => p.slug === slug) ?? null);
+
+/** Drafts are visible to staff previews only. */
+export async function getPostForPreview(slug: string) {
+  const [row] = await db.select().from(schema.blogPosts).where(and(eq(schema.blogPosts.slug, slug))).limit(1);
+  return row ?? null;
+}
 
 const escapeHtml = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 
@@ -70,9 +73,7 @@ const markdown = new Marked({
       const label = this.parser.parseInline(tokens);
       if (!safeHref(href)) return label;
       const external = /^https?:/i.test(href);
-      return `<a href="${escapeHtml(href)}"${title ? ` title="${escapeHtml(title)}"` : ""}${
-        external ? ' target="_blank" rel="noopener noreferrer"' : ""
-      }>${label}</a>`;
+      return `<a href="${escapeHtml(href)}"${title ? ` title="${escapeHtml(title)}"` : ""}${external ? ' target="_blank" rel="noopener noreferrer"' : ""}>${label}</a>`;
     },
     image({ text }: Tokens.Image) {
       return escapeHtml(text);
