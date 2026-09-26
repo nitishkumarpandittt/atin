@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import type { PreviewItem } from "@/lib/data/catalogue";
 import { RangeIcon } from "@/components/primitives/RangeIcon";
 import { SectionHeading } from "@/components/primitives/SectionHeading";
+import { rangePhoto } from "@/lib/site/photos";
 
 type Item = PreviewItem;
 
@@ -20,7 +21,10 @@ export function CataloguePreview({ items, title, eyebrow }: { items: Item[]; tit
         </div>
 
         <ul className="-mx-5 mt-8 flex md:mt-12 snap-x snap-mandatory scroll-px-5 gap-5 overflow-x-auto px-5 pb-6 [scrollbar-width:thin] md:-mx-8 md:scroll-px-8 md:px-8">
-          {items.map(({ product: p, range: r, image }, i) => (
+          {items.map(({ product: p, range: r, image }, i) => {
+            // No pack shot yet: the segment's photo stands in behind the icon tile.
+            const fallback = image ? undefined : rangePhoto(r);
+            return (
             <li key={p.slug} className="w-[78%] max-w-[17.5rem] shrink-0 snap-start sm:w-[17.5rem]" data-reveal style={{ "--reveal-delay": `${Math.min(i, 4) * 60}ms` } as React.CSSProperties}>
               <article className="group flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] bg-white shadow-card ring-1 ring-line transition hover:-translate-y-1 hover:shadow-lift">
                 <div className={`relative grid h-36 place-items-center overflow-hidden ${i % 2 ? "bg-leaf-100" : "bg-sky-100"}`}>
@@ -36,9 +40,17 @@ export function CataloguePreview({ items, title, eyebrow }: { items: Item[]; tit
                       </span>
                     </>
                   ) : (
-                    <span className={`relative grid size-16 place-items-center rounded-2xl bg-white shadow-card ${i % 2 ? "text-green" : "text-brand"}`}>
-                      <RangeIcon icon={r.icon} className="size-8" />
-                    </span>
+                    <>
+                      {fallback && (
+                        <>
+                          <Image src={fallback.src} alt="" fill sizes="280px" className="object-cover transition duration-500 group-hover:scale-105" style={{ objectPosition: fallback.position }} />
+                          <span aria-hidden className="absolute inset-0 bg-gradient-to-t from-navy/50 to-navy/10" />
+                        </>
+                      )}
+                      <span className={`relative grid size-16 place-items-center rounded-2xl bg-white shadow-card ${i % 2 ? "text-green" : "text-brand"}`}>
+                        <RangeIcon icon={r.icon} className="size-8" />
+                      </span>
+                    </>
                   )}
                   <span className="absolute left-4 top-4 rounded-full bg-white/90 px-2.5 py-1 text-xs font-semibold text-navy">{r.shortName}</span>
                 </div>
@@ -58,7 +70,8 @@ export function CataloguePreview({ items, title, eyebrow }: { items: Item[]; tit
                 </div>
               </article>
             </li>
-          ))}
+            );
+          })}
         </ul>
       </div>
     </section>
