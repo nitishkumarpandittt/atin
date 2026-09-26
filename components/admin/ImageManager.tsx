@@ -7,7 +7,7 @@ import { ImagePlus, Loader2, Star, Trash2 } from "lucide-react";
 import { deleteProductImage, makeMainImage, updateImageAlt, uploadProductImage } from "@/lib/admin/actions/products";
 import type { ActionState } from "@/lib/admin/action-utils";
 
-type Img = { id: number; src: string; alt: string };
+type Img = { id: number; src: string; alt: string; isVisualAid: boolean };
 
 type Job = { name: string; status: "uploading" | "done" | "error"; message?: string };
 
@@ -120,6 +120,14 @@ export function ImageManager({ productId, images, maxMb }: { productId: number; 
               <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-slate-100">
                 <Image src={img.src} alt={img.alt} fill sizes="(min-width: 640px) 300px, 100vw" className="object-contain" />
                 {i === 0 && <span className="absolute left-2 top-2 rounded-full bg-blue-600 px-2 py-0.5 text-xs font-semibold text-white">Main image</span>}
+                {img.isVisualAid && (
+                  <span
+                    title="Physician-facing visual aid: hidden on the website until SHOW_VISUAL_AIDS is on."
+                    className="absolute bottom-2 left-2 rounded-full bg-amber-50 px-2 py-0.5 text-xs font-semibold text-amber-800 ring-1 ring-inset ring-amber-600/25"
+                  >
+                    Visual aid · hidden on site
+                  </span>
+                )}
               </div>
               <form
                 className="mt-2 flex gap-2"

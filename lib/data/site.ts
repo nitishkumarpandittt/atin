@@ -23,6 +23,15 @@ export const companySchema = z.object({
 
 export type Company = z.infer<typeof companySchema>;
 
+// Registered office details supplied by the client (also printed on the pack artwork).
+// Environment variables override them; the admin's company record overrides both.
+const contactDefaults = {
+  registeredAddress: "SCO-3, First Floor, MDC, Sector-5, Panchkula, Haryana 134114",
+  phone: "+91 95603 43063",
+  email: "atinhealthcare@gmail.com",
+  whatsappNumber: "",
+};
+
 /** Defaults used until the company record is saved in the admin panel. */
 export const companyDefaults: Company = {
   profile: companyProfile.join("\n\n"),
@@ -32,10 +41,10 @@ export const companyDefaults: Company = {
   directorRole: director?.role ?? "",
   directorMessage: director?.message.join("\n\n") ?? "",
   directorPhotoPath: "",
-  registeredAddress: process.env.NEXT_PUBLIC_COMPANY_ADDRESS ?? "",
-  phone: process.env.NEXT_PUBLIC_COMPANY_PHONE ?? "",
-  email: process.env.NEXT_PUBLIC_COMPANY_EMAIL ?? "",
-  whatsappNumber: process.env.NEXT_PUBLIC_COMPANY_WHATSAPP ?? "",
+  registeredAddress: process.env.NEXT_PUBLIC_COMPANY_ADDRESS?.trim() || contactDefaults.registeredAddress,
+  phone: process.env.NEXT_PUBLIC_COMPANY_PHONE?.trim() || contactDefaults.phone,
+  email: process.env.NEXT_PUBLIC_COMPANY_EMAIL?.trim() || contactDefaults.email,
+  whatsappNumber: process.env.NEXT_PUBLIC_COMPANY_WHATSAPP?.trim() || contactDefaults.whatsappNumber,
   businessHours: "Mon – Sat, 10:00 am – 6:30 pm",
 };
 
@@ -43,7 +52,9 @@ export const getCompany = cache(async (): Promise<Company> => {
   const [row] = await db.select().from(schema.siteSettings).where(eq(schema.siteSettings.key, "company")).limit(1);
   if (!row) return companyDefaults;
   try {
-    return companySchema.parse({ ...companyDefaults, ...JSON.parse(row.value) });
+    // Fields left blank in the admin form fall back to the defaults rather than hiding the detail.
+    const saved = Object.entries(JSON.parse(row.value) as Record<string, unknown>).filter(([, v]) => typeof v !== "string" || v.trim() !== "");
+    return companySchema.parse({ ...companyDefaults, ...Object.fromEntries(saved) });
   } catch {
     return companyDefaults;
   }

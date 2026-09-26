@@ -10,7 +10,7 @@ import { RequestCallButton } from "@/components/site/RequestCallButton";
 import { CollapseToggle } from "@/components/site/CollapseToggle";
 import { RangeIcon } from "@/components/primitives/RangeIcon";
 import { SectionHeading } from "@/components/primitives/SectionHeading";
-import { getProductsInRange, getRange, getRanges } from "@/lib/data/catalogue";
+import { getMainImages, getProductsInRange, getRange, getRanges } from "@/lib/data/catalogue";
 import { rangePhoto } from "@/lib/site/photos";
 
 export const dynamicParams = false;
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: PageProps<"/products/[range]"
 
 export default async function RangePage({ params }: PageProps<"/products/[range]">) {
   const { range: slug } = await params;
-  const [range, ranges] = await Promise.all([getRange(slug), getRanges()]);
+  const [range, ranges, images] = await Promise.all([getRange(slug), getRanges(), getMainImages()]);
   if (!range) notFound();
   const products = await getProductsInRange(slug);
   const others = ranges.filter((r) => r.slug !== slug);
@@ -73,7 +73,7 @@ export default async function RangePage({ params }: PageProps<"/products/[range]
         <ul id="range-products" data-collapsible className="grid gap-3 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4">
           {products.map((p, i) => (
             <li key={p.slug}>
-              <ProductCard product={p} icon={range.icon} tone={i % 2 ? "green" : "blue"} />
+              <ProductCard product={{ ...p, image: images.get(p.id)?.src }} icon={range.icon} tone={i % 2 ? "green" : "blue"} />
             </li>
           ))}
         </ul>

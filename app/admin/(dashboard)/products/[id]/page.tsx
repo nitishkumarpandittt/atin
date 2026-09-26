@@ -9,7 +9,7 @@ import { ProductForm } from "@/components/admin/ProductForm";
 import { deleteProduct, duplicateProduct } from "@/lib/admin/actions/products";
 import { getProductForEdit, listRangesWithCounts } from "@/lib/admin/queries";
 import { requireStaff } from "@/lib/auth/dal";
-import { uploadUrl } from "@/lib/uploads/url";
+import { isVisualAid, uploadUrl } from "@/lib/uploads/url";
 
 export const metadata: Metadata = { title: "Edit product" };
 
@@ -65,7 +65,7 @@ export default async function EditProductPage({ params, searchParams }: PageProp
             <ImageManager
               productId={product.id}
               maxMb={Math.max(1, Number(process.env.MAX_UPLOAD_MB) || 5)}
-              images={product.images.map((i) => ({ id: i.id, src: uploadUrl(i.filePath), alt: i.alt }))}
+              images={product.images.map((i) => ({ id: i.id, src: uploadUrl(i.filePath), alt: i.alt, isVisualAid: isVisualAid(i.filePath) }))}
             />
           </div>
         </Card>

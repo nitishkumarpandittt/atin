@@ -1,8 +1,10 @@
-// Imports the client spreadsheet into ranges + products, and the starter blog posts.
+// Imports the client spreadsheet into ranges + products, the starter blog posts, and the catalogue
+// images listed in data/catalogue/images.json (written by scripts/catalogue-images.ts).
 //   npm run db:seed -- [path/to/sheet.xlsx] [--dry-run] [--replace]
+//   npm run db:seed -- --images-only [--dry-run]    # only sync product_images from the manifest
 import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
-import { sql } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { parseCatalogue, type RangeDef } from "./catalogue-parse";
 import { connect, describeDbError, schema } from "./db";
 
@@ -10,7 +12,13 @@ const root = process.cwd();
 const args = process.argv.slice(2);
 const dryRun = args.includes("--dry-run");
 const replace = args.includes("--replace");
-const sheet = args.find((a) => !a.startsWith("--")) ?? path.join(root, "ATIN HEALTHCARE PVT LTD._segment wise list.xlsx");
+const imagesOnly = args.includes("--images-only");
+const sheet = args.find((a) => !a.startsWith("--")) ?? path.join(root, "ATIN HEALTHCARE PVT LTD._FINAL LIST.xlsx");
+
+type Db = ReturnType<typeof connect>["db"];
+
+/** One optimised image from data/catalogue/images.json; `products` lists the catalogue slugs it belongs to. */
+type ManifestImage = { file: string; kind: "pack" | "visual"; source: string; width: number; height: number; alt: string; products: string[] };
 
 function parseFrontmatter(raw: string) {
   const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
@@ -23,7 +31,73 @@ function parseFrontmatter(raw: string) {
   return { meta, body: match[2].trim() };
 }
 
+// Adds a product_images row per manifest image x product slug. Rows that already exist keep their
+// place (bundled ones get their size and alt refreshed from the manifest; admin uploads are never
+// touched), so re-running never duplicates or removes anything. Per product, packs are numbered
+// 0, 1, 2... in manifest order and visual aids 100, 101..., keeping visuals after packs.
+async function syncImages(db: Db) {
+  const manifestPath = path.join(root, "data/catalogue/images.json");
+  const raw = await readFile(manifestPath, "utf8").catch(() => null);
+  if (raw === null) {
+    console.log(`\nImages: ${path.relative(root, manifestPath)} not found, skipped. Run scripts/catalogue-images.ts first.`);
+    return;
+  }
+  const manifest: ManifestImage[] = JSON.parse(raw);
+  const [rows, existing] = await Promise.all([
+    db.select({ id: schema.products.id, slug: schema.products.slug }).from(schema.products),
+    db
+      .select({ id: schema.productImages.id, productId: schema.productImages.productId, filePath: schema.productImages.filePath, alt: schema.productImages.alt, width: schema.productImages.width, height: schema.productImages.height })
+      .from(schema.productImages),
+  ]);
+  const idBySlug = new Map(rows.map((p) => [p.slug, p.id]));
+  const present = new Map(existing.map((r) => [`${r.productId} ${r.filePath}`, r]));
+  const nextSort = new Map<number, { pack: number; visual: number }>();
+  const unmatched = new Set<string>();
+  const toAdd: (typeof schema.productImages.$inferInsert)[] = [];
+  const toRefresh: { id: number; alt: string; width: number; height: number }[] = [];
+  let kept = 0;
+
+  for (const entry of manifest) {
+    for (const slug of entry.products) {
+      const productId = idBySlug.get(slug);
+      if (productId === undefined) {
+        unmatched.add(slug);
+        continue;
+      }
+      const counters = nextSort.get(productId) ?? { pack: 0, visual: 100 };
+      nextSort.set(productId, counters);
+      const sortOrder = entry.kind === "visual" ? counters.visual++ : counters.pack++;
+      const key = `${productId} ${entry.file}`;
+      const row = present.get(key);
+      if (row) {
+        if (row.alt !== entry.alt || row.width !== entry.width || row.height !== entry.height) toRefresh.push({ id: row.id, alt: entry.alt, width: entry.width, height: entry.height });
+        else kept++;
+        continue;
+      }
+      present.set(key, { id: 0, productId, filePath: entry.file, alt: entry.alt, width: entry.width, height: entry.height });
+      toAdd.push({ productId, filePath: entry.file, alt: entry.alt, width: entry.width, height: entry.height, sortOrder });
+    }
+  }
+
+  if (!dryRun) {
+    for (let i = 0; i < toAdd.length; i += 100) await db.insert(schema.productImages).values(toAdd.slice(i, i + 100));
+    for (const { id, ...fields } of toRefresh) await db.update(schema.productImages).set(fields).where(eq(schema.productImages.id, id));
+  }
+  console.log(`\nImages: ${toAdd.length} row(s) ${dryRun ? "would be added" : "added"}, ${toRefresh.length} refreshed, ${kept} unchanged.`);
+  if (unmatched.size) console.warn(`warn: ${unmatched.size} manifest slug(s) matched no product: ${[...unmatched].sort().join(", ")}`);
+}
+
 async function main() {
+  if (imagesOnly) {
+    const { db, pool } = connect();
+    try {
+      await syncImages(db);
+    } finally {
+      await pool.end();
+    }
+    return;
+  }
+
   const ranges: RangeDef[] = JSON.parse(await readFile(path.join(root, "data/catalogue/ranges.json"), "utf8"));
   const { products, warnings } = await parseCatalogue(sheet, ranges);
 
@@ -75,6 +149,7 @@ async function main() {
       }
     });
     console.log(`\nImported ${products.length} products.`);
+    await syncImages(db);
 
     // Starter blog posts: only inserted when missing, never overwritten.
     const dir = path.join(root, "content", "blog");

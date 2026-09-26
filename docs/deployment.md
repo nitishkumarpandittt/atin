@@ -140,7 +140,9 @@ MAX_UPLOAD_MB=5
 
 SHOW_MRP_PUBLIC=false
 SHOW_PRESCRIBING_SPECIALITIES=false
+SHOW_VISUAL_AIDS=false
 
+# Optional: registered office details are built in; the admin Company page overrides them
 NEXT_PUBLIC_COMPANY_PHONE=
 NEXT_PUBLIC_COMPANY_WHATSAPP=
 NEXT_PUBLIC_COMPANY_EMAIL=

@@ -44,3 +44,7 @@ next-env.d.ts
 # uploaded images
 /uploads
 
+
+# raw client photo sources, converted into public/catalogue by `npm run catalogue:images`
+/IMAGE WITH LOGO/
+/VISUALS DESIGNS/

@@ -2,7 +2,7 @@ import "server-only";
 import { asc, eq, inArray } from "drizzle-orm";
 import { cache } from "react";
 import { db, schema } from "@/lib/db";
-import { uploadUrl } from "@/lib/uploads/url";
+import { isVisualAid, uploadUrl } from "@/lib/uploads/url";
 import { matchesAllTerms, normaliseSearch } from "@/lib/utils/search";
 
 const { products, ranges, productImages } = schema;
@@ -143,9 +143,13 @@ export const getProductsInRange = cache(async (rangeSlug: string) => (await getP
 /** Finds a product by slug regardless of range, so pages can redirect when a product moves range. */
 export const getProductBySlug = cache(async (slug: string) => (await getPublishedProducts()).find((p) => p.slug === slug) ?? null);
 
+/** Visual aids stay out of public image queries until SHOW_VISUAL_AIDS is on; the admin panel reads the table directly. */
+const isPublicImage = (r: { filePath: string }) => displayFlags.showVisualAids || !isVisualAid(r.filePath);
+
+/** Images in sort order; the seed numbers packs from 0 and visual aids from 100, so visuals follow packs. */
 export const getProductImages = cache(async (productId: number): Promise<ProductImage[]> => {
   const rows = await db.select().from(productImages).where(eq(productImages.productId, productId)).orderBy(asc(productImages.sortOrder), asc(productImages.id));
-  return rows.map((r) => ({ src: uploadUrl(r.filePath), alt: r.alt, width: r.width, height: r.height }));
+  return rows.filter(isPublicImage).map((r) => ({ src: uploadUrl(r.filePath), alt: r.alt, width: r.width, height: r.height }));
 });
 
 /** Main (first) image per product, for listing cards. */
@@ -154,7 +158,7 @@ export const getMainImages = cache(async (): Promise<Map<number, ProductImage>> 
   if (!ids.length) return new Map();
   const rows = await db.select().from(productImages).where(inArray(productImages.productId, ids)).orderBy(asc(productImages.sortOrder), asc(productImages.id));
   const map = new Map<number, ProductImage>();
-  for (const r of rows) if (!map.has(r.productId)) map.set(r.productId, { src: uploadUrl(r.filePath), alt: r.alt, width: r.width, height: r.height });
+  for (const r of rows.filter(isPublicImage)) if (!map.has(r.productId)) map.set(r.productId, { src: uploadUrl(r.filePath), alt: r.alt, width: r.width, height: r.height });
   return map;
 });
 
@@ -194,4 +198,6 @@ export const getCatalogueItems = cache(async (): Promise<CatalogueItem[]> => {
 export const displayFlags = {
   showMrp: process.env.SHOW_MRP_PUBLIC === "true",
   showSpecialities: process.env.SHOW_PRESCRIBING_SPECIALITIES === "true",
+  /** Physician-facing visual aids carry indication and benefit claims, so they are admin-only by default. */
+  showVisualAids: process.env.SHOW_VISUAL_AIDS === "true",
 };

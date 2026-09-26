@@ -36,7 +36,8 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en-IN" className={`${inter.variable} ${jakarta.variable}`} suppressHydrationWarning>
-      <body className="min-h-screen antialiased">
+      {/* suppressHydrationWarning: browser extensions (ColorZilla, Bitdefender) stamp attributes on <body> before React hydrates. */}
+      <body className="min-h-screen antialiased" suppressHydrationWarning>
         <Script id="js-enabled" strategy="beforeInteractive">
           {`document.documentElement.classList.add("js")`}
         </Script>

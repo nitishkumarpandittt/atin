@@ -17,7 +17,8 @@ export function ProductGallery({ images, fallbackAlt }: { images: Img[]; fallbac
           alt={current.alt || fallbackAlt}
           fill
           sizes="(min-width: 1024px) 40vw, 100vw"
-          className="object-contain p-4"
+          // Multiply blends the pack shot's white background into the tinted stage, matching the listing cards.
+          className="object-contain p-4 mix-blend-multiply"
           loading="eager"
         />
       </div>
@@ -32,7 +33,7 @@ export function ProductGallery({ images, fallbackAlt }: { images: Img[]; fallbac
                 aria-current={i === active}
                 className={`relative block size-16 overflow-hidden rounded-xl bg-surface ring-2 transition sm:size-20 ${i === active ? "ring-brand" : "ring-transparent hover:ring-line"}`}
               >
-                <Image src={img.src} alt="" fill sizes="80px" className="object-cover" />
+                <Image src={img.src} alt="" fill sizes="80px" className="object-contain p-1 mix-blend-multiply" />
               </button>
             </li>
           ))}

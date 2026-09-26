@@ -1,0 +1,2059 @@
+[
+  {
+    "file": "/catalogue/packs/acloage-cp-tab.webp",
+    "kind": "pack",
+    "source": "ACLOAGE-CP TAB.png",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Acloage-CP tablet pack",
+    "products": [
+      "acloage-cp"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/acloage-mr-tab.webp",
+    "kind": "pack",
+    "source": "ACLOAGE-MR TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Acloage-MR tablet pack",
+    "products": [
+      "acloage-mr"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/acloage-p-susp.webp",
+    "kind": "pack",
+    "source": "ACLOAGE-P SUSP.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Acloage-P suspension pack",
+    "products": [
+      "acloage-p-suspension"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/acloage-p-tab.webp",
+    "kind": "pack",
+    "source": "ACLOAGE-P TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Acloage-P tablet pack",
+    "products": [
+      "acloage-p-tablet"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/acloage-sp-tab.webp",
+    "kind": "pack",
+    "source": "ACLOAGE-SP TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Acloage-SP tablet pack",
+    "products": [
+      "acloage-sp"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/aftyflox-500-tab.webp",
+    "kind": "pack",
+    "source": "Aftyflox-500 TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Aftyflox-500 tablet pack",
+    "products": [
+      "aftyflox-500"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/almiatin-40-tab.webp",
+    "kind": "pack",
+    "source": "Almiatin-40 TAB.png",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Almiatin-40 tablet pack",
+    "products": [
+      "almiatin-40"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/almiatin-am-tab.webp",
+    "kind": "pack",
+    "source": "Almiatin-AM TAB.png",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Almiatin-AM tablet pack",
+    "products": [
+      "almiatin-am"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/ati-sily-b-200ml.webp",
+    "kind": "pack",
+    "source": "Ati-Sily-B 200ml.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Ati-Sily-B Syrup syrup pack",
+    "products": [
+      "ati-sily-b-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/ati-sily-l-200ml.webp",
+    "kind": "pack",
+    "source": "Ati-Sily-L 200ml.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Ati-Sily-L Syrup syrup pack",
+    "products": [
+      "ati-sily-l-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/ati-sily-q10.webp",
+    "kind": "pack",
+    "source": "Ati-Sily-Q10.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Ati-Sily Q10 Syrup syrup pack",
+    "products": [
+      "ati-sily-q10-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/ati-ud-150.webp",
+    "kind": "pack",
+    "source": "ATI-UD-150.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Ati-UD-150/300 tablet pack",
+    "products": [
+      "ati-ud-150-300"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/ati-ud-300.webp",
+    "kind": "pack",
+    "source": "ATI-UD-300.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Ati-UD-150/300 tablet pack",
+    "products": [
+      "ati-ud-150-300"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/aticeti-10-tab.webp",
+    "kind": "pack",
+    "source": "ATICETI-10 TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Aticeti-5/10 tablet pack",
+    "products": [
+      "aticeti-5-10"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/aticeti-5-tab.webp",
+    "kind": "pack",
+    "source": "ATICETI-5 TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Aticeti-5/10 tablet pack",
+    "products": [
+      "aticeti-5-10"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/aticeti-kid-syrup.webp",
+    "kind": "pack",
+    "source": "ATICETI-KID SYRUP.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Aticeti-Kid Syrup syrup pack",
+    "products": [
+      "aticeti-kid-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/aticeti-m-kid-60ml-syp.webp",
+    "kind": "pack",
+    "source": "ATICETI-M KID 60ml SYP.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Aticeti-M Kid Syrup syrup pack",
+    "products": [
+      "aticeti-m-kid-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/aticeti-m-kid-tab.webp",
+    "kind": "pack",
+    "source": "ATICETI-M KID TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Aticeti-M Kid tablet pack",
+    "products": [
+      "aticeti-m-kid"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/aticeti-m-tab.webp",
+    "kind": "pack",
+    "source": "ATICETI-M TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Aticeti-M tablet pack",
+    "products": [
+      "aticeti-m"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atidoxlac-lb.webp",
+    "kind": "pack",
+    "source": "Atidoxlac-LB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atidoxlac capsule pack",
+    "products": [
+      "atidoxlac"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atifebu-40.webp",
+    "kind": "pack",
+    "source": "ATIFEBU-40.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atifebu-40 tablet pack",
+    "products": [
+      "atifebu-40"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atinclaus-susp.webp",
+    "kind": "pack",
+    "source": "ATINCLAUS SUSP.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atinclaus suspension pack",
+    "products": [
+      "atinclaus"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atinfrum-capsules.webp",
+    "kind": "pack",
+    "source": "Atinfrum  capsules.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atinfrum capsule pack",
+    "products": [
+      "atinfrum"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atinfur-injection.webp",
+    "kind": "pack",
+    "source": "ATINFUR injection.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atinfur injection pack",
+    "products": [
+      "atinfur"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atinfur-xt-softgel.webp",
+    "kind": "pack",
+    "source": "ATINFUR-XT SOFTGEL.png",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atinfur-XT softgel capsule pack",
+    "products": [
+      "atinfur-xt-softgel-capsule"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atinfur-xt-tablets.webp",
+    "kind": "pack",
+    "source": "ATINFUR-XT Tablets.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atinfur-XT tablet pack",
+    "products": [
+      "atinfur-xt-tablet"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atinoline-600.webp",
+    "kind": "pack",
+    "source": "ATINOLINE-600.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atinoline-600 tablet pack",
+    "products": [
+      "atinoline-600"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atinopar-500-tab.webp",
+    "kind": "pack",
+    "source": "ATINOPAR-500 tab.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atinopar-500 tablet pack",
+    "products": [
+      "atinopar-500"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atinopar-mf-susp.webp",
+    "kind": "pack",
+    "source": "ATINOPAR-MF SUSP.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atinopar-MF suspension pack",
+    "products": [
+      "atinopar-mf-suspension"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atinopar-mf-tab.webp",
+    "kind": "pack",
+    "source": "ATINOPAR-MF  tab.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atinopar-MF tablet pack",
+    "products": [
+      "atinopar-mf-tablet"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atinopar-n.webp",
+    "kind": "pack",
+    "source": "ATINOPAR-N.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atinopar-NP tablet pack",
+    "products": [
+      "atinopar-np"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atinopar-plus-susp.webp",
+    "kind": "pack",
+    "source": "ATINOPAR-PLUS SUSP.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atinopar-Plus suspension pack",
+    "products": [
+      "atinopar-plus"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atinopar-susp.webp",
+    "kind": "pack",
+    "source": "ATINOPAR SUSP.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atinopar suspension pack",
+    "products": [
+      "atinopar"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atinzo-rab-20-tab.webp",
+    "kind": "pack",
+    "source": "ATINZO-RAB 20 TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atinzo-Rab 20 tablet pack",
+    "products": [
+      "atinzo-rab-20"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atinzo-rab-d-tab.webp",
+    "kind": "pack",
+    "source": "ATINZO-RAB D TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atinzo-Rab D tablet pack",
+    "products": [
+      "atinzo-rab-d"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atinzo-rab-dsr-cap.webp",
+    "kind": "pack",
+    "source": "ATINZO-RAB DSR CAP.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atinzo-Rab DSR capsule pack",
+    "products": [
+      "atinzo-rab-dsr"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atiymulti-drop.webp",
+    "kind": "pack",
+    "source": "ATIYMULTI DROP.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atiymulti oral drops pack",
+    "products": [
+      "atiymulti-oral-drops"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atiymulti-tab.webp",
+    "kind": "pack",
+    "source": "ATIYMULTI TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atiymulti tablet pack",
+    "products": [
+      "atiymulti-tablet"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atnocal-400-softcapsules.webp",
+    "kind": "pack",
+    "source": "ATNOCAL-400 softcapsules.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atnocal-400 softgel capsule pack",
+    "products": [
+      "atnocal-400"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atnocal-4g-softcapsules.webp",
+    "kind": "pack",
+    "source": "ATNOCAL-4G softcapsules.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atnocal-4G softgel capsule pack",
+    "products": [
+      "atnocal-4g"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atnocal-500-cap.webp",
+    "kind": "pack",
+    "source": "ATNOCAL- 500 cap.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atnocal-500 capsule pack",
+    "products": [
+      "atnocal-500"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atnocal-9g-softcapsules.webp",
+    "kind": "pack",
+    "source": "ATNOCAL-9G softcapsules.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atnocal-9G softgel capsule pack",
+    "products": [
+      "atnocal-9g"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atnocal-ct-softcapsules.webp",
+    "kind": "pack",
+    "source": "ATNOCAL-CT softcapsules.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atnocal-CT softgel capsule pack",
+    "products": [
+      "atnocal-ct"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atnocal-d3-200ml.webp",
+    "kind": "pack",
+    "source": "ATNOCAL-D3 200ml.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atnocal-D3 suspension pack",
+    "products": [
+      "atnocal-d3-suspension"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atnocal-d3-nanoshots.webp",
+    "kind": "pack",
+    "source": "ATNOCAL-D3 nanoshots.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atnocal-D3 Nanoshot oral solution pack",
+    "products": [
+      "atnocal-d3-nanoshot"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atnocal-d3-softcapsules-10x1x4.webp",
+    "kind": "pack",
+    "source": "ATNOCAL-D3 softcapsules 10x1x4.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atnocal-D3 softgel capsule pack",
+    "products": [
+      "atnocal-d3-softgel-capsule"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atnocal-d3-tab.webp",
+    "kind": "pack",
+    "source": "ATNOCAL- D3 tab.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atnocal-D3 tablet pack",
+    "products": [
+      "atnocal-d3-tablet"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atnocal-drop-30ml.webp",
+    "kind": "pack",
+    "source": "ATNOCAL DROP 30ML.png",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atnocal oral drops pack",
+    "products": [
+      "atnocal-oral-drops"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atnocal-e-20-softcapsules.webp",
+    "kind": "pack",
+    "source": "ATNOCAL-E 20 softcapsules.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atnocal-E 20 softgel capsule pack",
+    "products": [
+      "atnocal-e-20"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atnocal-k27-softcapsules.webp",
+    "kind": "pack",
+    "source": "ATNOCAL- K27 softcapsules.png",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atnocal-K27 softgel capsule pack",
+    "products": [
+      "atnocal-k27"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atnocal-q10-softcapsules.webp",
+    "kind": "pack",
+    "source": "ATNOCAL-Q10  softcapsules.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atnocal-Q10 softgel capsule pack",
+    "products": [
+      "atnocal-q10"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atnocal-softcapsules.webp",
+    "kind": "pack",
+    "source": "ATNOCAL softcapsules.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atnocal softgel capsule pack",
+    "products": [
+      "atnocal-softgel-capsule"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atnocuf-a-100ml.webp",
+    "kind": "pack",
+    "source": "ATNOCUF-A 100ml.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atnocuf-A Syrup syrup pack",
+    "products": [
+      "atnocuf-a-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atnocuf-ax-syp-100ml.webp",
+    "kind": "pack",
+    "source": "Atnocuf-AX SYP 100ML.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atnocuf-AX Syrup syrup pack",
+    "products": [
+      "atnocuf-ax-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atnocuf-c-syp-100ml.webp",
+    "kind": "pack",
+    "source": "Atnocuf-C SYP 100ML.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atnocuf-C Syrup syrup pack",
+    "products": [
+      "atnocuf-c-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atnocuf-dx-syrup-100ml.webp",
+    "kind": "pack",
+    "source": "ATNOCUF-DX syrup 100ml.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atnocuf-DX Syrup syrup pack",
+    "products": [
+      "atnocuf-dx-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atnocuf-tr-syrup-100ml.webp",
+    "kind": "pack",
+    "source": "ATNOCUF-TR syrup 100ml.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atnocuf-TR Syrup syrup pack",
+    "products": [
+      "atnocuf-tr-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atyno-cox-375-tab.webp",
+    "kind": "pack",
+    "source": "ATYNO-COX 375 tab.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atyno-Cox-CV 375 tablet pack",
+    "products": [
+      "atyno-cox-cv-375"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atyno-cox-500-tab.webp",
+    "kind": "pack",
+    "source": "ATYNO-COX 500 tab.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atyno-Cox-500 capsule pack",
+    "products": [
+      "atyno-cox-500"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atyno-cox-625-lb-tab.webp",
+    "kind": "pack",
+    "source": "ATYNO-COX 625 LB tab.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atyno-Cox 625LB tablet pack",
+    "products": [
+      "atyno-cox-625lb"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atyno-cox-cv-625-tab.webp",
+    "kind": "pack",
+    "source": "ATYNO-COX  CV 625 tab.png",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atyno-Cox-CV 625 tablet pack",
+    "products": [
+      "atyno-cox-cv-625"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atyno-cox-dry-syrup.webp",
+    "kind": "pack",
+    "source": "ATYNO-COX dry syrup.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atyno-Cox dry syrup pack",
+    "products": [
+      "atyno-cox"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atyno-cox-kid-tab.webp",
+    "kind": "pack",
+    "source": "ATYNO-COX-KID tab.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Atyno-Cox-Kid tablet pack",
+    "products": [
+      "atyno-cox-kid"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/bilahook-m-tab.webp",
+    "kind": "pack",
+    "source": "Bilahook-M TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Bilahook-M tablet pack",
+    "products": [
+      "bilahook-m"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/bugybet-16-tab.webp",
+    "kind": "pack",
+    "source": "Bugybet-16 TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Bugybet-16 tablet pack",
+    "products": [
+      "bugybet-16"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/cefverge-100dt-tab.webp",
+    "kind": "pack",
+    "source": "CEFVERGE-100DT tab.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Cefverge-100/200 tablet pack",
+    "products": [
+      "cefverge-100-200"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/cefverge-100mg-5ml-dry-syp.webp",
+    "kind": "pack",
+    "source": "CEFVERGE-100mg-5ml DRY SYP copy.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Cefverge-50/100 dry syrup pack",
+    "products": [
+      "cefverge-50-100"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/cefverge-200dt-tab.webp",
+    "kind": "pack",
+    "source": "CEFVERGE-200DT tab.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Cefverge-100/200 tablet pack",
+    "products": [
+      "cefverge-100-200"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/cefverge-200lb-tab.webp",
+    "kind": "pack",
+    "source": "CEFVERGE-200LB tab.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Cefverge-LB tablet pack",
+    "products": [
+      "cefverge-lb"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/cefverge-50mg-5mldry-syp.webp",
+    "kind": "pack",
+    "source": "CEFVERGE-50mg-5mlDRY SYP.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Cefverge-50/100 dry syrup pack",
+    "products": [
+      "cefverge-50-100"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/cefverge-cv-tab.webp",
+    "kind": "pack",
+    "source": "CEFVERGE-CV tab.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Cefverge-CV tablet pack",
+    "products": [
+      "cefverge-cv"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/cefverge-o-dry-syp.webp",
+    "kind": "pack",
+    "source": "CEFVERGE-O DRY SYP.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Cefverge-O dry syrup pack",
+    "products": [
+      "cefverge-o-dry-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/cefverge-o-tablets.webp",
+    "kind": "pack",
+    "source": "CEFVERGE-O tablets.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Cefverge-O tablet pack",
+    "products": [
+      "cefverge-o-tablet"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/cepoverge-100dt-tab.webp",
+    "kind": "pack",
+    "source": "CEPOVERGE-100DT TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Cepoverge-100DT tablet pack",
+    "products": [
+      "cepoverge-100dt"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/cepoverge-200dt-tab.webp",
+    "kind": "pack",
+    "source": "CEPOVERGE-200DT TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Cepoverge-200DT tablet pack",
+    "products": [
+      "cepoverge-200dt"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/cepoverge-cv-tab.webp",
+    "kind": "pack",
+    "source": "CEPOVERGE-CV TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Cepoverge-CV tablet pack",
+    "products": [
+      "cepoverge-cv"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/cepoverge-o-tab.webp",
+    "kind": "pack",
+    "source": "CEPOVERGE-O TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Cepoverge-O tablet pack",
+    "products": [
+      "cepoverge-o"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/drospatin-mf-tablets.webp",
+    "kind": "pack",
+    "source": "DROSPATIN-MF tablets.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Drospatin-MF tablet pack",
+    "products": [
+      "drospatin-mf"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/dyclopike-injections.webp",
+    "kind": "pack",
+    "source": "DYCLOPIKE injections.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Dyclopike injection pack",
+    "products": [
+      "dyclopike"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/dyclopike-mr.webp",
+    "kind": "pack",
+    "source": "DYCLOPIKE-MR.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Dyclopike-MR tablet pack",
+    "products": [
+      "dyclopike-mr"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/dyclopike-p.webp",
+    "kind": "pack",
+    "source": "DYCLOPIKE-P.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Dyclopike-P tablet pack",
+    "products": [
+      "dyclopike-p"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/dyclopike-s.webp",
+    "kind": "pack",
+    "source": "DYCLOPIKE-S.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Dyclopike-S tablet pack",
+    "products": [
+      "dyclopike-s"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/dyclopike-sp.webp",
+    "kind": "pack",
+    "source": "DYCLOPIKE-SP.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Dyclopike-SP tablet pack",
+    "products": [
+      "dyclopike-sp"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/etowatch-90-tab.webp",
+    "kind": "pack",
+    "source": "ETOWATCH-90 TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Etowatch-90 tablet pack",
+    "products": [
+      "etowatch-90"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/etowatch-p-tab.webp",
+    "kind": "pack",
+    "source": "ETOWATCH-P TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Etowatch-P tablet pack",
+    "products": [
+      "etowatch-p"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/flucoach-150-tab.webp",
+    "kind": "pack",
+    "source": "Flucoach-150 TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Flucoach-150 tablet pack",
+    "products": [
+      "flucoach-150"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/flucoach-200-tab.webp",
+    "kind": "pack",
+    "source": "Flucoach-200 TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Flucoach-200 tablet pack",
+    "products": [
+      "flucoach-200"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/fongoswel-4-tab.webp",
+    "kind": "pack",
+    "source": "Fongoswel-4 TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Fongoswel-4 tablet pack",
+    "products": [
+      "fongoswel-4"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/itracoach-100-cap.webp",
+    "kind": "pack",
+    "source": "ITRACOACH-100 CAP.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Itracoach-100 capsule pack",
+    "products": [
+      "itracoach-100"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/itracoach-200.webp",
+    "kind": "pack",
+    "source": "ITRACOACH-200.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Itracoach-200 capsule pack",
+    "products": [
+      "itracoach-200"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/levohook-500-tab.webp",
+    "kind": "pack",
+    "source": "LEVOHOOK-500 TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Levohook-500 tablet pack",
+    "products": [
+      "levohook-500"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/lycoseem-100ml-syp.webp",
+    "kind": "pack",
+    "source": "LYCOSEEM 100ml SYP.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Lycoseem Syrup syrup pack",
+    "products": [
+      "lycoseem-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/lycoseem-200ml.webp",
+    "kind": "pack",
+    "source": "LYCOSEEM 200ml.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Lycoseem Syrup syrup pack",
+    "products": [
+      "lycoseem-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/ofospike-200-tab.webp",
+    "kind": "pack",
+    "source": "OFOSPIKE-200 TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Ofospike-200 tablet pack",
+    "products": [
+      "ofospike-200"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/ometrunk-20-cap.webp",
+    "kind": "pack",
+    "source": "OMETRUNK-20 cap.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Ometrunk-20 tablet pack",
+    "products": [
+      "ometrunk-20"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/ometrunk-d-cap.webp",
+    "kind": "pack",
+    "source": "OMETRUNK-D cap.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Ometrunk-D tablet pack",
+    "products": [
+      "ometrunk-d"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/ondahook-4-tab.webp",
+    "kind": "pack",
+    "source": "ONDAHOOK-4 TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Ondahook-4 tablet pack",
+    "products": [
+      "ondahook-4"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/ondahook-injection.webp",
+    "kind": "pack",
+    "source": "ONDAHOOK INJECTION.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Ondahook injection pack",
+    "products": [
+      "ondahook-injection"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/ondahook-susp.webp",
+    "kind": "pack",
+    "source": "ONDAHOOK SUSP.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Ondahook oral drops pack",
+    "products": [
+      "ondahook-oral-drops"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/semorant-100ml-syrup.webp",
+    "kind": "pack",
+    "source": "SEMORANT 100ml syrup.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Semorant Syrup syrup pack",
+    "products": [
+      "semorant-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/simnotch-30ml-drop.webp",
+    "kind": "pack",
+    "source": "SIMNOTCH 30ml drop.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Simnotch oral drops pack",
+    "products": [
+      "simnotch"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/tyn-miko-500-injection.webp",
+    "kind": "pack",
+    "source": "TYN-MIKO 500 injection.png",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Tyn-Miko 500 injection pack",
+    "products": [
+      "tyn-miko-500"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/typsipron-br-tab.webp",
+    "kind": "pack",
+    "source": "TYPSIPRON-BR TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Typsipron-BR tablet pack",
+    "products": [
+      "typsipron-br"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/woblycort-6-susp.webp",
+    "kind": "pack",
+    "source": "WOBLYCORT-6 SUSP.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Woblycort-6 suspension pack",
+    "products": [
+      "woblycort-6-suspension"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/woblycort-6.webp",
+    "kind": "pack",
+    "source": "WOBLYCORT-6.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Woblycort-6 tablet pack",
+    "products": [
+      "woblycort-6-tablet"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/wormslit-i.webp",
+    "kind": "pack",
+    "source": "Wormslit-I.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Wormslit-I suspension pack",
+    "products": [
+      "wormslit-i"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/zymativ-100ml.webp",
+    "kind": "pack",
+    "source": "ZYMATIV 100ml.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Zymativ Syrup syrup pack",
+    "products": [
+      "zymativ-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/zymativ-200ml.webp",
+    "kind": "pack",
+    "source": "ZYMATIV 200ml.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Zymativ Syrup syrup pack",
+    "products": [
+      "zymativ-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/zymativ.webp",
+    "kind": "pack",
+    "source": "ZYMATIV.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Zymativ tablet pack",
+    "products": [
+      "zymativ"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/acloage-cp.webp",
+    "kind": "visual",
+    "source": "ACLOAGE-CP.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Acloage-CP tablet visual aid",
+    "products": [
+      "acloage-cp"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/acloage-p.webp",
+    "kind": "visual",
+    "source": "ACLOAGE-P.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Acloage-P suspension visual aid",
+    "products": [
+      "acloage-p-suspension"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/aftyflox-500.webp",
+    "kind": "visual",
+    "source": "AFTYFLOX-500.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Aftyflox-500 tablet visual aid",
+    "products": [
+      "aftyflox-500"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/almiatin-20-40-80.webp",
+    "kind": "visual",
+    "source": "ALMIATIN-20-40-80.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Almiatin-40 tablet visual aid",
+    "products": [
+      "almiatin-40"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/almiatin-am.webp",
+    "kind": "visual",
+    "source": "ALMIATIN-AM.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Almiatin-AM tablet visual aid",
+    "products": [
+      "almiatin-am"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/ati-sily-b.webp",
+    "kind": "visual",
+    "source": "ATI-SILY-B.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Ati-Sily-B Syrup syrup visual aid",
+    "products": [
+      "ati-sily-b-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/ati-sily-l.webp",
+    "kind": "visual",
+    "source": "ATI-SILY-L.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Ati-Sily-L Syrup syrup visual aid",
+    "products": [
+      "ati-sily-l-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/ati-ud-150-300.webp",
+    "kind": "visual",
+    "source": "ATI-UD-150-300.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Ati-UD-150/300 tablet visual aid",
+    "products": [
+      "ati-ud-150-300"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/aticeti-kid.webp",
+    "kind": "visual",
+    "source": "ATICETI-KID.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Aticeti-Kid Syrup syrup visual aid",
+    "products": [
+      "aticeti-kid-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/aticeti-m-kid-1.webp",
+    "kind": "visual",
+    "source": "ATICETI-M KID_1.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Aticeti-M Kid Syrup syrup visual aid",
+    "products": [
+      "aticeti-m-kid-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/aticeti-m-kid.webp",
+    "kind": "visual",
+    "source": "ATICETI-M KID.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Aticeti-M Kid tablet visual aid",
+    "products": [
+      "aticeti-m-kid"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/aticeti-m.webp",
+    "kind": "visual",
+    "source": "ATICETI-M.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Aticeti-M tablet visual aid",
+    "products": [
+      "aticeti-m"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atifebu-40.webp",
+    "kind": "visual",
+    "source": "ATIFEBU-40.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atifebu-40 tablet visual aid",
+    "products": [
+      "atifebu-40"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atinfur-xt.webp",
+    "kind": "visual",
+    "source": "ATINFUR-XT.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atinfur-XT tablet visual aid",
+    "products": [
+      "atinfur-xt-tablet"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atinfur.webp",
+    "kind": "visual",
+    "source": "ATINFUR.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atinfur injection visual aid",
+    "products": [
+      "atinfur"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atinoline-600.webp",
+    "kind": "visual",
+    "source": "ATINOLINE-600.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atinoline-600 tablet visual aid",
+    "products": [
+      "atinoline-600"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atinopar-mf-1.webp",
+    "kind": "visual",
+    "source": "ATINOPAR-MF_1.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atinopar-MF suspension visual aid",
+    "products": [
+      "atinopar-mf-suspension"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atinopar-mf.webp",
+    "kind": "visual",
+    "source": "ATINOPAR-MF.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atinopar-MF tablet visual aid",
+    "products": [
+      "atinopar-mf-tablet"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atinopar-np.webp",
+    "kind": "visual",
+    "source": "ATINOPAR-NP.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atinopar-NP tablet visual aid",
+    "products": [
+      "atinopar-np"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atinopar-plus.webp",
+    "kind": "visual",
+    "source": "ATINOPAR-PLUS.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atinopar-Plus suspension visual aid",
+    "products": [
+      "atinopar-plus"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atinopar.webp",
+    "kind": "visual",
+    "source": "ATINOPAR.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atinopar suspension visual aid",
+    "products": [
+      "atinopar"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atinzo-rab-20.webp",
+    "kind": "visual",
+    "source": "ATINZO-RAB 20.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atinzo-Rab 20 tablet visual aid",
+    "products": [
+      "atinzo-rab-20"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atinzo-rab-d.webp",
+    "kind": "visual",
+    "source": "ATINZO-RAB D.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atinzo-Rab D tablet visual aid",
+    "products": [
+      "atinzo-rab-d"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atiymulti-2.webp",
+    "kind": "visual",
+    "source": "ATIYMULTI.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atiymulti tablet visual aid",
+    "products": [
+      "atiymulti-tablet"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atiymulti.webp",
+    "kind": "visual",
+    "source": "ATIYMULTI .jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atiymulti oral drops visual aid",
+    "products": [
+      "atiymulti-oral-drops"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atnocal-1.webp",
+    "kind": "visual",
+    "source": "ATNOCAL_1.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atnocal softgel capsule visual aid",
+    "products": [
+      "atnocal-softgel-capsule"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atnocal-400.webp",
+    "kind": "visual",
+    "source": "ATNOCAL-400.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atnocal-400 softgel capsule visual aid",
+    "products": [
+      "atnocal-400"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atnocal-4g.webp",
+    "kind": "visual",
+    "source": "ATNOCAL-4G.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atnocal-4G softgel capsule visual aid",
+    "products": [
+      "atnocal-4g"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atnocal-500.webp",
+    "kind": "visual",
+    "source": "ATNOCAL-500.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atnocal-500 capsule visual aid",
+    "products": [
+      "atnocal-500"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atnocal-9g.webp",
+    "kind": "visual",
+    "source": "ATNOCAL-9G.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atnocal-9G softgel capsule visual aid",
+    "products": [
+      "atnocal-9g"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atnocal-ct.webp",
+    "kind": "visual",
+    "source": "ATNOCAL-CT.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atnocal-CT softgel capsule visual aid",
+    "products": [
+      "atnocal-ct"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atnocal-d3-1.webp",
+    "kind": "visual",
+    "source": "ATNOCAL-D3_1.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atnocal-D3 suspension visual aid",
+    "products": [
+      "atnocal-d3-suspension"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atnocal-d3-2.webp",
+    "kind": "visual",
+    "source": "ATNOCAL-D3_2.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atnocal-D3 Nanoshot oral solution visual aid",
+    "products": [
+      "atnocal-d3-nanoshot"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atnocal-d3-3.webp",
+    "kind": "visual",
+    "source": "ATNOCAL-D3_3.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atnocal-D3 softgel capsule visual aid",
+    "products": [
+      "atnocal-d3-softgel-capsule"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atnocal-d3.webp",
+    "kind": "visual",
+    "source": "ATNOCAL-D3.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atnocal-D3 tablet visual aid",
+    "products": [
+      "atnocal-d3-tablet"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atnocal-e-20.webp",
+    "kind": "visual",
+    "source": "ATNOCAL-E 20.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atnocal-E 20 softgel capsule visual aid",
+    "products": [
+      "atnocal-e-20"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atnocal-k-27.webp",
+    "kind": "visual",
+    "source": "ATNOCAL-K 27.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atnocal-K27 softgel capsule visual aid",
+    "products": [
+      "atnocal-k27"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atnocal-q10.webp",
+    "kind": "visual",
+    "source": "ATNOCAL-Q10.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atnocal-Q10 softgel capsule visual aid",
+    "products": [
+      "atnocal-q10"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atnocal.webp",
+    "kind": "visual",
+    "source": "ATNOCAL.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atnocal oral drops visual aid",
+    "products": [
+      "atnocal-oral-drops"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atnocuf-a.webp",
+    "kind": "visual",
+    "source": "ATNOCUF- A.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atnocuf-A Syrup syrup visual aid",
+    "products": [
+      "atnocuf-a-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atnocuf-ax.webp",
+    "kind": "visual",
+    "source": "ATNOCUF-AX.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atnocuf-AX Syrup syrup visual aid",
+    "products": [
+      "atnocuf-ax-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atnocuf-dx.webp",
+    "kind": "visual",
+    "source": "ATNOCUF-DX.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atnocuf-DX Syrup syrup visual aid",
+    "products": [
+      "atnocuf-dx-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atnocuf-tr.webp",
+    "kind": "visual",
+    "source": "ATNOCUF-TR.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atnocuf-TR Syrup syrup visual aid",
+    "products": [
+      "atnocuf-tr-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atyno-cox-500.webp",
+    "kind": "visual",
+    "source": "ATYNO-COX-500.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atyno-Cox-500 capsule visual aid",
+    "products": [
+      "atyno-cox-500"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atyno-cox-625.webp",
+    "kind": "visual",
+    "source": "ATYNO-COX  625.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atyno-Cox-CV 625 tablet visual aid",
+    "products": [
+      "atyno-cox-cv-625"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atyno-cox-kid.webp",
+    "kind": "visual",
+    "source": "ATYNO-COX-KID.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atyno-Cox-Kid tablet visual aid",
+    "products": [
+      "atyno-cox-kid"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/atyno-cox.webp",
+    "kind": "visual",
+    "source": "ATYNO-COX.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Atyno-Cox dry syrup visual aid",
+    "products": [
+      "atyno-cox"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/bilahook-m.webp",
+    "kind": "visual",
+    "source": "BILAHOOK- M.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Bilahook-M tablet visual aid",
+    "products": [
+      "bilahook-m"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/bugybet-16.webp",
+    "kind": "visual",
+    "source": "BUGYBET-16.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Bugybet-16 tablet visual aid",
+    "products": [
+      "bugybet-16"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/cefverge-100dt-200dt.webp",
+    "kind": "visual",
+    "source": "CEFVERGE-100DT-200DT.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Cefverge-100/200 tablet visual aid",
+    "products": [
+      "cefverge-100-200"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/cefverge-50-100.webp",
+    "kind": "visual",
+    "source": "CEFVERGE-50-100.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Cefverge-50/100 dry syrup visual aid",
+    "products": [
+      "cefverge-50-100"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/cefverge-cv.webp",
+    "kind": "visual",
+    "source": "CEFVERGE-CV.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Cefverge-CV tablet visual aid",
+    "products": [
+      "cefverge-cv"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/cefverge-o-1.webp",
+    "kind": "visual",
+    "source": "CEFVERGE-O_1.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Cefverge-O dry syrup visual aid",
+    "products": [
+      "cefverge-o-dry-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/cefverge-o.webp",
+    "kind": "visual",
+    "source": "CEFVERGE-O.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Cefverge-O tablet visual aid",
+    "products": [
+      "cefverge-o-tablet"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/cepoverge-cv.webp",
+    "kind": "visual",
+    "source": "CEPOVERGE-CV.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Cepoverge-CV tablet visual aid",
+    "products": [
+      "cepoverge-cv"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/dyclopike-mr.webp",
+    "kind": "visual",
+    "source": "DYCLOPIKE-MR.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Dyclopike-MR tablet visual aid",
+    "products": [
+      "dyclopike-mr"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/dyclopike-p.webp",
+    "kind": "visual",
+    "source": "DYCLOPIKE-P.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Dyclopike-P tablet visual aid",
+    "products": [
+      "dyclopike-p"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/dyclopike.webp",
+    "kind": "visual",
+    "source": "DYCLOPIKE.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Dyclopike injection visual aid",
+    "products": [
+      "dyclopike"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/etowatch-90-120.webp",
+    "kind": "visual",
+    "source": "ETOWATCH-90-120.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Etowatch-90 tablet visual aid",
+    "products": [
+      "etowatch-90"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/etowatch-p.webp",
+    "kind": "visual",
+    "source": "ETOWATCH-P.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Etowatch-P tablet visual aid",
+    "products": [
+      "etowatch-p"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/flucoach-200.webp",
+    "kind": "visual",
+    "source": "FLUCOACH-200.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Flucoach-200 tablet visual aid",
+    "products": [
+      "flucoach-200"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/fongoswel-4.webp",
+    "kind": "visual",
+    "source": "FONGOSWEL-4.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Fongoswel-4 tablet visual aid",
+    "products": [
+      "fongoswel-4"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/itracoach-200.webp",
+    "kind": "visual",
+    "source": "ITRACOACH-200.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Itracoach-200 capsule visual aid",
+    "products": [
+      "itracoach-200"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/levohook-500.webp",
+    "kind": "visual",
+    "source": "LEVOHOOK-500.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Levohook-500 tablet visual aid",
+    "products": [
+      "levohook-500"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/lycoseem.webp",
+    "kind": "visual",
+    "source": "LYCOSEEM.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Lycoseem Syrup syrup visual aid",
+    "products": [
+      "lycoseem-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/ofospike-200.webp",
+    "kind": "visual",
+    "source": "OFOSPIKE-200.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Ofospike-200 tablet visual aid",
+    "products": [
+      "ofospike-200"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/ometrunk-d.webp",
+    "kind": "visual",
+    "source": "OMETRUNK-D.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Ometrunk-D tablet visual aid",
+    "products": [
+      "ometrunk-d"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/ondahook-1.webp",
+    "kind": "visual",
+    "source": "ONDAHOOK_1.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Ondahook injection visual aid",
+    "products": [
+      "ondahook-injection"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/ondahook-4.webp",
+    "kind": "visual",
+    "source": "ONDAHOOK-4.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Ondahook-4 tablet visual aid",
+    "products": [
+      "ondahook-4"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/ondahook.webp",
+    "kind": "visual",
+    "source": "ONDAHOOK.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Ondahook oral drops visual aid",
+    "products": [
+      "ondahook-oral-drops"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/semorant.webp",
+    "kind": "visual",
+    "source": "SEMORANT.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Semorant Syrup syrup visual aid",
+    "products": [
+      "semorant-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/tyn-miko-500.webp",
+    "kind": "visual",
+    "source": "TYN-MIKO 500.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Tyn-Miko 500 injection visual aid",
+    "products": [
+      "tyn-miko-500"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/typsipron-br.webp",
+    "kind": "visual",
+    "source": "TYPSIPRON-BR.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Typsipron-BR tablet visual aid",
+    "products": [
+      "typsipron-br"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/woblycort-6-1.webp",
+    "kind": "visual",
+    "source": "WOBLYCORT-6_1.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Woblycort-6 suspension visual aid",
+    "products": [
+      "woblycort-6-suspension"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/woblycort-6.webp",
+    "kind": "visual",
+    "source": "WOBLYCORT-6.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Woblycort-6 tablet visual aid",
+    "products": [
+      "woblycort-6-tablet"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/wormslit-i.webp",
+    "kind": "visual",
+    "source": "WORMSLIT- I.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Wormslit-I suspension visual aid",
+    "products": [
+      "wormslit-i"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/zymativ-1.webp",
+    "kind": "visual",
+    "source": "ZYMATIV_1.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Zymativ Syrup syrup visual aid",
+    "products": [
+      "zymativ-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/zymativ.webp",
+    "kind": "visual",
+    "source": "ZYMATIV.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Zymativ tablet visual aid",
+    "products": [
+      "zymativ"
+    ]
+  }
+]

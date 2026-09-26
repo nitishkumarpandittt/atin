@@ -8,7 +8,7 @@ import { ProductCard } from "@/components/site/ProductCard";
 import { CatalogueNote } from "@/components/site/CatalogueNote";
 import { RequestCallButton } from "@/components/site/RequestCallButton";
 import { RangeIcon } from "@/components/primitives/RangeIcon";
-import { displayFlags, getProductBySlug, getProductImages, getPublishedProducts, getRange, getRelatedProducts } from "@/lib/data/catalogue";
+import { displayFlags, getMainImages, getProductBySlug, getProductImages, getPublishedProducts, getRange, getRelatedProducts } from "@/lib/data/catalogue";
 import { ProductGallery } from "@/components/site/ProductGallery";
 import { site } from "@/lib/site/config";
 import { brandIncludesForm, productTitle } from "@/lib/utils/text";
@@ -38,7 +38,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[rang
   if (!product) notFound();
   if (product.rangeSlug !== rangeSlug) permanentRedirect(`/products/${product.rangeSlug}/${product.slug}`);
 
-  const [range, related, images] = await Promise.all([getRange(product.rangeSlug), getRelatedProducts(product), getProductImages(product.id)]);
+  const [range, related, images, mainImages] = await Promise.all([getRange(product.rangeSlug), getRelatedProducts(product), getProductImages(product.id), getMainImages()]);
   if (!range) notFound();
   const segmentPhoto = rangePhoto(range);
 
@@ -175,7 +175,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[rang
             <ul className="mt-6 grid gap-3 sm:grid-cols-2 sm:gap-5 md:mt-8 lg:grid-cols-4">
               {related.map((p, i) => (
                 <li key={p.slug}>
-                  <ProductCard product={p} icon={range.icon} tone={i % 2 ? "green" : "blue"} />
+                  <ProductCard product={{ ...p, image: mainImages.get(p.id)?.src }} icon={range.icon} tone={i % 2 ? "green" : "blue"} />
                 </li>
               ))}
             </ul>
