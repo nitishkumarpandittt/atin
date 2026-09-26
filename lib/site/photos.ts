@@ -47,7 +47,7 @@ const PHOTOS: Record<Slot, Photo> = {
   "warehouse": unsplash("photo-1587293852726-70cdb56c2866", "Cardboard boxes stacked on warehouse racks", { credit: "CHUTTERSNAP" }),
   "team": unsplash("photo-1577962917302-cd874c4e31d2", "Business team in a meeting around an office table", { credit: "Smartworks Coworking" }),
   "lab-quality": unsplash("photo-1532187643603-ba119ca4109e", "Scientist pouring liquid into laboratory glassware", { credit: "Louis Reed" }),
-  "chemist-counter": unsplash("photo-1739289696449-cba3a5ef085d", "Two people looking at a medicine pack in a bright pharmacy aisle", { credit: "Ninthgrid", position: "60% center" }),
+  "chemist-counter": unsplash("photo-1576602975754-efdf313b9342", "Bright store interior with shelves of boxed products", { credit: "Nathaniel Yeo", position: "30% center" }),
   "hospital-corridor": unsplash("photo-1777269749032-d8d458ae594d", "Empty hospital corridor with benches and doors", { credit: "Tasha Kostyuk" }),
   "contact": unsplash("photo-1626863905121-3b0c0ed7b94c", "Support team wearing headsets in a bright office", { credit: "Charanjeet Dhiman" }),
   // copy-check: photographer credit (Unsplash account name), not marketing copy
