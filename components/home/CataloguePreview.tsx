@@ -1,10 +1,11 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import type { Product, Range } from "@/lib/data/catalogue";
+import type { PreviewItem } from "@/lib/data/catalogue";
 import { RangeIcon } from "@/components/primitives/RangeIcon";
 import { SectionHeading } from "@/components/primitives/SectionHeading";
 
-type Item = { product: Product; range: Range };
+type Item = PreviewItem;
 
 export function CataloguePreview({ items, title, eyebrow }: { items: Item[]; title: string; eyebrow: string }) {
   if (!items.length) return null;
@@ -19,16 +20,26 @@ export function CataloguePreview({ items, title, eyebrow }: { items: Item[]; tit
         </div>
 
         <ul className="-mx-5 mt-8 flex md:mt-12 snap-x snap-mandatory scroll-px-5 gap-5 overflow-x-auto px-5 pb-6 [scrollbar-width:thin] md:-mx-8 md:scroll-px-8 md:px-8">
-          {items.map(({ product: p, range: r }, i) => (
+          {items.map(({ product: p, range: r, image }, i) => (
             <li key={p.slug} className="w-[78%] max-w-[17.5rem] shrink-0 snap-start sm:w-[17.5rem]" data-reveal style={{ "--reveal-delay": `${Math.min(i, 4) * 60}ms` } as React.CSSProperties}>
               <article className="group flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] bg-white shadow-card ring-1 ring-line transition hover:-translate-y-1 hover:shadow-lift">
-                <div className={`relative grid h-36 place-items-center ${i % 2 ? "bg-leaf-100" : "bg-sky-100"}`}>
+                <div className={`relative grid h-36 place-items-center overflow-hidden ${i % 2 ? "bg-leaf-100" : "bg-sky-100"}`}>
                   <svg aria-hidden viewBox="0 0 120 120" className={`absolute -bottom-10 -right-8 size-40 ${i % 2 ? "text-leaf/25" : "text-sky/25"}`}>
                     <path d="M20 95 A50 50 0 1 1 100 92" fill="none" stroke="currentColor" strokeWidth="6" strokeLinecap="round" />
                   </svg>
-                  <span className={`relative grid size-16 place-items-center rounded-2xl bg-white shadow-card ${i % 2 ? "text-green" : "text-brand"}`}>
-                    <RangeIcon icon={r.icon} className="size-8" />
-                  </span>
+                  {image ? (
+                    /* Pack shot on the tint (multiply drops its white background); the segment icon shrinks to a corner badge. */
+                    <>
+                      <Image src={image} alt="" fill sizes="280px" className="object-contain p-4 pt-9 mix-blend-multiply transition duration-500 group-hover:scale-105" />
+                      <span className={`absolute bottom-3 right-3 grid size-9 place-items-center rounded-xl bg-white shadow-card ${i % 2 ? "text-green" : "text-brand"}`}>
+                        <RangeIcon icon={r.icon} className="size-5" />
+                      </span>
+                    </>
+                  ) : (
+                    <span className={`relative grid size-16 place-items-center rounded-2xl bg-white shadow-card ${i % 2 ? "text-green" : "text-brand"}`}>
+                      <RangeIcon icon={r.icon} className="size-8" />
+                    </span>
+                  )}
                   <span className="absolute left-4 top-4 rounded-full bg-white/90 px-2.5 py-1 text-xs font-semibold text-navy">{r.shortName}</span>
                 </div>
                 <div className="flex flex-1 flex-col p-5">

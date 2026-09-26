@@ -87,16 +87,19 @@ export const getCatalogueFigures = cache(async () => {
 
 export const getNewAdditions = cache(async () => (await getPublishedProducts()).filter((p) => p.isNew));
 
-/** One representative product per range, for the home page catalogue preview. */
-export const getCataloguePreview = cache(async () => {
-  const [items, rs] = await Promise.all([getPublishedProducts(), getRanges()]);
+export type PreviewItem = { product: Product; range: Range; image?: string };
+
+/** One representative product per range, for the home page catalogue preview: photographed products first. */
+export const getCataloguePreview = cache(async (): Promise<PreviewItem[]> => {
+  const [items, rs, images] = await Promise.all([getPublishedProducts(), getRanges(), getMainImages()]);
   return rs
-    .map((r) => {
+    .map((r): PreviewItem | null => {
       const inRange = items.filter((p) => p.rangeSlug === r.slug);
-      const pick = inRange.find((p) => /\d/.test(p.composition)) ?? inRange[0];
-      return pick ? { product: pick, range: r } : null;
+      const detailed = (p: Product) => /\d/.test(p.composition);
+      const pick = inRange.find((p) => images.has(p.id) && detailed(p)) ?? inRange.find(detailed) ?? inRange[0];
+      return pick ? { product: pick, range: r, image: images.get(pick.id)?.src } : null;
     })
-    .filter((x): x is { product: Product; range: Range } => x !== null);
+    .filter((x): x is PreviewItem => x !== null);
 });
 
 export type SearchSuggestion = {

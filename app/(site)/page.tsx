@@ -7,7 +7,7 @@ import { LatestPosts } from "@/components/home/LatestPosts";
 import { SegmentGrid } from "@/components/home/SegmentGrid";
 import { SegmentMarquee } from "@/components/home/SegmentMarquee";
 import { WhyAtin } from "@/components/home/WhyAtin";
-import { getCatalogueFigures, getCataloguePreview, getNewAdditions, getRanges } from "@/lib/data/catalogue";
+import { getCatalogueFigures, getCataloguePreview, getNewAdditions, getRanges, getMainImages } from "@/lib/data/catalogue";
 import { getPosts } from "@/lib/data/blog";
 import { getPublicCompany, getPublishedTestimonials } from "@/lib/data/site";
 import { Testimonials } from "@/components/home/Testimonials";
@@ -20,7 +20,7 @@ const need = (slot: string): Photo => {
 };
 
 export default async function HomePage() {
-  const [figures, ranges, newAdditions, preview, posts, company, testimonials] = await Promise.all([
+  const [figures, ranges, newAdditions, preview, posts, company, testimonials, images] = await Promise.all([
     getCatalogueFigures(),
     getRanges(),
     getNewAdditions(),
@@ -28,11 +28,12 @@ export default async function HomePage() {
     getPosts(),
     getPublicCompany(),
     getPublishedTestimonials(),
+    getMainImages(),
   ]);
   const rangeBySlug = new Map(ranges.map((r) => [r.slug, r]));
   const newItems = newAdditions.flatMap((p) => {
     const range = rangeBySlug.get(p.rangeSlug);
-    return range ? [{ product: p, range }] : [];
+    return range ? [{ product: p, range, image: images.get(p.id)?.src }] : [];
   });
 
   return (

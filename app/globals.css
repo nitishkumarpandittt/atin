@@ -64,6 +64,8 @@
     border-radius: 6px;
   }
   ::selection { background: var(--color-sky-100); color: var(--color-navy); }
+  /* No drag ghosts when a link or picture is dragged (Chrome/Safari; app/layout.tsx covers Firefox). */
+  a, img { -webkit-user-drag: none; }
 
   /*
    * Page scrollbar: standard properties only. Adding any ::-webkit-scrollbar rule makes Chrome fall

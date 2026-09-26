@@ -41,6 +41,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Script id="js-enabled" strategy="beforeInteractive">
           {`document.documentElement.classList.add("js")`}
         </Script>
+        {/* Links and images are draggable by default (Firefox ignores the CSS rule in globals.css); block it everywhere. */}
+        <Script id="no-drag" strategy="beforeInteractive">
+          {`document.addEventListener("dragstart",function(e){var t=e.target;if(t instanceof Element&&t.closest("a,img"))e.preventDefault()})`}
+        </Script>
         {children}
       </body>
     </html>
