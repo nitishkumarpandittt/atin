@@ -7,6 +7,8 @@ import { listEnquiries } from "@/lib/admin/queries";
 
 const EMAIL_TONE = { sent: "green", failed: "red", "not-configured": "grey", pending: "amber" } as const;
 const EMAIL_LABEL = { sent: "Email sent", failed: "Email failed", "not-configured": "Email not set up", pending: "Email pending" } as const;
+const WHATSAPP_TONE = EMAIL_TONE;
+const WHATSAPP_LABEL = { sent: "WhatsApp sent", failed: "WhatsApp failed", "not-configured": "WhatsApp not set up", pending: "WhatsApp pending" } as const;
 
 export async function EnquiriesView({ kind, status, page }: { kind: "enquiry" | "callback"; status: "new" | "handled" | "all"; page: number }) {
   const { rows, total, pages } = await listEnquiries(kind, status, page);
@@ -56,6 +58,9 @@ export async function EnquiriesView({ kind, status, page }: { kind: "enquiry" | 
                     <Badge tone={e.status === "new" ? "green" : "grey"}>{e.status === "new" ? "New" : "Handled"}</Badge>
                     <span title={e.emailError ?? undefined}>
                       <Badge tone={EMAIL_TONE[e.emailStatus]}>{EMAIL_LABEL[e.emailStatus]}</Badge>
+                    </span>
+                    <span title={e.whatsappError ?? undefined}>
+                      <Badge tone={WHATSAPP_TONE[e.whatsappStatus]}>{WHATSAPP_LABEL[e.whatsappStatus]}</Badge>
                     </span>
                     <span className="text-xs text-muted">{formatDateTime(e.createdAt)}</span>
                   </div>

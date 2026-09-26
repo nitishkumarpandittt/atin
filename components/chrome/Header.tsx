@@ -182,7 +182,10 @@ export function Header({ items, phone, overlay = false }: Props) {
             {phone && (
               <a
                 href={phone.href}
-                className={`hidden items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold xl:flex ${solid ? "text-navy" : "text-white"}`}
+                // Over the hero the number crosses the white gap between the panels, so it sits on a translucent pill.
+                className={`hidden items-center gap-2 rounded-full py-1.5 pl-1.5 pr-4 text-sm font-semibold xl:flex ${
+                  solid ? "text-navy" : "bg-navy/40 text-white ring-1 ring-white/15 backdrop-blur-sm"
+                }`}
               >
                 <span className={`grid size-9 place-items-center rounded-full ${solid ? "bg-leaf-100 text-green" : "bg-white/15"}`}>
                   <Phone aria-hidden className="size-4" />

@@ -3,8 +3,9 @@
 import { headers } from "next/headers";
 import { callbackSchema, enquirySchema, toFieldErrors, type FormState } from "@/lib/enquiries/schema";
 import { rateLimit } from "@/lib/enquiries/rate-limit";
-import { saveEmailStatus, saveEnquiry, type EnquiryInput } from "@/lib/enquiries/store";
+import { saveEmailStatus, saveEnquiry, saveWhatsAppStatus, type EnquiryInput } from "@/lib/enquiries/store";
 import { sendNotification } from "@/lib/enquiries/mail";
+import { sendEnquiryWhatsApp } from "@/lib/enquiries/whatsapp";
 
 const MIN_FILL_MS = 3000;
 
@@ -17,11 +18,12 @@ const fields = (formData: FormData, keys: string[]) =>
   Object.fromEntries(keys.map((k) => [k, typeof formData.get(k) === "string" ? (formData.get(k) as string) : undefined]));
 
 async function persist(input: EnquiryInput) {
-  // Save first so no enquiry is lost if email fails; success if either path worked.
+  // Save first so no enquiry is lost if a notification fails; success if any path worked.
+  // Email and WhatsApp run side by side and never throw, so one failing cannot delay or block the other.
   const id = await saveEnquiry(input);
-  const mail = await sendNotification(id, input);
-  if (id) await saveEmailStatus(id, mail.status, mail.error);
-  return id !== null || mail.status === "sent";
+  const [mail, whatsapp] = await Promise.all([sendNotification(id, input), sendEnquiryWhatsApp({ ...input, id })]);
+  if (id) await Promise.all([saveEmailStatus(id, mail.status, mail.error), saveWhatsAppStatus(id, whatsapp.status, whatsapp.error)]);
+  return id !== null || mail.status === "sent" || whatsapp.status === "sent";
 }
 
 // Order: field validation first, then honeypot and timing, then rate limit (only counts valid input).

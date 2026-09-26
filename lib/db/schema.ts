@@ -112,6 +112,10 @@ export const enquiries = mysqlTable(
       .notNull()
       .default("pending"),
     emailError: varchar("email_error", { length: 500 }),
+    whatsappStatus: varchar("whatsapp_status", { length: 20, enum: ["pending", "sent", "failed", "not-configured"] })
+      .notNull()
+      .default("pending"),
+    whatsappError: varchar("whatsapp_error", { length: 500 }),
     createdAt: timestamp("created_at", { fsp: 3 }).notNull().defaultNow(),
   },
   (t) => [index("enquiries_kind_status_idx").on(t.kind, t.status), index("enquiries_created_idx").on(t.createdAt)],

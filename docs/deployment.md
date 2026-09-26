@@ -154,6 +154,18 @@ SMTP_USER=
 SMTP_PASSWORD=
 ENQUIRY_TO_EMAIL=
 ENQUIRY_FROM_EMAIL=
+
+# Optional WhatsApp notification: WHATSAPP_PROVIDER=meta or twilio, blank = off (see .env.example)
+WHATSAPP_PROVIDER=
+WHATSAPP_NOTIFY_TO=
+WHATSAPP_PHONE_NUMBER_ID=
+WHATSAPP_ACCESS_TOKEN=
+WHATSAPP_TEMPLATE_NAME=enquiry_received
+WHATSAPP_TEMPLATE_LANG=en
+TWILIO_ACCOUNT_SID=
+TWILIO_AUTH_TOKEN=
+TWILIO_WHATSAPP_FROM=
+TWILIO_CONTENT_SID=
 ```
 
 ```bash
@@ -163,6 +175,10 @@ chmod 600 .env.local
 Enquiries are always saved to the database, so SMTP can stay blank until a mailbox
 exists — only the notification email is skipped. A Hostinger Titan mailbox works here:
 `SMTP_HOST=smtp.titan.email`, `SMTP_PORT=587`.
+
+The WhatsApp notification is optional in the same way. `.env.example` lists the variables
+for each provider and the exact Cloud API template body to register; once they are filled
+in, `npm run whatsapp:test` sends a test message to every number in `WHATSAPP_NOTIFY_TO`.
 
 ## 8. Populate the database, build and start
 

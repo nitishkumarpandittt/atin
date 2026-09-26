@@ -22,18 +22,22 @@ export function Hero({ figures, ranges, photo }: Props) {
   return (
     <section aria-labelledby="hero-title" className="relative bg-white">
       <div className="relative overflow-hidden bg-brand lg:bg-transparent">
-        {/* Desktop: photo panel */}
+        {/* Desktop: photo panel. The photo box only spans the clipped region (a tall, roughly 7:10 area),
+            so a portrait photo fills it at native scale and `position` frames the subject within what is
+            actually visible rather than the full hero width. */}
         <div aria-hidden className="absolute inset-0 hidden lg:block" style={{ clipPath: PHOTO_PANEL }}>
-          <Image
-            src={photo.src}
-            alt=""
-            fill
-            sizes="50vw"
-            loading="eager"
-            fetchPriority="high"
-            className="object-cover"
-            style={{ objectPosition: photo.position ?? "center" }}
-          />
+          <div className="absolute inset-y-0 left-[56%] right-0">
+            <Image
+              src={photo.src}
+              alt=""
+              fill
+              sizes="45vw"
+              loading="eager"
+              fetchPriority="high"
+              className="object-cover"
+              style={{ objectPosition: photo.position ?? "center" }}
+            />
+          </div>
           <div className="absolute inset-0 bg-gradient-to-b from-navy/45 via-transparent to-navy/10" />
         </div>
         {/* Desktop: blue panel */}

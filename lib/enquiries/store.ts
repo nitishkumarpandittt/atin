@@ -17,6 +17,7 @@ export type EnquiryInput = {
 };
 
 export type EmailStatus = "pending" | "sent" | "failed" | "not-configured";
+export type WhatsAppStatus = "pending" | "sent" | "failed" | "not-configured";
 
 /** Saves the enquiry and returns its id, or null when the database write failed. */
 export async function saveEnquiry(input: EnquiryInput): Promise<number | null> {
@@ -54,5 +55,16 @@ export async function saveEmailStatus(id: number, emailStatus: EmailStatus, emai
       .where(eq(schema.enquiries.id, id));
   } catch (error) {
     console.error("[enquiries] could not save email status", id, error);
+  }
+}
+
+export async function saveWhatsAppStatus(id: number, whatsappStatus: WhatsAppStatus, whatsappError?: string) {
+  try {
+    await db
+      .update(schema.enquiries)
+      .set({ whatsappStatus, whatsappError: whatsappError?.slice(0, 500) ?? null })
+      .where(eq(schema.enquiries.id, id));
+  } catch (error) {
+    console.error("[enquiries] could not save whatsapp status", id, error);
   }
 }
