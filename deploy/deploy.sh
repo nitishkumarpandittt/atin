@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-# Redeploy the site after pushing to master. Run on the server as the app user:
-#   /var/www/atin/app/deploy/deploy.sh
+# Redeploy the site after pushing to master. Run it from wherever the repo is checked out:
+#   ./deploy/deploy.sh            (PM2 app name defaults to "atin"; override with PM2_APP=name)
 set -euo pipefail
 
-APP_DIR="/var/www/atin/app"
+APP_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+PM2_APP="${PM2_APP:-atin}"
 cd "$APP_DIR"
 
 echo "==> Pulling master"
@@ -20,7 +21,7 @@ echo "==> Building"
 npm run build
 
 echo "==> Reloading PM2 (zero downtime)"
-pm2 reload atin --update-env
+pm2 reload "$PM2_APP" --update-env
 
 echo "==> Done. Recent logs:"
-pm2 logs atin --lines 20 --nostream
+pm2 logs "$PM2_APP" --lines 20 --nostream
