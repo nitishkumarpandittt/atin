@@ -73,7 +73,7 @@ export default async function RangePage({ params }: PageProps<"/products/[range]
         <ul id="range-products" data-collapsible className="grid gap-3 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4">
           {products.map((p, i) => (
             <li key={p.slug}>
-              <ProductCard product={{ ...p, image: images.get(p.id)?.src }} icon={range.icon} tone={i % 2 ? "green" : "blue"} />
+              <ProductCard product={{ ...p, image: images.get(p.id)?.src }} icon={range.icon} tone={i % 2 ? "green" : "blue"} fallbackImage={img?.src} />
             </li>
           ))}
         </ul>

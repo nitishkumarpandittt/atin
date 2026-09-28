@@ -3,7 +3,7 @@ import { PageHero } from "@/components/site/PageHero";
 import { CatalogueBrowser } from "@/components/site/CatalogueBrowser";
 import { CatalogueNote } from "@/components/site/CatalogueNote";
 import { getCatalogueFigures, getCatalogueItems, getRanges } from "@/lib/data/catalogue";
-import { photo } from "@/lib/site/photos";
+import { photo, rangePhoto } from "@/lib/site/photos";
 
 export const metadata: Metadata = {
   title: "Products",
@@ -34,7 +34,12 @@ export default async function ProductsPage({ searchParams }: PageProps<"/product
         crumbs={[{ label: "Products" }]}
       />
       <section className="container-site py-10 md:py-16 lg:py-20">
-        <CatalogueBrowser items={items} ranges={ranges} initial={initial} />
+        <CatalogueBrowser
+          items={items}
+          ranges={ranges}
+          initial={initial}
+          rangePhotos={Object.fromEntries(ranges.flatMap((r) => (rangePhoto(r) ? [[r.slug, rangePhoto(r)!.src]] : [])))}
+        />
         <CatalogueNote className="mt-12 md:mt-14" />
       </section>
     </>

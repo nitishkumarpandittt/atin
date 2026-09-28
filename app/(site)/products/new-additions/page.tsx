@@ -5,8 +5,8 @@ import { PageHero } from "@/components/site/PageHero";
 import { ProductCard } from "@/components/site/ProductCard";
 import { CatalogueNote } from "@/components/site/CatalogueNote";
 import { RangeIcon } from "@/components/primitives/RangeIcon";
-import { getNewAdditions, getRanges } from "@/lib/data/catalogue";
-import { photo } from "@/lib/site/photos";
+import { getMainImages, getNewAdditions, getRanges } from "@/lib/data/catalogue";
+import { photo, rangePhoto } from "@/lib/site/photos";
 
 export const metadata: Metadata = {
   title: "New additions",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function NewAdditionsPage() {
-  const [products, ranges] = await Promise.all([getNewAdditions(), getRanges()]);
+  const [products, ranges, images] = await Promise.all([getNewAdditions(), getRanges(), getMainImages()]);
   const rangeBySlug = new Map(ranges.map((r) => [r.slug, r]));
 
   return (
@@ -29,16 +29,20 @@ export default async function NewAdditionsPage() {
       <section className="container-site py-10 md:py-16 lg:py-20">
         {products.length > 0 ? (
           <ul className="grid gap-3 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4">
-            {products.map((p, i) => (
-              <li key={p.slug}>
-                <ProductCard
-                  product={p}
-                  rangeName={rangeBySlug.get(p.rangeSlug)?.shortName}
-                  icon={rangeBySlug.get(p.rangeSlug)?.icon ?? ""}
-                  tone={i % 2 ? "green" : "blue"}
-                />
-              </li>
-            ))}
+            {products.map((p, i) => {
+              const range = rangeBySlug.get(p.rangeSlug);
+              return (
+                <li key={p.slug}>
+                  <ProductCard
+                    product={{ ...p, image: images.get(p.id)?.src }}
+                    rangeName={range?.shortName}
+                    icon={range?.icon ?? ""}
+                    tone={i % 2 ? "green" : "blue"}
+                    fallbackImage={range ? rangePhoto(range)?.src : undefined}
+                  />
+                </li>
+              );
+            })}
           </ul>
         ) : (
           <div className="grid items-center gap-8 rounded-3xl bg-surface p-6 sm:p-8 lg:grid-cols-[1fr_auto] lg:gap-10 lg:p-12">

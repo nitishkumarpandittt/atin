@@ -182,7 +182,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[rang
             <ul className="mt-6 grid gap-3 sm:grid-cols-2 sm:gap-5 md:mt-8 lg:grid-cols-4">
               {related.map((p, i) => (
                 <li key={p.slug}>
-                  <ProductCard product={{ ...p, image: mainImages.get(p.id)?.src }} icon={range.icon} tone={i % 2 ? "green" : "blue"} />
+                  <ProductCard product={{ ...p, image: mainImages.get(p.id)?.src }} icon={range.icon} tone={i % 2 ? "green" : "blue"} fallbackImage={segmentPhoto?.src} />
                 </li>
               ))}
             </ul>

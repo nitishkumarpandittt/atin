@@ -9,11 +9,12 @@ import { RangeIcon } from "@/components/primitives/RangeIcon";
 
 export type CatalogueFilters = { q: string; range: string; form: string; newOnly: boolean };
 
-type Props = { items: CatalogueItem[]; ranges: Range[]; initial: CatalogueFilters };
+/** `rangePhotos`: segment slug -> photo used on cards whose product has no pack shot. */
+type Props = { items: CatalogueItem[]; ranges: Range[]; initial: CatalogueFilters; rangePhotos?: Record<string, string> };
 
 const PAGE = 24;
 
-export function CatalogueBrowser({ items, ranges, initial }: Props) {
+export function CatalogueBrowser({ items, ranges, initial, rangePhotos }: Props) {
   // Initial filters come from the server (URL search params), so the first HTML already shows results.
   const [query, setQuery] = useState(initial.q);
   const [range, setRange] = useState(initial.range);
@@ -28,6 +29,26 @@ export function CatalogueBrowser({ items, ranges, initial }: Props) {
   useEffect(() => {
     if (arrivedWithQuery.current) resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
+
+  // After a filter change, bring the results back into view if their top has scrolled out of sight
+  // (the desktop sidebar is sticky, so a shorter result set would otherwise leave the viewport on the footer).
+  const firstFilterRun = useRef(true);
+  useEffect(() => {
+    if (firstFilterRun.current) {
+      firstFilterRun.current = false;
+      return;
+    }
+    const t = window.setTimeout(
+      () => {
+        const el = resultsRef.current;
+        if (!el || el.getBoundingClientRect().top >= 0) return;
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+      },
+      query ? 300 : 0,
+    );
+    return () => window.clearTimeout(t);
+  }, [range, form, newOnly, query]);
 
   // Keep filters in the URL without a navigation.
   useEffect(() => {
@@ -195,7 +216,13 @@ export function CatalogueBrowser({ items, ranges, initial }: Props) {
             <ul className="grid gap-3 sm:grid-cols-2 sm:gap-5 xl:grid-cols-3">
               {results.slice(0, shown).map((p, i) => (
                 <li key={p.slug}>
-                  <ProductCard product={p} rangeName={range ? undefined : p.rangeName} icon={iconFor.get(p.rangeSlug) ?? ""} tone={i % 2 ? "green" : "blue"} />
+                  <ProductCard
+                    product={p}
+                    rangeName={range ? undefined : p.rangeName}
+                    icon={iconFor.get(p.rangeSlug) ?? ""}
+                    tone={i % 2 ? "green" : "blue"}
+                    fallbackImage={rangePhotos?.[p.rangeSlug]}
+                  />
                 </li>
               ))}
             </ul>

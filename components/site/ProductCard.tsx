@@ -8,24 +8,30 @@ type Props = {
   rangeName?: string;
   icon: string;
   tone?: "blue" | "green";
+  /** Segment photo shown as the banner when the product has no pack shot yet (tablet and up). */
+  fallbackImage?: string;
 };
 
-export function ProductCard({ product: p, rangeName, icon, tone = "blue" }: Props) {
+export function ProductCard({ product: p, rangeName, icon, tone = "blue", fallbackImage }: Props) {
   const tile = tone === "green" ? "bg-leaf-100 text-green" : "bg-sky-100 text-brand";
   const href = `/products/${p.rangeSlug}/${p.slug}`;
   const newBadge = p.isNew && <span className="rounded-full bg-green px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-white">New</span>;
+  // A pack shot when there is one, otherwise the segment's photo; either fills the banner from sm up.
+  const banner = p.image ?? fallbackImage;
   return (
     <article className="group relative flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] bg-white shadow-card ring-1 ring-line transition hover:-translate-y-1 hover:shadow-lift hover:ring-sky/40">
-      {p.image && (
-        /* Tablet and up: pack shot on a light stage. Multiply blends the shot's white background into the tint. */
+      {banner && (
+        /* Tablet and up: pack shot on a light stage (multiply blends its white background into the tint), or the
+           segment photo as a full-bleed stand-in, with the range tile below saying what it represents. */
         <div className="relative hidden aspect-[4/3] overflow-hidden border-b border-line bg-surface sm:block">
           <Image
-            src={p.image}
+            src={banner}
             alt=""
             fill
             sizes="(min-width: 1280px) 300px, (min-width: 1024px) 35vw, 50vw"
-            className="object-contain p-5 mix-blend-multiply transition duration-500 group-hover:scale-105"
+            className={`transition duration-500 group-hover:scale-105 ${p.image ? "object-contain p-5 mix-blend-multiply" : "object-cover"}`}
           />
+          {!p.image && <span aria-hidden className="absolute inset-0 bg-gradient-to-t from-navy/35 to-transparent" />}
           <span className="absolute inset-x-3 top-3 flex flex-wrap items-start justify-end gap-1.5">
             {newBadge}
             <span className="rounded-full bg-white px-2.5 py-1 text-xs font-medium text-navy ring-1 ring-line">{p.dosageForm}</span>
@@ -33,8 +39,8 @@ export function ProductCard({ product: p, rangeName, icon, tone = "blue" }: Prop
         </div>
       )}
       <div className="flex flex-1 flex-col p-4 sm:p-5">
-        {/* With a pack shot this row is phone-only: the banner above carries the badges from sm up. */}
-        <div className={`flex gap-3 ${p.image ? "items-center sm:hidden" : "items-start sm:justify-between"}`}>
+        {/* With a banner this row is phone-only: the banner above carries the badges from sm up. */}
+        <div className={`flex gap-3 ${p.image ? "items-center" : "items-start"} ${banner ? "sm:hidden" : "sm:justify-between"}`}>
           {p.image ? (
             /* Phones: the pack shot stands in for the icon tile so collapsible lists stay short. */
             <span className="relative size-16 shrink-0 overflow-hidden rounded-xl bg-surface ring-1 ring-line">
@@ -60,17 +66,17 @@ export function ProductCard({ product: p, rangeName, icon, tone = "blue" }: Prop
           {/* Badges may shrink to the widest pill so they stack instead of poking out of narrow cards. */}
           <span className="flex flex-wrap justify-end gap-1.5">
             {newBadge}
-            {!p.image && <span className="hidden rounded-full bg-surface px-2.5 py-1 text-xs font-medium text-navy sm:inline">{p.dosageForm}</span>}
+            {!banner && <span className="hidden rounded-full bg-surface px-2.5 py-1 text-xs font-medium text-navy sm:inline">{p.dosageForm}</span>}
           </span>
         </div>
         <div className="hidden sm:block">
-          {p.image && (
+          {banner && (
             /* Echoes the segment cards: the range tile straddles the banner edge (lifted by its own height above the p-5 padding). */
             <span className={`relative -mt-10 grid size-10 place-items-center rounded-xl shadow-card ring-4 ring-white ${tile}`}>
               <RangeIcon icon={icon} className="size-5" />
             </span>
           )}
-          <h3 className={`wrap-anywhere text-lg font-bold leading-snug ${p.image ? "mt-3" : "mt-4"}`}>
+          <h3 className={`wrap-anywhere text-lg font-bold leading-snug ${banner ? "mt-3" : "mt-4"}`}>
             <Link href={href} className="after:absolute after:inset-0 after:rounded-[var(--radius-card)]">
               {p.brand}
             </Link>
