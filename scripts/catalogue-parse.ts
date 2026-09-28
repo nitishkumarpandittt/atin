@@ -39,6 +39,7 @@ const FORM_SUFFIXES: { re: RegExp; form: string; strip: boolean }[] = [
   { re: /\bNASAL SPRAY$/, form: "Nasal Spray", strip: false },
   { re: /\bEYE DROPS?$/, form: "Eye Drops", strip: false },
   { re: /\bEAR DROPS?$/, form: "Ear Drops", strip: false },
+  { re: /\bNASAL DROPS?$/, form: "Nasal Drops", strip: false },
   { re: /\bDUSTING POWDER$/, form: "Dusting Powder", strip: false },
   { re: /\bSOFTGEL(?: CAP(?:S|SULES?)?)?$/, form: "Softgel Capsule", strip: true },
   { re: /\bDRY SYP$/, form: "Dry Syrup", strip: true },
@@ -88,8 +89,12 @@ const titleName = (s: string) =>
 function splitBrand(rawBrand: string, rangeSlug: string) {
   let b = clean(rawBrand).toUpperCase().replace(/\.+$/, "");
   b = b.replace(/\s*-\s*/g, "-");
-  // "AYURATIN-(LIVER SYRUP)" → "AYURATIN LIVER SYRUP"; keep flavour lists such as "(VANILLA/CHOCOLATE)".
-  b = b.replace(/-?\s*\(([^)]*)\)$/, (_m, inner: string) => (/\//.test(inner) ? ` (${inner.trim()})` : ` ${inner.trim()}`));
+  // "AYURATIN-(LIVER SYRUP)" → "AYURATIN LIVER SYRUP" when the bracket holds the form; variants such as
+  // "(VANILLA)" or "(VANILLA/CHOCOLATE)" stay bracketed so the form before them is still found.
+  b = b.replace(/-?\s*\(([^)]*)\)$/, (_m, inner: string) => {
+    const t = inner.trim();
+    return FORM_SUFFIXES.some((f) => f.re.test(t)) ? ` ${t}` : ` (${t})`;
+  });
   b = b.replace(/-$/, "").replace(/\s+/g, " ").trim();
 
   const matchOn = b.replace(/\s*\([^)]*\)$/, "");
@@ -228,13 +233,25 @@ export async function parseCatalogue(filePath: string, ranges: RangeDef[]) {
     if (!serials.has(s)) warnings.push(`Serial ${s} is missing in the sheet`);
   }
 
-  // Deterministic slugs: brand; if duplicated, brand + dosage form; then -2, -3
-  const brandCount = new Map<string, number>();
-  for (const p of products) brandCount.set(slugify(p.brand), (brandCount.get(slugify(p.brand)) ?? 0) + 1);
+  // Deterministic slugs: brand; if shared, brand + dosage form (unless the name already ends with it);
+  // if still shared (the same product listed per pack size), brand + pack size; then -2, -3.
+  const count = (keys: string[]) => keys.reduce((m, k) => m.set(k, (m.get(k) ?? 0) + 1), new Map<string, number>());
+  const withForm = (p: ParsedProduct) => {
+    const base = slugify(p.brand);
+    const form = slugify(p.dosageForm);
+    return base.endsWith(form) ? base : `${base}-${form}`;
+  };
+  const brandCount = count(products.map((p) => slugify(p.brand)));
+  const formCount = count(products.map(withForm));
   const used = new Set<string>();
   for (const p of products) {
     const base = slugify(p.brand);
-    const s = brandCount.get(base)! > 1 ? slugify(`${p.brand} ${p.dosageForm}`) : base;
+    let s = base;
+    if (brandCount.get(base)! > 1) {
+      s = withForm(p);
+      const size = p.pack.match(/(\d+(?:\.\d+)?)\s*(ml|gm|g|mg)\b/i);
+      if (formCount.get(s)! > 1 && size) s = slugify(`${s} ${size[1]} ${size[2]}`);
+    }
     let final = s;
     for (let n = 2; used.has(final); n++) final = `${s}-${n}`;
     used.add(final);

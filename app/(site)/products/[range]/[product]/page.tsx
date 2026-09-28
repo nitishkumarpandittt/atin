@@ -13,6 +13,7 @@ import { ProductGallery } from "@/components/site/ProductGallery";
 import { site } from "@/lib/site/config";
 import { brandIncludesForm, productTitle } from "@/lib/utils/text";
 import { rangePhoto } from "@/lib/site/photos";
+import renamedSlugs from "@/data/catalogue/renamed-slugs.json";
 
 // Unlisted range/product pairs render on demand so a product that changed range can redirect.
 export const dynamicParams = true;
@@ -35,7 +36,13 @@ export async function generateMetadata({ params }: PageProps<"/products/[range]/
 export default async function ProductPage({ params }: PageProps<"/products/[range]/[product]">) {
   const { range: rangeSlug, product: slug } = await params;
   const product = await getProductBySlug(slug);
-  if (!product) notFound();
+  if (!product) {
+    // A product renamed or split in a catalogue update keeps its old URL alive as a redirect.
+    const successor = (renamedSlugs as Record<string, string>)[slug];
+    const target = successor ? await getProductBySlug(successor) : null;
+    if (target) permanentRedirect(`/products/${target.rangeSlug}/${target.slug}`);
+    notFound();
+  }
   if (product.rangeSlug !== rangeSlug) permanentRedirect(`/products/${product.rangeSlug}/${product.slug}`);
 
   const [range, related, images, mainImages] = await Promise.all([getRange(product.rangeSlug), getRelatedProducts(product), getProductImages(product.id), getMainImages()]);

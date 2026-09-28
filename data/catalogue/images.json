@@ -126,9 +126,9 @@
     "source": "ATI-UD-150.jpg",
     "width": 1080,
     "height": 1025,
-    "alt": "Ati-UD-150/300 tablet pack",
+    "alt": "Ati-UD-150 tablet pack",
     "products": [
-      "ati-ud-150-300"
+      "ati-ud-150"
     ]
   },
   {
@@ -137,9 +137,9 @@
     "source": "ATI-UD-300.jpg",
     "width": 1080,
     "height": 1025,
-    "alt": "Ati-UD-150/300 tablet pack",
+    "alt": "Ati-UD-300 tablet pack",
     "products": [
-      "ati-ud-150-300"
+      "ati-ud-300"
     ]
   },
   {
@@ -148,9 +148,9 @@
     "source": "ATICETI-10 TAB.jpg",
     "width": 1080,
     "height": 1025,
-    "alt": "Aticeti-5/10 tablet pack",
+    "alt": "Aticeti-10 tablet pack",
     "products": [
-      "aticeti-5-10"
+      "aticeti-10"
     ]
   },
   {
@@ -159,20 +159,9 @@
     "source": "ATICETI-5 TAB.jpg",
     "width": 1080,
     "height": 1025,
-    "alt": "Aticeti-5/10 tablet pack",
+    "alt": "Aticeti-5 tablet pack",
     "products": [
-      "aticeti-5-10"
-    ]
-  },
-  {
-    "file": "/catalogue/packs/aticeti-kid-syrup.webp",
-    "kind": "pack",
-    "source": "ATICETI-KID SYRUP.jpg",
-    "width": 1080,
-    "height": 1025,
-    "alt": "Aticeti-Kid Syrup syrup pack",
-    "products": [
-      "aticeti-kid-syrup"
+      "aticeti-5"
     ]
   },
   {
@@ -720,9 +709,9 @@
     "source": "CEFVERGE-100DT tab.jpg",
     "width": 1080,
     "height": 1025,
-    "alt": "Cefverge-100/200 tablet pack",
+    "alt": "Cefverge-100 tablet pack",
     "products": [
-      "cefverge-100-200"
+      "cefverge-100"
     ]
   },
   {
@@ -731,9 +720,9 @@
     "source": "CEFVERGE-100mg-5ml DRY SYP copy.jpg",
     "width": 1080,
     "height": 1025,
-    "alt": "Cefverge-50/100 dry syrup pack",
+    "alt": "Cefverge-Duo dry syrup pack",
     "products": [
-      "cefverge-50-100"
+      "cefverge-duo"
     ]
   },
   {
@@ -742,9 +731,9 @@
     "source": "CEFVERGE-200DT tab.jpg",
     "width": 1080,
     "height": 1025,
-    "alt": "Cefverge-100/200 tablet pack",
+    "alt": "Cefverge-200 tablet pack",
     "products": [
-      "cefverge-100-200"
+      "cefverge-200"
     ]
   },
   {
@@ -764,9 +753,9 @@
     "source": "CEFVERGE-50mg-5mlDRY SYP.jpg",
     "width": 1080,
     "height": 1025,
-    "alt": "Cefverge-50/100 dry syrup pack",
+    "alt": "Cefverge-50 dry syrup pack",
     "products": [
-      "cefverge-50-100"
+      "cefverge-50"
     ]
   },
   {
@@ -844,6 +833,50 @@
     "alt": "Cepoverge-O tablet pack",
     "products": [
       "cepoverge-o"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/chempenzo-40-tab.webp",
+    "kind": "pack",
+    "source": "CHEMPENZO-40 TAB.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Chempenzo-40 tablet pack",
+    "products": [
+      "chempenzo-40-tablet"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/chempenzo-40.webp",
+    "kind": "pack",
+    "source": "CHEMPENZO-40.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Chempenzo-40 injection pack",
+    "products": [
+      "chempenzo-40-injection"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/chempenzo-d.webp",
+    "kind": "pack",
+    "source": "CHEMPENZO-D.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Chempenzo-D tablet pack",
+    "products": [
+      "chempenzo-d"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/chempenzo-dsr.webp",
+    "kind": "pack",
+    "source": "CHEMPENZO-DSR.jpg",
+    "width": 1080,
+    "height": 1025,
+    "alt": "Chempenzo-DSR capsule pack",
+    "products": [
+      "chempenzo-dsr"
     ]
   },
   {
@@ -1173,7 +1206,7 @@
     "height": 1025,
     "alt": "Zymativ Syrup syrup pack",
     "products": [
-      "zymativ-syrup"
+      "zymativ-syrup-100-ml"
     ]
   },
   {
@@ -1184,7 +1217,7 @@
     "height": 1025,
     "alt": "Zymativ Syrup syrup pack",
     "products": [
-      "zymativ-syrup"
+      "zymativ-syrup-200-ml"
     ]
   },
   {
@@ -1281,20 +1314,10 @@
     "source": "ATI-UD-150-300.jpg",
     "width": 1164,
     "height": 1600,
-    "alt": "Ati-UD-150/300 tablet visual aid",
+    "alt": "Ati-UD-150 tablet visual aid",
     "products": [
-      "ati-ud-150-300"
-    ]
-  },
-  {
-    "file": "/catalogue/visuals/aticeti-kid.webp",
-    "kind": "visual",
-    "source": "ATICETI-KID.jpg",
-    "width": 1164,
-    "height": 1600,
-    "alt": "Aticeti-Kid Syrup syrup visual aid",
-    "products": [
-      "aticeti-kid-syrup"
+      "ati-ud-150",
+      "ati-ud-300"
     ]
   },
   {
@@ -1743,9 +1766,10 @@
     "source": "CEFVERGE-100DT-200DT.jpg",
     "width": 1164,
     "height": 1600,
-    "alt": "Cefverge-100/200 tablet visual aid",
+    "alt": "Cefverge-100 tablet visual aid",
     "products": [
-      "cefverge-100-200"
+      "cefverge-100",
+      "cefverge-200"
     ]
   },
   {
@@ -1754,9 +1778,10 @@
     "source": "CEFVERGE-50-100.jpg",
     "width": 1164,
     "height": 1600,
-    "alt": "Cefverge-50/100 dry syrup visual aid",
+    "alt": "Cefverge-50 dry syrup visual aid",
     "products": [
-      "cefverge-50-100"
+      "cefverge-50",
+      "cefverge-duo"
     ]
   },
   {
@@ -1801,6 +1826,39 @@
     "alt": "Cepoverge-CV tablet visual aid",
     "products": [
       "cepoverge-cv"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/chempenzo-40-1.webp",
+    "kind": "visual",
+    "source": "CHEMPENZO-40_1.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Chempenzo-40 injection visual aid",
+    "products": [
+      "chempenzo-40-injection"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/chempenzo-40.webp",
+    "kind": "visual",
+    "source": "CHEMPENZO-40.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Chempenzo-40 tablet visual aid",
+    "products": [
+      "chempenzo-40-tablet"
+    ]
+  },
+  {
+    "file": "/catalogue/visuals/chempenzo-dsr.webp",
+    "kind": "visual",
+    "source": "CHEMPENZO-DSR.jpg",
+    "width": 1164,
+    "height": 1600,
+    "alt": "Chempenzo-DSR capsule visual aid",
+    "products": [
+      "chempenzo-dsr"
     ]
   },
   {
@@ -2042,7 +2100,8 @@
     "height": 1600,
     "alt": "Zymativ Syrup syrup visual aid",
     "products": [
-      "zymativ-syrup"
+      "zymativ-syrup-100-ml",
+      "zymativ-syrup-200-ml"
     ]
   },
   {
