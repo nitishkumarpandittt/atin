@@ -15,7 +15,9 @@ export function WhyAtin({ totalProducts, samples, photo }: { totalProducts: numb
     <section aria-labelledby="why-title" className="relative py-14 md:py-20 lg:py-28">
       <div className="container-site grid items-center gap-16 lg:grid-cols-[1.15fr_1fr] lg:gap-14">
         <div className="relative">
-          <div className="absolute -left-[50vw] -top-10 bottom-[-2.5rem] right-10 rounded-r-[2.5rem] bg-surface" aria-hidden />
+          {/* Phones/tablets: a full-width band (bleeds through the container gutter). Desktop: the offset panel that
+              runs off the left edge and stops short of the column, with lg:pr-16 keeping the text inside it. */}
+          <div className="absolute -inset-x-5 -bottom-10 -top-10 bg-surface md:-inset-x-8 lg:-left-[50vw] lg:right-10 lg:rounded-r-[2.5rem]" aria-hidden />
           <div className="relative py-4 lg:pr-16">
             <SectionHeading id="why-title" eyebrow="Why Atin HealthCare" title="Sourcing made simple" />
             <ul className="mt-8 grid gap-x-8 gap-y-7 sm:grid-cols-2 md:mt-12 md:gap-y-10">
