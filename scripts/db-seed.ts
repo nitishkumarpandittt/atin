@@ -2,9 +2,11 @@
 // images listed in data/catalogue/images.json (written by scripts/catalogue-images.ts).
 //   npm run db:seed -- [path/to/sheet.xlsx] [--dry-run] [--replace]
 //   npm run db:seed -- --images-only [--dry-run]    # only sync product_images from the manifest
+//   npm run db:seed -- --publish-approved [--dry-run]  # publish flagged products the client approved
+// Products the copy scan flags are imported unpublished unless listed in data/catalogue/approved-copy.json.
 import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
-import { eq, sql } from "drizzle-orm";
+import { and, eq, inArray, sql } from "drizzle-orm";
 import { parseCatalogue, type RangeDef } from "./catalogue-parse";
 import { connect, describeDbError, schema } from "./db";
 
@@ -13,12 +15,44 @@ const args = process.argv.slice(2);
 const dryRun = args.includes("--dry-run");
 const replace = args.includes("--replace");
 const imagesOnly = args.includes("--images-only");
+const publishApproved = args.includes("--publish-approved");
 const sheet = args.find((a) => !a.startsWith("--")) ?? path.join(root, "ATIN HEALTHCARE PVT LTD._FINAL LIST.xlsx");
 
 type Db = ReturnType<typeof connect>["db"];
 
 /** One optimised image from data/catalogue/images.json; `products` lists the catalogue slugs it belongs to. */
 type ManifestImage = { file: string; kind: "pack" | "visual"; source: string; width: number; height: number; alt: string; products: string[] };
+
+/** Flagged products the client asked to publish anyway (data/catalogue/approved-copy.json). */
+async function loadApproved() {
+  const raw = await readFile(path.join(root, "data/catalogue/approved-copy.json"), "utf8").catch(() => null);
+  const data = raw ? (JSON.parse(raw) as { approvedOn?: string; slugs?: string[] }) : {};
+  return { slugs: new Set(data.slugs ?? []), note: `approved for publication by the client${data.approvedOn ? ` on ${data.approvedOn}` : ""}` };
+}
+
+// Publishes the approved slugs in place: only is_published and the review note change, nothing is re-imported.
+async function publishApprovedProducts(db: Db) {
+  const approved = await loadApproved();
+  if (!approved.slugs.size) {
+    console.log("No approved slugs in data/catalogue/approved-copy.json.");
+    return;
+  }
+  const rows = await db
+    .select({ id: schema.products.id, slug: schema.products.slug, reviewNote: schema.products.reviewNote })
+    .from(schema.products)
+    .where(and(inArray(schema.products.slug, [...approved.slugs]), eq(schema.products.isPublished, false)));
+  const known = new Set((await db.select({ slug: schema.products.slug }).from(schema.products).where(inArray(schema.products.slug, [...approved.slugs]))).map((r) => r.slug));
+  const missing = [...approved.slugs].filter((s) => !known.has(s));
+  if (!dryRun) {
+    for (const r of rows) {
+      const reviewNote = r.reviewNote && !r.reviewNote.includes("approved for publication") ? `${r.reviewNote} (${approved.note})` : r.reviewNote;
+      await db.update(schema.products).set({ isPublished: true, reviewNote }).where(eq(schema.products.id, r.id));
+    }
+  }
+  console.log(`${rows.length} approved product(s) ${dryRun ? "would be published" : "published"}; ${known.size - rows.length} already public.`);
+  for (const r of rows) console.log(`  + ${r.slug}`);
+  if (missing.length) console.warn(`warn: approved slug(s) not in the catalogue: ${missing.join(", ")}`);
+}
 
 function parseFrontmatter(raw: string) {
   const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
@@ -88,6 +122,16 @@ async function syncImages(db: Db) {
 }
 
 async function main() {
+  if (publishApproved) {
+    const { db, pool } = connect();
+    try {
+      await publishApprovedProducts(db);
+    } finally {
+      await pool.end();
+    }
+    return;
+  }
+
   if (imagesOnly) {
     const { db, pool } = connect();
     try {
@@ -104,11 +148,15 @@ async function main() {
   for (const w of warnings) console.warn(`warn: ${w}`);
   console.log(`\n${products.length} products in ${ranges.length} ranges`);
   for (const r of ranges) console.log(`  ${String(products.filter((p) => p.rangeSlug === r.slug).length).padStart(3)}  ${r.shortName}`);
+  const approved = await loadApproved();
   const review = products.filter((p) => p.needsReview.length);
-  if (review.length) {
-    console.log(`\n${review.length} products imported unpublished for copy review:`);
-    for (const p of review) console.log(`  - ${p.brand} (${p.dosageForm}): ${p.needsReview.join("; ")}`);
+  const held = review.filter((p) => !approved.slugs.has(p.slug));
+  const cleared = review.filter((p) => approved.slugs.has(p.slug));
+  if (held.length) {
+    console.log(`\n${held.length} products imported unpublished for copy review:`);
+    for (const p of held) console.log(`  - ${p.brand} (${p.dosageForm}): ${p.needsReview.join("; ")}`);
   }
+  if (cleared.length) console.log(`\n${cleared.length} flagged products published on client approval (data/catalogue/approved-copy.json).`);
   if (dryRun) {
     console.log("\nDry run: nothing written.");
     return;
@@ -142,8 +190,10 @@ async function main() {
             pack: p.pack,
             rangeId: rangeIds.get(p.rangeSlug) ?? null,
             sortOrder: p.sortOrder * 10,
-            isPublished: p.needsReview.length === 0,
-            reviewNote: p.needsReview.length ? `Copy review: ${p.needsReview.join("; ")}` : null,
+            isPublished: p.needsReview.length === 0 || approved.slugs.has(p.slug),
+            reviewNote: p.needsReview.length
+              ? `Copy review: ${p.needsReview.join("; ")}${approved.slugs.has(p.slug) ? ` (${approved.note})` : ""}`
+              : null,
           })),
         );
       }

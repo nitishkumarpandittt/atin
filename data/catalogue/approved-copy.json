@@ -1,0 +1,19 @@
+{
+  "_note": "Products the copy scan flags (condition or claim wording) that the client has asked to publish anyway. db:seed imports these published; `npm run db:seed -- --publish-approved` publishes them in place. Removing a slug does not unpublish it.",
+  "approvedOn": "2026-09-29",
+  "slugs": [
+    "ayuratin-pain-relief-oil",
+    "ayuratin-roll-on-oil",
+    "ayuratin-liver-syrup",
+    "ayuratin-liver-enzyme-syrup",
+    "ayuratin-brain-tonic",
+    "ayuratin-utrine-syrup",
+    "ayuratin-cough-syrup",
+    "ayuratin-5g-syrup",
+    "ayuratin-blood-purifier",
+    "ayuratin-stone-syrup",
+    "ayuratin-stone",
+    "atinmouth-gel",
+    "aty-via-vaginal-wash"
+  ]
+}
