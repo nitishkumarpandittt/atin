@@ -30,7 +30,7 @@ In **hPanel → VPS → your server**:
 
 ## 2. Point the domain at the server (do this first — DNS takes time)
 
-In **hPanel → Domains → DNS Zone Editor** for `atinhealthcare.com`:
+In **hPanel → Domains → DNS Zone Editor** for `atinhealth.com`:
 
 | Type | Name | Points to |
 |---|---|---|
@@ -38,7 +38,7 @@ In **hPanel → Domains → DNS Zone Editor** for `atinhealthcare.com`:
 | A | `www` | your VPS IP |
 
 Delete any conflicting parking records. Verify from your PC with
-`nslookup atinhealthcare.com` — certbot in step 9 fails until this resolves.
+`nslookup atinhealth.com` — certbot in step 9 fails until this resolves.
 
 ## 3. First login and a non-root user
 
@@ -130,9 +130,9 @@ DATABASE_URL=mysql://atin_app:URL_ENCODED_PASSWORD@localhost:3306/atin_healthcar
 
 # 32+ random chars: node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))"
 BETTER_AUTH_SECRET=
-BETTER_AUTH_URL=https://atinhealthcare.com
-BETTER_AUTH_TRUSTED_ORIGINS=https://www.atinhealthcare.com
-SITE_URL=https://atinhealthcare.com
+BETTER_AUTH_URL=https://atinhealth.com
+BETTER_AUTH_TRUSTED_ORIGINS=https://www.atinhealth.com
+SITE_URL=https://atinhealth.com
 
 # Must stay below client_max_body_size in deploy/nginx.conf
 UPLOAD_DIR=/var/www/atin/shared/uploads
@@ -208,7 +208,7 @@ Edit the `server_name` line first if your domain differs, then issue the certifi
 
 ```bash
 sudo apt install -y certbot python3-certbot-nginx
-sudo certbot --nginx -d atinhealthcare.com -d www.atinhealthcare.com
+sudo certbot --nginx -d atinhealth.com -d www.atinhealth.com
 ```
 
 Certbot rewrites the config with the certificate plus an HTTP→HTTPS redirect, and
