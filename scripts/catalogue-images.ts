@@ -40,7 +40,9 @@ const FORM_TOKENS = new Set([
 
 const byString = (a: string, b: string) => (a < b ? -1 : a > b ? 1 : 0);
 const normBrand = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
-const displayName = (file: string) => path.parse(file).name.replace(/\s+copy$/i, "").replace(/\s+/g, " ").trim();
+// Strips every image extension ("X.jpg.jpg" happens when files are renamed by hand) and a trailing " copy".
+const displayName = (file: string) =>
+  file.replace(/(\.(jpe?g|png|webp))+$/i, "").replace(/\s+copy$/i, "").replace(/\s+/g, " ").trim();
 // "CEFVERGE-100mg-5ml DRY SYP copy.jpg" → "cefverge-100mg-5ml-dry-syp"
 const outputName = (file: string) => displayName(file).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 
@@ -89,7 +91,8 @@ async function convert(src: string, dest: string, max: number, quality: number, 
     const meta = await sharp(dest).metadata();
     return { width: meta.width ?? 0, height: meta.height ?? 0, converted: false, trimmed: 0 };
   }
-  let image = sharp(src).rotate();
+  // Lenient decoding: a truncated JPEG still converts (and is reported) instead of stopping the run.
+  let image = sharp(src, { failOn: "none" }).rotate();
   const band = trimFooter ? await footerBand(image) : 0;
   if (band) {
     const meta = await image.metadata();

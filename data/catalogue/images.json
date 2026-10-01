@@ -275,6 +275,39 @@
     ]
   },
   {
+    "file": "/catalogue/packs/atinketra-10.webp",
+    "kind": "pack",
+    "source": "ATINKETRA-10.jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atinketra-10 tablet pack",
+    "products": [
+      "atinketra-10"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atinmouth-gel-10g.webp",
+    "kind": "pack",
+    "source": "Atinmouth Gel (10g).jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atinmouth Gel gel pack",
+    "products": [
+      "atinmouth-gel"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atino-plate-200ml-syrup-ayurvedic.webp",
+    "kind": "pack",
+    "source": "Atino-plate 200ml syrup (Ayurvedic).jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atino-Plate Syrup syrup pack",
+    "products": [
+      "atino-plate-syrup"
+    ]
+  },
+  {
     "file": "/catalogue/packs/atinoline-600.webp",
     "kind": "pack",
     "source": "ATINOLINE-600.jpg",
@@ -352,6 +385,72 @@
     ]
   },
   {
+    "file": "/catalogue/packs/atinoscab-g-soap-final.webp",
+    "kind": "pack",
+    "source": "ATINOSCAB-G SOAP FINAL.jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atinoscab-G Soap soap pack",
+    "products": [
+      "atinoscab-g-soap"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atinoscab-soap.webp",
+    "kind": "pack",
+    "source": "Atinoscab SOAP.jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atinoscab Soap soap pack",
+    "products": [
+      "atinoscab-soap"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atinoscab.webp",
+    "kind": "pack",
+    "source": "ATINOSCAB.jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atinoscab Lotion lotion pack",
+    "products": [
+      "atinoscab-lotion"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atinoskin-aloevera-gel.webp",
+    "kind": "pack",
+    "source": "ATINOSKIN ALOEVERA GEL.jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atinoskin-Aloevera Gel gel pack",
+    "products": [
+      "atinoskin-aloevera-gel"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atinoskin-calamine-lotion.webp",
+    "kind": "pack",
+    "source": "ATINOSKIN CALAMINE LOTION.jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atinoskin-Calamine Lotion lotion pack",
+    "products": [
+      "atinoskin-calamine-lotion"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atinoskin-mositurizing-cream-50gm.webp",
+    "kind": "pack",
+    "source": "ATINOSKIN MOSITURIZING CREAM 50gm.jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atinoskin-Moisturizing Cream cream pack",
+    "products": [
+      "atinoskin-moisturizing-cream"
+    ]
+  },
+  {
     "file": "/catalogue/packs/atinzo-rab-20-tab.webp",
     "kind": "pack",
     "source": "ATINZO-RAB 20 TAB.jpg",
@@ -382,6 +481,61 @@
     "alt": "Atinzo-Rab DSR capsule pack",
     "products": [
       "atinzo-rab-dsr"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atinzomoxy-5ml-eye-drops-a.webp",
+    "kind": "pack",
+    "source": "ATINZOMOXY-5ML (EYE DROPS) (A).jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atinzomoxy Eye Drop eye drops pack",
+    "products": [
+      "atinzomoxy-eye-drop"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atinzomoxy-d-5ml-eye-drops-a.webp",
+    "kind": "pack",
+    "source": "ATINZOMOXY-D-5ML (EYE DROPS) (A).jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atinzomoxy-D Eye Drop eye drops pack",
+    "products": [
+      "atinzomoxy-d-eye-drop"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atinzomoxy-kt-5ml-eye-drops-a.webp",
+    "kind": "pack",
+    "source": "ATINZOMOXY-KT-5ML (EYE DROPS) (A).jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atinzomoxy-KT Eye Drop eye drops pack",
+    "products": [
+      "atinzomoxy-kt-eye-drop"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atinzomoxy-lp-5ml-eye-drops-a.webp",
+    "kind": "pack",
+    "source": "ATINZOMOXY-LP-5ML (EYE DROPS) (A).jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atinzomoxy-LP Eye Drop eye drops pack",
+    "products": [
+      "atinzomoxy-lp-eye-drop"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atiprob-sachet.webp",
+    "kind": "pack",
+    "source": "ATIPROB SACHET.jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atiprob Sachet sachet pack",
+    "products": [
+      "atiprob-sachet"
     ]
   },
   {
@@ -616,6 +770,83 @@
     ]
   },
   {
+    "file": "/catalogue/packs/aty-via-v-wash-2.webp",
+    "kind": "pack",
+    "source": "ATY-VIA V-WASH.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Aty-Via Vaginal Wash wash pack",
+    "products": [
+      "aty-via-vaginal-wash"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/aty-via-v-wash.webp",
+    "kind": "pack",
+    "source": "ATY-VIA V- WASH.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Aty-Via Vaginal Wash wash pack",
+    "products": [
+      "aty-via-vaginal-wash"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atygly-e.webp",
+    "kind": "pack",
+    "source": "ATYGLY-E.jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atygly-E Soap soap pack",
+    "products": [
+      "atygly-e-soap"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atygum.webp",
+    "kind": "pack",
+    "source": "ATYGUM.jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atygum toothpaste pack",
+    "products": [
+      "atygum"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atyncool-100-ml.webp",
+    "kind": "pack",
+    "source": "ATYNCOOL 100 ML.jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atyncool Mouthwash mouthwash pack",
+    "products": [
+      "atyncool-mouthwash"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atynkat-soap.webp",
+    "kind": "pack",
+    "source": "ATYNKAT SOAP.jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atynkat Soap soap pack",
+    "products": [
+      "atynkat-soap"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/atynkat-z.webp",
+    "kind": "pack",
+    "source": "ATYNKAT-Z.jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atynkat-Z Soap soap pack",
+    "products": [
+      "atynkat-z-soap"
+    ]
+  },
+  {
     "file": "/catalogue/packs/atyno-cox-375-tab.webp",
     "kind": "pack",
     "source": "ATYNO-COX 375 tab.jpg",
@@ -682,6 +913,138 @@
     ]
   },
   {
+    "file": "/catalogue/packs/atysal-10ml-nasal-drops.webp",
+    "kind": "pack",
+    "source": "ATYSAL-10ML (NASAL DROPS).jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atysal Nasal Drop nasal drops pack",
+    "products": [
+      "atysal-nasal-drop"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/ayuratin-5g-225ml-syrup-ayurvedic.webp",
+    "kind": "pack",
+    "source": "Ayuratin-5G 225ml syrup (Ayurvedic).jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Ayuratin-5G Syrup syrup pack",
+    "products": [
+      "ayuratin-5g-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/ayuratin-blood-purifier-200ml-syrup-ayurvedic.webp",
+    "kind": "pack",
+    "source": "Ayuratin Blood Purifier 200ml syrup (Ayurvedic).jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Ayuratin Blood Purifier syrup pack",
+    "products": [
+      "ayuratin-blood-purifier"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/ayuratin-brain-tonic-200ml-syrup-ayurvedic.webp",
+    "kind": "pack",
+    "source": "Ayuratin Brain Tonic 200ml syrup (Ayurvedic).jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Ayuratin Brain Tonic syrup pack",
+    "products": [
+      "ayuratin-brain-tonic"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/ayuratin-herbal-soap.webp",
+    "kind": "pack",
+    "source": "AYURATIN HERBAL SOAP.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Ayuratin Herbal Soap soap pack",
+    "products": [
+      "ayuratin-herbal-soap"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/ayuratin-liver-200ml-syrup-ayurvedic.webp",
+    "kind": "pack",
+    "source": "Ayuratin Liver 200ml Syrup (Ayurvedic).jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Ayuratin Liver Syrup syrup pack",
+    "products": [
+      "ayuratin-liver-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/ayuratin-liver-enzyme-200ml-syrup-ayurvedic.webp",
+    "kind": "pack",
+    "source": "Ayuratin Liver-Enzyme 200ml syrup (Ayurvedic).jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Ayuratin Liver-Enzyme Syrup syrup pack",
+    "products": [
+      "ayuratin-liver-enzyme-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/ayuratin-stone-200ml-syrup-ayurvedic.webp",
+    "kind": "pack",
+    "source": "Ayuratin Stone 200ml Syrup (Ayurvedic).jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Ayuratin Stone Syrup syrup pack",
+    "products": [
+      "ayuratin-stone-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/ayuratin-utrine-200ml-syrup-ayurvedic.webp",
+    "kind": "pack",
+    "source": "Ayuratin Utrine 200ml Syrup (Ayurvedic).jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Ayuratin Utrine Syrup syrup pack",
+    "products": [
+      "ayuratin-utrine-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/baby-lotion.webp",
+    "kind": "pack",
+    "source": "BABY LOTION.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atinoskin-Baby Lotion lotion pack",
+    "products": [
+      "atinoskin-baby-lotion"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/baby-oil.webp",
+    "kind": "pack",
+    "source": "BABY OIL.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atinoskin-Baby Oil oil pack",
+    "products": [
+      "atinoskin-baby-oil"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/baby-shampoo.webp",
+    "kind": "pack",
+    "source": "BABY SHAMPOO.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atinoskin-Baby Shampoo shampoo pack",
+    "products": [
+      "atinoskin-baby-shampoo"
+    ]
+  },
+  {
     "file": "/catalogue/packs/bilahook-m-tab.webp",
     "kind": "pack",
     "source": "Bilahook-M TAB.jpg",
@@ -693,6 +1056,17 @@
     ]
   },
   {
+    "file": "/catalogue/packs/black-seed-onion-oil.webp",
+    "kind": "pack",
+    "source": "BLACK SEED ONION OIL.jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atinoskin-Black Seed Onion Oil oil pack",
+    "products": [
+      "atinoskin-black-seed-onion-oil"
+    ]
+  },
+  {
     "file": "/catalogue/packs/bugybet-16-tab.webp",
     "kind": "pack",
     "source": "Bugybet-16 TAB.jpg",
@@ -701,6 +1075,28 @@
     "alt": "Bugybet-16 tablet pack",
     "products": [
       "bugybet-16"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/carbross-10ml-eye-drops-a.webp",
+    "kind": "pack",
+    "source": "CARBROSS-10ML (EYE DROPS) (A).jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Carbross Eye Drop eye drops pack",
+    "products": [
+      "carbross-eye-drop"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/carbross-ds-10ml-eye-drops.webp",
+    "kind": "pack",
+    "source": "CARBROSS-DS-10ML (EYE DROPS).jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Carbross-DS Eye Drop eye drops pack",
+    "products": [
+      "carbross-ds-eye-drop"
     ]
   },
   {
@@ -891,6 +1287,17 @@
     ]
   },
   {
+    "file": "/catalogue/packs/dry-syrup-blue-cap.webp",
+    "kind": "pack",
+    "source": "DRY SYRUP BLUE CAP.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atyno-Cox Duo dry syrup pack",
+    "products": [
+      "atyno-cox-duo"
+    ]
+  },
+  {
     "file": "/catalogue/packs/dyclopike-injections.webp",
     "kind": "pack",
     "source": "DYCLOPIKE injections.jpg",
@@ -968,6 +1375,17 @@
     ]
   },
   {
+    "file": "/catalogue/packs/faoming-face-wah-label.webp",
+    "kind": "pack",
+    "source": "FAOMING FACE WAH label.jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atinoskin-Foaming Facewash wash pack",
+    "products": [
+      "atinoskin-foaming-facewash"
+    ]
+  },
+  {
     "file": "/catalogue/packs/flucoach-150-tab.webp",
     "kind": "pack",
     "source": "Flucoach-150 TAB.jpg",
@@ -998,6 +1416,28 @@
     "alt": "Fongoswel-4 tablet pack",
     "products": [
       "fongoswel-4"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/gentanotch-5ml-ear-drops.webp",
+    "kind": "pack",
+    "source": "GENTANOTCH-5ML (EAR DROPS).jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Gentanotch Ear Drop ear drops pack",
+    "products": [
+      "gentanotch-ear-drop"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/hazfung-dusting-powder.webp",
+    "kind": "pack",
+    "source": "Hazfung Dusting Powder.jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Hazfung Dusting Powder dusting powder pack",
+    "products": [
+      "hazfung-dusting-powder"
     ]
   },
   {
@@ -1034,6 +1474,17 @@
     ]
   },
   {
+    "file": "/catalogue/packs/lxofluti-10ml-ear-drops.webp",
+    "kind": "pack",
+    "source": "LXOFLUTI-10ML (EAR DROPS).jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Lxofluti Ear Drop ear drops pack",
+    "products": [
+      "lxofluti-ear-drop"
+    ]
+  },
+  {
     "file": "/catalogue/packs/lycoseem-100ml-syp.webp",
     "kind": "pack",
     "source": "LYCOSEEM 100ml SYP.jpg",
@@ -1053,6 +1504,28 @@
     "alt": "Lycoseem Syrup syrup pack",
     "products": [
       "lycoseem-syrup"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/muptyn-oint-5gm-box.webp",
+    "kind": "pack",
+    "source": "MUPTYN OINT. 5GM BOX.jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Muptyn ointment pack",
+    "products": [
+      "muptyn"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/nazotyn-10ml-nasal-drops.webp",
+    "kind": "pack",
+    "source": "NAZOTYN-10ML (NASAL DROPS).jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Nazotyn Nasal Drop nasal drops pack",
+    "products": [
+      "nazotyn-nasal-drop"
     ]
   },
   {
@@ -1122,6 +1595,61 @@
     ]
   },
   {
+    "file": "/catalogue/packs/onion-shampoo.webp",
+    "kind": "pack",
+    "source": "ONION SHAMPOO.jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atinoskin-Onion Shampoo shampoo pack",
+    "products": [
+      "atinoskin-onion-shampoo"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/poviberge-oint-15gm-box.webp",
+    "kind": "pack",
+    "source": "POVIBERGE OINT. 15GM BOX.jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Poviberge ointment pack",
+    "products": [
+      "poviberge"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/pro-atin-powder-chocolate-flavour.webp",
+    "kind": "pack",
+    "source": "PRO ATIN POWDER (CHOCOLATE FLAVOUR).jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Pro-Atin Powder (Chocolate) powder pack",
+    "products": [
+      "pro-atin-powder-chocolate"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/pro-atin-powder-ellaichi.webp",
+    "kind": "pack",
+    "source": "PRO ATIN POWDER (ELLAICHI).jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Pro-Atin Powder (Elaichi) powder pack",
+    "products": [
+      "pro-atin-powder-elaichi"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/pro-atin-powder-vanilla.webp",
+    "kind": "pack",
+    "source": "PRO ATIN POWDER (VANILLA).jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Pro-Atin Powder (Vanilla) powder pack",
+    "products": [
+      "pro-atin-powder-vanilla"
+    ]
+  },
+  {
     "file": "/catalogue/packs/semorant-100ml-syrup.webp",
     "kind": "pack",
     "source": "SEMORANT 100ml syrup.jpg",
@@ -1141,6 +1669,28 @@
     "alt": "Simnotch oral drops pack",
     "products": [
       "simnotch"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/sunscreen-spf-50-label.webp",
+    "kind": "pack",
+    "source": "SUNSCREEN SPF 50 label.jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Atinoskin-Sunscreen SPF-50 lotion pack",
+    "products": [
+      "atinoskin-sunscreen-spf-50"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/tin-ross-sachet.webp",
+    "kind": "pack",
+    "source": "TIN-ROSS SACHET.jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Tin-Ross Sachet sachet pack",
+    "products": [
+      "tin-ross-sachet"
     ]
   },
   {
@@ -1166,6 +1716,17 @@
     ]
   },
   {
+    "file": "/catalogue/packs/woblycort-6-susp-30ml.webp",
+    "kind": "pack",
+    "source": "WOBLYCORT-6 SUSP. 30ML.jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Woblycort-6 suspension pack",
+    "products": [
+      "woblycort-6-suspension"
+    ]
+  },
+  {
     "file": "/catalogue/packs/woblycort-6-susp.webp",
     "kind": "pack",
     "source": "WOBLYCORT-6 SUSP.jpg",
@@ -1185,6 +1746,17 @@
     "alt": "Woblycort-6 tablet pack",
     "products": [
       "woblycort-6-tablet"
+    ]
+  },
+  {
+    "file": "/catalogue/packs/wormslit-i-10-ml-1.webp",
+    "kind": "pack",
+    "source": "Wormslit-I (10 ml) (1).jpg.jpg",
+    "width": 1200,
+    "height": 1144,
+    "alt": "Wormslit-I suspension pack",
+    "products": [
+      "wormslit-i"
     ]
   },
   {
