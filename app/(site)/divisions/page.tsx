@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/site/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, MapPin } from "lucide-react";
@@ -8,10 +9,11 @@ import { divisions } from "@/lib/site/divisions";
 import { site } from "@/lib/site/config";
 import { photo } from "@/lib/site/photos";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Other divisions",
   description: `The pharmaceutical companies in the same group as ${site.name}, each with its own portfolio and website.`,
-};
+  path: "/divisions",
+});
 
 export default function DivisionsPage() {
   return (

@@ -15,6 +15,19 @@ const nextConfig: NextConfig = {
   // sharp and mysql2 are native/Node-only; keep them out of the server bundle.
   serverExternalPackages: ["sharp", "mysql2"],
   // The public blog was retired; its URLs were briefly indexed.
+  // The service worker must never be cached, or clients keep running an old version.
+  async headers() {
+    return [
+      {
+        source: "/sw.js",
+        headers: [
+          { key: "Content-Type", value: "application/javascript; charset=utf-8" },
+          { key: "Cache-Control", value: "no-cache, no-store, must-revalidate" },
+          { key: "Content-Security-Policy", value: "default-src 'self'; script-src 'self'" },
+        ],
+      },
+    ];
+  },
   async redirects() {
     return [{ source: "/blog/:path*", destination: "/", permanent: true }];
   },

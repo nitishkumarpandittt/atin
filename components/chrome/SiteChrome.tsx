@@ -5,7 +5,9 @@ import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { RevealObserver } from "@/components/motion/RevealObserver";
 import { getRanges } from "@/lib/data/catalogue";
 import { getPublicCompany } from "@/lib/data/site";
-import { nav, telHref } from "@/lib/site/config";
+import { ServiceWorker } from "@/components/site/ServiceWorker";
+import { nav, site, telHref } from "@/lib/site/config";
+import { jsonLd } from "@/lib/site/seo";
 
 /**
  * Public page shell. Every public page opens with a dark hero (home hero or PageHero), so the
@@ -50,6 +52,40 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
       {company.whatsapp && <WhatsAppButton number={company.whatsapp} />}
       <CallbackDialog />
       <RevealObserver />
+      <ServiceWorker />
+      {/* Organization + WebSite (with catalogue search) structured data for search engines. */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLd({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Organization",
+              "@id": `${site.url}/#organization`,
+              name: site.name,
+              legalName: site.legalName,
+              url: site.url,
+              logo: `${site.url}/icons/icon-512.png`,
+              description: site.description,
+              ...(company.email && { email: company.email }),
+              ...(company.phone && { telephone: company.phone }),
+              ...(company.address && { address: { "@type": "PostalAddress", streetAddress: company.address, addressCountry: "IN" } }),
+              ...(company.phone && {
+                contactPoint: [{ "@type": "ContactPoint", telephone: company.phone, contactType: "sales", areaServed: "IN", availableLanguage: ["en", "hi"] }],
+              }),
+            },
+            {
+              "@type": "WebSite",
+              "@id": `${site.url}/#website`,
+              url: site.url,
+              name: site.name,
+              publisher: { "@id": `${site.url}/#organization` },
+              inLanguage: "en-IN",
+              potentialAction: { "@type": "SearchAction", target: `${site.url}/products?q={search_term_string}`, "query-input": "required name=search_term_string" },
+            },
+          ],
+        })}
+      />
     </>
   );
 }

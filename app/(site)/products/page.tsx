@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/site/seo";
 import { PageHero } from "@/components/site/PageHero";
 import { CatalogueBrowser } from "@/components/site/CatalogueBrowser";
 import { CatalogueNote } from "@/components/site/CatalogueNote";
 import { getCatalogueFigures, getCatalogueItems, getRanges } from "@/lib/data/catalogue";
 import { photo, rangePhoto } from "@/lib/site/photos";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Products",
   description: "Browse the Atin HealthCare product catalogue by segment, dosage form, brand or composition.",
+  path: "/products",
   // The filterable listing duplicates the range pages, which are the indexable entry points.
   robots: { index: false, follow: true },
-};
+});
 
 const param = (v: string | string[] | undefined, max = 80) => (typeof v === "string" ? v.slice(0, max) : "");
 

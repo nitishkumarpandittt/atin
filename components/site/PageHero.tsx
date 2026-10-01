@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import type { Photo } from "@/lib/site/photos";
+import { site } from "@/lib/site/config";
+import { jsonLd } from "@/lib/site/seo";
 
 type Crumb = { label: string; href?: string };
 
@@ -37,6 +39,21 @@ export function PageHero({ title, eyebrow, intro, photo, crumbs = [], children, 
       <div aria-hidden className="absolute -right-32 -top-32 -z-10 size-[20rem] rounded-full border-[14px] border-white/10 md:-right-24 md:-top-24 md:size-[26rem] md:border-[16px]" />
 
       <div className="container-site relative pt-28 md:pt-36 lg:pt-40">
+        {crumbs.length > 0 && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={jsonLd({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [{ label: "Home", href: "/" }, ...crumbs].map((c, i) => ({
+                "@type": "ListItem",
+                position: i + 1,
+                name: c.label,
+                ...(c.href && { item: `${site.url}${c.href}` }),
+              })),
+            })}
+          />
+        )}
         {crumbs.length > 0 && (
           <nav aria-label="Breadcrumb" className="mb-4">
             <ol className="flex flex-wrap items-center gap-1.5 text-sm text-white/75">

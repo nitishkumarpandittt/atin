@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/site/seo";
 import Image from "next/image";
 import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
@@ -10,10 +11,11 @@ import { getPublicCompany } from "@/lib/data/site";
 import { productTitle } from "@/lib/utils/text";
 import { photo } from "@/lib/site/photos";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Contact",
   description: "Send a trade enquiry to Atin HealthCare or request a call back from our team.",
-};
+  path: "/contact",
+});
 
 export default async function ContactPage({ searchParams }: PageProps<"/contact">) {
   const sp = await searchParams;

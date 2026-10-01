@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/site/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
@@ -26,11 +27,13 @@ export async function generateMetadata({ params }: PageProps<"/products/[range]/
   const { product: slug } = await params;
   const product = await getProductBySlug(slug);
   if (!product) return {};
-  return {
+  // The share image comes from ./opengraph-image.tsx (pack shot + details).
+  return pageMeta({
     title: productTitle(product.brand, product.dosageForm),
     description: `${product.brand} (${product.dosageForm}). Composition: ${product.composition}.${product.pack ? ` Pack: ${product.pack}.` : ""}`,
-    alternates: { canonical: `/products/${product.rangeSlug}/${product.slug}` },
-  };
+    path: `/products/${product.rangeSlug}/${product.slug}`,
+    image: null,
+  });
 }
 
 export default async function ProductPage({ params }: PageProps<"/products/[range]/[product]">) {

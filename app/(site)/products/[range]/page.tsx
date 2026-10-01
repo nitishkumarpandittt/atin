@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/site/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -22,11 +23,11 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<"/products/[range]">): Promise<Metadata> {
   const range = await getRange((await params).range);
   if (!range) return {};
-  return {
+  return pageMeta({
     title: range.shortName,
     description: `${range.shortName} from Atin HealthCare: ${range.productCount} products including ${range.dosageForms.slice(0, 4).join(", ").toLowerCase()}.`,
-    alternates: { canonical: `/products/${range.slug}` },
-  };
+    path: `/products/${range.slug}`,
+  });
 }
 
 export default async function RangePage({ params }: PageProps<"/products/[range]">) {

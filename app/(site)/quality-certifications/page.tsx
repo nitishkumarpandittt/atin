@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/site/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BadgeCheck, ClipboardCheck, FileText, PackageCheck, ShieldCheck } from "lucide-react";
@@ -9,10 +10,11 @@ import { photo } from "@/lib/site/photos";
 import { getPublishedCredentials } from "@/lib/data/site";
 import { formatDate } from "@/lib/data/blog";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Quality & certifications",
   description: "How Atin HealthCare handles product information and documentation, and how to request licences and certificates.",
-};
+  path: "/quality-certifications",
+});
 
 
 const practiceIcons = [FileText, ClipboardCheck, PackageCheck, ShieldCheck];

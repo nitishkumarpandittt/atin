@@ -27,9 +27,9 @@ export type Company = z.infer<typeof companySchema>;
 // Environment variables override them; the admin's company record overrides both.
 const contactDefaults = {
   registeredAddress: "SCO-3, First Floor, MDC, Sector-5, Panchkula, Haryana 134114",
-  phone: "+91 96463 62675",
+  phone: "+91 62397 02595",
   email: "atinhealthcare@gmail.com",
-  whatsappNumber: "+91 96463 62675",
+  whatsappNumber: "+91 62397 02595",
 };
 
 /** Defaults used until the company record is saved in the admin panel. */

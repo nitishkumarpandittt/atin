@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/site/seo";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
@@ -8,10 +9,11 @@ import { RangeIcon } from "@/components/primitives/RangeIcon";
 import { getMainImages, getNewAdditions, getRanges } from "@/lib/data/catalogue";
 import { photo, rangePhoto } from "@/lib/site/photos";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "New additions",
   description: "Recently added products in the Atin HealthCare catalogue.",
-};
+  path: "/products/new-additions",
+});
 
 export default async function NewAdditionsPage() {
   const [products, ranges, images] = await Promise.all([getNewAdditions(), getRanges(), getMainImages()]);

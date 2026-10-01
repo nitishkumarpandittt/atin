@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/site/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Compass, Handshake, Eye, ShieldCheck, Target, Sparkles, CircleCheck } from "lucide-react";
@@ -11,10 +12,11 @@ import { values } from "@/lib/site/content";
 import { getPublicCompany } from "@/lib/data/site";
 import { photo } from "@/lib/site/photos";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "About us",
   description: "Atin HealthCare Pvt Ltd is a pharmaceutical marketing and distribution company serving the pharma trade across segments.",
-};
+  path: "/about",
+});
 
 const valueIcons = [Compass, ShieldCheck, Sparkles, Handshake];
 
