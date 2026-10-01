@@ -29,7 +29,7 @@ const contactDefaults = {
   registeredAddress: "SCO-3, First Floor, MDC, Sector-5, Panchkula, Haryana 134114",
   phone: "+91 95603 43063",
   email: "atinhealthcare@gmail.com",
-  whatsappNumber: "",
+  whatsappNumber: "+91 6239 702 595",
 };
 
 /** Defaults used until the company record is saved in the admin panel. */
