@@ -223,6 +223,26 @@ installs an auto-renewal timer.
 Pull → `npm ci` → migrate → build → `pm2 reload`. Zero downtime: the old process keeps
 serving until the new build is ready.
 
+## 10a. Automatic deploys (GitHub Actions)
+
+`.github/workflows/deploy.yml` runs `deploy/deploy.sh` on the server after every push to `master`.
+One-time setup — on the server, create a key GitHub will use to log in:
+
+```bash
+ssh-keygen -t ed25519 -f ~/.ssh/github-deploy -N "" -C "github-actions" && cat ~/.ssh/github-deploy.pub >> ~/.ssh/authorized_keys && cat ~/.ssh/github-deploy
+```
+
+Then in the GitHub repository → **Settings → Secrets and variables → Actions → New repository secret**:
+
+| Secret | Value |
+|---|---|
+| `DEPLOY_HOST` | the VPS IP |
+| `DEPLOY_USER` | `root` (or the app user) |
+| `DEPLOY_SSH_KEY` | the private key printed above, including the BEGIN/END lines |
+
+Every push now deploys within ~2 minutes; the **Actions** tab shows each run and its log. A push
+can also be re-deployed by hand from that tab ("Run workflow").
+
 ## 11. Backups
 
 `crontab -e`:
