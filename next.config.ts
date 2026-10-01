@@ -14,6 +14,10 @@ const nextConfig: NextConfig = {
   },
   // sharp and mysql2 are native/Node-only; keep them out of the server bundle.
   serverExternalPackages: ["sharp", "mysql2"],
+  // The public blog was retired; its URLs were briefly indexed.
+  async redirects() {
+    return [{ source: "/blog/:path*", destination: "/", permanent: true }];
+  },
 };
 
 export default nextConfig;

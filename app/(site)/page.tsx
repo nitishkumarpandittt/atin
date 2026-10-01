@@ -3,12 +3,10 @@ import { Audiences } from "@/components/home/Audiences";
 import { CataloguePreview } from "@/components/home/CataloguePreview";
 import { EnquiryBand } from "@/components/home/EnquiryBand";
 import { Hero } from "@/components/home/Hero";
-import { LatestPosts } from "@/components/home/LatestPosts";
 import { SegmentGrid } from "@/components/home/SegmentGrid";
 import { SegmentMarquee } from "@/components/home/SegmentMarquee";
 import { WhyAtin } from "@/components/home/WhyAtin";
 import { getCatalogueFigures, getCataloguePreview, getNewAdditions, getRanges, getMainImages } from "@/lib/data/catalogue";
-import { getPosts } from "@/lib/data/blog";
 import { getPublicCompany, getPublishedTestimonials } from "@/lib/data/site";
 import { Testimonials } from "@/components/home/Testimonials";
 import { photo, type Photo } from "@/lib/site/photos";
@@ -20,12 +18,11 @@ const need = (slot: string): Photo => {
 };
 
 export default async function HomePage() {
-  const [figures, ranges, newAdditions, preview, posts, company, testimonials, images] = await Promise.all([
+  const [figures, ranges, newAdditions, preview, company, testimonials, images] = await Promise.all([
     getCatalogueFigures(),
     getRanges(),
     getNewAdditions(),
     getCataloguePreview(),
-    getPosts(),
     getPublicCompany(),
     getPublishedTestimonials(),
     getMainImages(),
@@ -56,7 +53,6 @@ export default async function HomePage() {
           .map(({ product: p }) => ({ name: p.brand, meta: [p.dosageForm, p.pack].filter(Boolean).join(" · ") }))}
       />
       <Testimonials items={testimonials} />
-      <LatestPosts posts={posts} />
       <EnquiryBand photo={need("team")} phone={company.phone} />
     </>
   );

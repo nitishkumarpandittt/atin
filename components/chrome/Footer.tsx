@@ -10,7 +10,7 @@ const quickLinks = [
   { label: "About us", href: "/about" },
   { label: "All products", href: "/products" },
   { label: "Quality & certifications", href: "/quality-certifications" },
-  { label: "Blog", href: "/blog" },
+  { label: "Other divisions", href: "/divisions" },
   { label: "Contact", href: "/contact" },
 ];
 

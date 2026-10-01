@@ -30,7 +30,7 @@ export const nav = [
     ],
   },
   { label: "Products", href: "/products", children: "ranges" as const },
-  { label: "Blog", href: "/blog" },
+  { label: "Other divisions", href: "/divisions" },
   { label: "Contact", href: "/contact" },
 ] as const;
 

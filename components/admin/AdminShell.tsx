@@ -4,22 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import {
-  BadgeCheck,
-  Building2,
-  ExternalLink,
-  FileText,
-  Inbox,
-  LayoutDashboard,
-  Layers,
-  LogOut,
-  Menu,
-  MessageSquareQuote,
-  Package,
-  PhoneCall,
-  Users,
-  X,
-} from "lucide-react";
+import { BadgeCheck, Building2, ExternalLink, Inbox, LayoutDashboard, Layers, LogOut, Menu, MessageSquareQuote, Package, PhoneCall, Users, X } from "lucide-react";
 import logo from "@/public/brand/atin-logo.png";
 import logoWhite from "@/public/brand/atin-logo-white.png";
 import { authClient } from "@/lib/auth/client";
@@ -71,7 +56,6 @@ export function AdminShell({ children, user, counts }: Props) {
         { href: "/admin/company", label: "Company details", icon: Building2 },
         { href: "/admin/credentials", label: "Credentials", icon: BadgeCheck },
         { href: "/admin/testimonials", label: "Testimonials", icon: MessageSquareQuote },
-        { href: "/admin/blog", label: "Blog", icon: FileText },
       ],
     },
     { title: "Settings", items: [{ href: "/admin/staff", label: "Staff accounts", icon: Users, adminOnly: true }] },
