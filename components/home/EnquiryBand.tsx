@@ -14,7 +14,7 @@ export function EnquiryBand({ photo, phone }: { photo: Photo; phone: string }) {
       </svg>
       <div className="container-site relative pt-16 md:pt-28 lg:pt-36">
         <div className="relative isolate overflow-hidden rounded-3xl bg-brand px-5 py-10 text-center shadow-lift sm:px-8 sm:py-12 md:rounded-[2rem] md:px-16 md:py-16" data-reveal>
-          <Image src={photo.src} alt="" fill sizes="(min-width: 1216px) 1152px, 100vw" className="-z-20 object-cover" />
+          <Image src={photo.src} alt="" fill sizes="(min-width: 1216px) 1152px, 100vw" className="-z-20 object-cover" style={{ objectPosition: photo.position }} />
           <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-brand/95 via-brand/85 to-brand/95" />
           <div className="hex-pattern absolute inset-0" aria-hidden />
           <div className="absolute -left-16 -top-24 size-72 rounded-full border-[14px] border-white/10" aria-hidden />

@@ -6,6 +6,7 @@ import { RevealObserver } from "@/components/motion/RevealObserver";
 import { getRanges } from "@/lib/data/catalogue";
 import { getPublicCompany } from "@/lib/data/site";
 import { ServiceWorker } from "@/components/site/ServiceWorker";
+import { Analytics } from "@/components/site/Analytics";
 import { nav, site, telHref } from "@/lib/site/config";
 import { jsonLd } from "@/lib/site/seo";
 
@@ -53,6 +54,7 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
       <CallbackDialog />
       <RevealObserver />
       <ServiceWorker />
+      <Analytics />
       {/* Organization + WebSite (with catalogue search) structured data for search engines. */}
       <script
         type="application/ld+json"

@@ -4,12 +4,12 @@ import { ActionButton } from "@/components/admin/form";
 import { CredentialForm } from "@/components/admin/RecordForms";
 import { deleteCredential } from "@/lib/admin/actions/content";
 import { listCredentials } from "@/lib/admin/queries";
-import { requireStaff } from "@/lib/auth/dal";
+import { requireRole } from "@/lib/auth/dal";
 
 export const metadata: Metadata = { title: "Credentials" };
 
 export default async function CredentialsPage() {
-  await requireStaff();
+  await requireRole("editor");
   const rows = await listCredentials();
   const today = new Date().toISOString().slice(0, 10);
   return (

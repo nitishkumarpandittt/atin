@@ -5,7 +5,8 @@ import { AdminForm, SelectField, SubmitButton, TextField } from "@/components/ad
 import { createStaff, resetStaffPassword, setStaffRole } from "@/lib/admin/actions/staff";
 
 const ROLE_OPTIONS = [
-  { value: "editor", label: "Editor: catalogue, content and enquiries" },
+  { value: "staff", label: "Staff: products, ranges, enquiries and callbacks only" },
+  { value: "editor", label: "Editor: catalogue, enquiries, website content and SEO" },
   { value: "admin", label: "Administrator: everything, including staff" },
 ];
 
@@ -33,7 +34,7 @@ export function StaffRoleForm({ userId, role }: { userId: string; role: string }
       {({ errors, pending }) => (
         <>
           <input type="hidden" name="userId" value={userId} />
-          <SelectField name="role" label="Role" defaultValue={role === "admin" ? "admin" : "editor"} options={ROLE_OPTIONS} error={errors.role} className="min-w-64 flex-1" />
+          <SelectField name="role" label="Role" defaultValue={role === "admin" || role === "editor" ? role : "staff"} options={ROLE_OPTIONS} error={errors.role} className="min-w-64 flex-1" />
           <SubmitButton pending={pending} variant="secondary">
             Update role
           </SubmitButton>

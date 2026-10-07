@@ -37,7 +37,7 @@ export function WhyAtin({ totalProducts, samples, photo }: { totalProducts: numb
         {/* Overlapping catalogue card (Pavilion offset image panel) */}
         <div className="relative lg:-ml-16" data-reveal>
           <div className="relative ml-10 aspect-[4/5] overflow-hidden rounded-3xl shadow-lift sm:ml-auto sm:w-[70%] sm:rounded-[2rem] md:w-[60%] lg:ml-28 lg:w-auto">
-            <Image src={photo.src} alt={photo.alt} fill sizes="(min-width: 1024px) 35vw, 80vw" className="object-cover" />
+            <Image src={photo.src} alt={photo.alt} fill sizes="(min-width: 1024px) 35vw, 80vw" className="object-cover" style={{ objectPosition: photo.position }} />
           </div>
           <div className="relative -mt-56 mr-6 overflow-hidden rounded-3xl bg-gradient-to-br from-brand to-navy p-6 text-white shadow-lift sm:-mt-80 sm:mr-auto sm:w-[62%] sm:rounded-[2rem] md:w-[55%] md:p-8 lg:-mt-64 lg:mr-10 lg:w-auto">
             <div className="hex-pattern absolute inset-0" aria-hidden />

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { AboutTeaser } from "@/components/home/AboutTeaser";
 import { Audiences } from "@/components/home/Audiences";
 import { CataloguePreview } from "@/components/home/CataloguePreview";
@@ -9,11 +10,17 @@ import { WhyAtin } from "@/components/home/WhyAtin";
 import { getCatalogueFigures, getCataloguePreview, getNewAdditions, getRanges, getMainImages } from "@/lib/data/catalogue";
 import { getPublicCompany, getPublishedTestimonials } from "@/lib/data/site";
 import { Testimonials } from "@/components/home/Testimonials";
-import { photo, type Photo } from "@/lib/site/photos";
+import type { Photo } from "@/lib/site/photos";
+import { sitePhoto } from "@/lib/data/site-images";
+import { seoMeta, staticPages } from "@/lib/data/seo";
 
-const need = (slot: string): Photo => {
-  const p = photo(slot);
-  if (!p) throw new Error(`Missing photo for slot "${slot}"`);
+export async function generateMetadata(): Promise<Metadata> {
+  return seoMeta(staticPages["/"]);
+}
+
+const need = async (key: string): Promise<Photo> => {
+  const p = await sitePhoto(key);
+  if (!p) throw new Error(`Missing photo for "${key}"`);
   return p;
 };
 
@@ -35,25 +42,25 @@ export default async function HomePage() {
 
   return (
     <>
-      <Hero figures={figures} ranges={ranges} photo={need("hero")} />
+      <Hero figures={figures} ranges={ranges} photo={await need("home-hero")} />
       <SegmentMarquee ranges={ranges} />
-      <AboutTeaser figures={figures} photo={need("chemist-counter")} />
+      <AboutTeaser figures={figures} photo={await need("home-about")} />
       <SegmentGrid ranges={ranges} totalProducts={figures.products} />
       {newItems.length > 0 ? (
         <CataloguePreview items={newItems} eyebrow="Just added" title="New additions" />
       ) : (
         <CataloguePreview items={preview} eyebrow="From the catalogue" title="A look across our range" />
       )}
-      <Audiences photo={need("hospital-corridor")} />
+      <Audiences photo={await need("home-audiences")} />
       <WhyAtin
-        photo={need("warehouse")}
+        photo={await need("home-why")}
         totalProducts={figures.products}
         samples={[preview[0], preview[3], preview[preview.length - 1]]
           .filter(Boolean)
           .map(({ product: p }) => ({ name: p.brand, meta: [p.dosageForm, p.pack].filter(Boolean).join(" · ") }))}
       />
       <Testimonials items={testimonials} />
-      <EnquiryBand photo={need("team")} phone={company.phone} />
+      <EnquiryBand photo={await need("home-enquiry")} phone={company.phone} />
     </>
   );
 }

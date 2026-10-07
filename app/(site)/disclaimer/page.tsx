@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
-import { pageMeta } from "@/lib/site/seo";
+import { seoMeta, staticPages } from "@/lib/data/seo";
 import { PageHero } from "@/components/site/PageHero";
 import { disclaimer } from "@/lib/site/content";
 import { site } from "@/lib/site/config";
 
-export const metadata: Metadata = pageMeta({
-  title: "Disclaimer",
-  description: "Terms under which product information is published on the Atin HealthCare website.",
-  path: "/disclaimer",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return seoMeta(staticPages["/disclaimer"]);
+}
 
 export default function DisclaimerPage() {
   return (

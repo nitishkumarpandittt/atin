@@ -4,12 +4,12 @@ import { notFound } from "next/navigation";
 import { Badge, Card, PageHeader } from "@/components/admin/ui";
 import { getBlogPost } from "@/lib/admin/queries";
 import { formatDate, renderMarkdown, resolveCover } from "@/lib/data/blog";
-import { requireStaff } from "@/lib/auth/dal";
+import { requireRole } from "@/lib/auth/dal";
 
 export const metadata: Metadata = { title: "Preview post" };
 
 export default async function PreviewPostPage({ params }: PageProps<"/admin/blog/[id]/preview">) {
-  await requireStaff();
+  await requireRole("editor");
   const post = await getBlogPost(Number((await params).id));
   if (!post) notFound();
   const cover = resolveCover(post.coverPath, post.title);

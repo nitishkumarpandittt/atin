@@ -4,12 +4,12 @@ import { ActionButton } from "@/components/admin/form";
 import { TestimonialForm } from "@/components/admin/RecordForms";
 import { deleteTestimonial } from "@/lib/admin/actions/content";
 import { listTestimonials } from "@/lib/admin/queries";
-import { requireStaff } from "@/lib/auth/dal";
+import { requireRole } from "@/lib/auth/dal";
 
 export const metadata: Metadata = { title: "Testimonials" };
 
 export default async function TestimonialsPage() {
-  await requireStaff();
+  await requireRole("editor");
   const rows = await listTestimonials();
   return (
     <>

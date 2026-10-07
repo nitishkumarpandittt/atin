@@ -1,28 +1,25 @@
 import type { Metadata } from "next";
-import { pageMeta } from "@/lib/site/seo";
+import { seoMeta, staticPages } from "@/lib/data/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BadgeCheck, ClipboardCheck, FileText, PackageCheck, ShieldCheck } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { SectionHeading } from "@/components/primitives/SectionHeading";
 import { qualityPractices } from "@/lib/site/content";
-import { photo } from "@/lib/site/photos";
+import { sitePhoto } from "@/lib/data/site-images";
 import { getPublishedCredentials } from "@/lib/data/site";
 import { formatDate } from "@/lib/data/blog";
 
-export const metadata: Metadata = pageMeta({
-  title: "Quality & certifications",
-  description: "How Atin HealthCare handles product information and documentation, and how to request licences and certificates.",
-  path: "/quality-certifications",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return seoMeta(staticPages["/quality-certifications"]);
+}
 
 
 const practiceIcons = [FileText, ClipboardCheck, PackageCheck, ShieldCheck];
 
 export default async function QualityPage() {
   const credentials = await getPublishedCredentials();
-  const lab = photo("lab-quality");
-  const storage = photo("blog-2");
+  const [lab, storage] = await Promise.all([sitePhoto("quality-hero"), sitePhoto("quality-side")]);
 
   return (
     <>
@@ -56,7 +53,7 @@ export default async function QualityPage() {
           <div className="relative" data-reveal>
             <div aria-hidden className="absolute -right-4 -top-4 bottom-12 left-12 hidden rounded-[2rem] bg-surface sm:block md:-right-6 md:-top-6" />
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-lift sm:aspect-[16/9] md:rounded-[2rem] lg:aspect-[4/5]">
-              {storage && <Image src={storage.src} alt={storage.alt} fill sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover" />}
+              {storage && <Image src={storage.src} alt={storage.alt} fill sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover" style={{ objectPosition: storage.position }} />}
             </div>
           </div>
         </div>

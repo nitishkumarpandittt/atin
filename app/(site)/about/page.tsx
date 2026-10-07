@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { pageMeta } from "@/lib/site/seo";
+import { seoMeta, staticPages } from "@/lib/data/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Compass, Handshake, Eye, ShieldCheck, Target, Sparkles, CircleCheck } from "lucide-react";
@@ -10,22 +10,18 @@ import { RequestCallButton } from "@/components/site/RequestCallButton";
 import { getCatalogueFigures, getRanges } from "@/lib/data/catalogue";
 import { values } from "@/lib/site/content";
 import { getPublicCompany } from "@/lib/data/site";
-import { photo } from "@/lib/site/photos";
+import { sitePhoto } from "@/lib/data/site-images";
 
-export const metadata: Metadata = pageMeta({
-  title: "About us",
-  description: "Atin HealthCare Pvt Ltd is a pharmaceutical marketing and distribution company serving the pharma trade across segments.",
-  path: "/about",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return seoMeta(staticPages["/about"]);
+}
 
 const valueIcons = [Compass, ShieldCheck, Sparkles, Handshake];
 
 export default async function AboutPage() {
   const [figures, ranges, company] = await Promise.all([getCatalogueFigures(), getRanges(), getPublicCompany()]);
   const { profile: companyProfile, vision, mission, director } = company;
-  const team = photo("team");
-  const warehouse = photo("warehouse");
-  const counter = photo("chemist-counter");
+  const [team, warehouse, counter, band] = await Promise.all([sitePhoto("about-hero"), sitePhoto("about-profile"), sitePhoto("about-profile-small"), sitePhoto("about-band")]);
 
   return (
     <>
@@ -45,11 +41,11 @@ export default async function AboutPage() {
             <div aria-hidden className="dot-grid absolute -right-2 -top-6 h-28 w-40 opacity-70" />
             <div className="relative mx-auto grid max-w-xl grid-cols-5 gap-3 sm:gap-4 lg:max-w-none">
               <div className="relative col-span-3 aspect-[3/4] overflow-hidden rounded-3xl shadow-lift">
-                {warehouse && <Image src={warehouse.src} alt={warehouse.alt} fill sizes="(min-width: 1024px) 30vw, 60vw" className="object-cover" />}
+                {warehouse && <Image src={warehouse.src} alt={warehouse.alt} fill sizes="(min-width: 1024px) 30vw, 60vw" className="object-cover" style={{ objectPosition: warehouse.position }} />}
               </div>
               <div className="col-span-2 flex flex-col gap-3 pt-10 sm:gap-4 sm:pt-16">
                 <div className="relative aspect-square overflow-hidden rounded-3xl shadow-card">
-                  {counter && <Image src={counter.src} alt={counter.alt} fill sizes="(min-width: 1024px) 20vw, 40vw" className="object-cover" />}
+                  {counter && <Image src={counter.src} alt={counter.alt} fill sizes="(min-width: 1024px) 20vw, 40vw" className="object-cover" style={{ objectPosition: counter.position }} />}
                 </div>
                 <div className="rounded-2xl bg-brand p-3 text-white shadow-card sm:rounded-3xl sm:p-5">
                   <p className="font-display text-3xl font-extrabold sm:text-4xl">
@@ -166,7 +162,7 @@ export default async function AboutPage() {
       {/* Portfolio at a glance, over a photo */}
       <section className="container-site pb-10">
         <div className="relative isolate overflow-hidden rounded-3xl text-white md:rounded-[2rem]">
-          {warehouse && <Image src={warehouse.src} alt="" fill sizes="100vw" className="-z-20 object-cover" />}
+          {band && <Image src={band.src} alt="" fill sizes="100vw" className="-z-20 object-cover" style={{ objectPosition: band.position }} />}
           <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-navy via-navy/90 to-brand/70" />
           <div className="grid gap-8 p-6 sm:p-8 md:p-14 lg:grid-cols-[1fr_1.2fr] lg:items-center lg:gap-10">
             <div>

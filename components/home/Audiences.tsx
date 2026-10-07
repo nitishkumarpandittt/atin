@@ -14,7 +14,7 @@ const audiences = [
 export function Audiences({ photo }: { photo: Photo }) {
   return (
     <section aria-labelledby="audiences-title" className="relative isolate overflow-hidden bg-brand py-16 md:py-24 lg:py-32">
-      <Image src={photo.src} alt="" fill sizes="100vw" className="-z-20 object-cover" />
+      <Image src={photo.src} alt="" fill sizes="100vw" className="-z-20 object-cover" style={{ objectPosition: photo.position }} />
       <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-br from-brand/90 via-brand/75 to-navy/85" />
       <div className="hex-pattern absolute inset-0" aria-hidden />
       {/* Curved edges echoing the hero sweep */}

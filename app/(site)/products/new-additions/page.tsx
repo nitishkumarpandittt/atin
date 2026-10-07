@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { pageMeta } from "@/lib/site/seo";
+import { seoMeta, staticPages } from "@/lib/data/seo";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
@@ -7,13 +7,12 @@ import { ProductCard } from "@/components/site/ProductCard";
 import { CatalogueNote } from "@/components/site/CatalogueNote";
 import { RangeIcon } from "@/components/primitives/RangeIcon";
 import { getMainImages, getNewAdditions, getRanges } from "@/lib/data/catalogue";
-import { photo, rangePhoto } from "@/lib/site/photos";
+import { rangePhoto } from "@/lib/site/photos";
+import { sitePhoto } from "@/lib/data/site-images";
 
-export const metadata: Metadata = pageMeta({
-  title: "New additions",
-  description: "Recently added products in the Atin HealthCare catalogue.",
-  path: "/products/new-additions",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return seoMeta(staticPages["/products/new-additions"]);
+}
 
 export default async function NewAdditionsPage() {
   const [products, ranges, images] = await Promise.all([getNewAdditions(), getRanges(), getMainImages()]);
@@ -25,7 +24,7 @@ export default async function NewAdditionsPage() {
         eyebrow="Product catalogue"
         title="New additions"
         intro="Products recently added to our portfolio."
-        photo={photo("chemist-counter")}
+        photo={await sitePhoto("new-additions-hero")}
         crumbs={[{ label: "Products", href: "/products" }, { label: "New additions" }]}
       />
       <section className="container-site py-10 md:py-16 lg:py-20">

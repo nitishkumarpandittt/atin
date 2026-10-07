@@ -26,13 +26,18 @@ export function zodErrors(error: z.ZodError): Record<string, string> {
   return out;
 }
 
+/** Admin-only writes (enquiry status, deletes): refresh the panel's lists and sidebar counts. */
+export function refreshAdmin() {
+  revalidatePath("/admin", "layout");
+}
+
 /** Prerendered public pages refresh after every admin write. */
 export function refreshSite() {
   revalidatePath("/", "layout");
 }
 
 /** Runs an admin mutation: checks the session first and turns thrown errors into a form message. */
-export async function guarded(role: "admin" | undefined, fn: (session: StaffSession) => Promise<ActionState>): Promise<ActionState> {
+export async function guarded(role: "admin" | "editor" | undefined, fn: (session: StaffSession) => Promise<ActionState>): Promise<ActionState> {
   let session: StaffSession;
   try {
     session = await assertStaff(role);

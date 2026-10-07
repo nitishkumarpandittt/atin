@@ -6,7 +6,7 @@ import { z } from "zod";
 import { db, schema } from "@/lib/db";
 import { companySchema, getCompany } from "@/lib/data/site";
 import { deleteImage, storeImage } from "@/lib/uploads/store";
-import { bool, fail, guarded, ok, refreshSite, slugify, str, zodErrors, type ActionState } from "@/lib/admin/action-utils";
+import { bool, fail, guarded, ok, refreshSite, slugify, str, zodErrors, type ActionState, refreshAdmin } from "@/lib/admin/action-utils";
 
 /* ------------------------------------------------------------------ ranges */
 
@@ -82,6 +82,7 @@ export async function setEnquiryStatus(_prev: ActionState, fd: FormData): Promis
   return guarded(undefined, async () => {
     const status = str(fd, "status") === "handled" ? "handled" : "new";
     await db.update(schema.enquiries).set({ status }).where(eq(schema.enquiries.id, Number(str(fd, "id"))));
+    refreshAdmin();
     return ok(status === "handled" ? "Marked as handled." : "Marked as new.");
   });
 }
@@ -89,6 +90,7 @@ export async function setEnquiryStatus(_prev: ActionState, fd: FormData): Promis
 export async function deleteEnquiry(_prev: ActionState, fd: FormData): Promise<ActionState> {
   return guarded(undefined, async () => {
     await db.delete(schema.enquiries).where(eq(schema.enquiries.id, Number(str(fd, "id"))));
+    refreshAdmin();
     return ok("Deleted.");
   });
 }
@@ -120,7 +122,7 @@ const companyInput = companySchema.extend({
 });
 
 export async function saveCompany(_prev: ActionState, fd: FormData): Promise<ActionState> {
-  return guarded(undefined, async () => {
+  return guarded("editor", async () => {
     const current = await getCompany();
     const fields = Object.keys(companySchema.shape).filter((k) => k !== "directorPhotoPath");
     const parsed = companyInput.safeParse({ ...Object.fromEntries(fields.map((k) => [k, str(fd, k)])), directorPhotoPath: current.directorPhotoPath });
@@ -160,7 +162,7 @@ const credentialSchema = z.object({
 });
 
 export async function saveCredential(_prev: ActionState, fd: FormData): Promise<ActionState> {
-  return guarded(undefined, async () => {
+  return guarded("editor", async () => {
     const id = Number(str(fd, "id")) || null;
     const parsed = credentialSchema.safeParse({ name: str(fd, "name"), issuingAuthority: str(fd, "issuingAuthority"), number: str(fd, "number"), validUntil: str(fd, "validUntil"), sortOrder: str(fd, "sortOrder") });
     if (!parsed.success) return fail("Please check the highlighted fields.", zodErrors(parsed.error));
@@ -173,7 +175,7 @@ export async function saveCredential(_prev: ActionState, fd: FormData): Promise<
 }
 
 export async function deleteCredential(_prev: ActionState, fd: FormData): Promise<ActionState> {
-  return guarded(undefined, async () => {
+  return guarded("editor", async () => {
     await db.delete(schema.credentials).where(eq(schema.credentials.id, Number(str(fd, "id"))));
     refreshSite();
     return ok("Credential deleted.");
@@ -191,7 +193,7 @@ const testimonialSchema = z.object({
 });
 
 export async function saveTestimonial(_prev: ActionState, fd: FormData): Promise<ActionState> {
-  return guarded(undefined, async () => {
+  return guarded("editor", async () => {
     const id = Number(str(fd, "id")) || null;
     const parsed = testimonialSchema.safeParse({ quote: str(fd, "quote"), name: str(fd, "name"), role: str(fd, "role"), organisation: str(fd, "organisation"), sortOrder: str(fd, "sortOrder") });
     if (!parsed.success) return fail("Please check the highlighted fields.", zodErrors(parsed.error));
@@ -207,7 +209,7 @@ export async function saveTestimonial(_prev: ActionState, fd: FormData): Promise
 }
 
 export async function deleteTestimonial(_prev: ActionState, fd: FormData): Promise<ActionState> {
-  return guarded(undefined, async () => {
+  return guarded("editor", async () => {
     await db.delete(schema.testimonials).where(eq(schema.testimonials.id, Number(str(fd, "id"))));
     refreshSite();
     return ok("Testimonial deleted.");
@@ -229,7 +231,7 @@ const blogSchema = z.object({
 });
 
 export async function saveBlogPost(_prev: ActionState, fd: FormData): Promise<ActionState> {
-  return guarded(undefined, async () => {
+  return guarded("editor", async () => {
     const id = Number(str(fd, "id")) || null;
     const parsed = blogSchema.safeParse({ title: str(fd, "title"), slug: str(fd, "slug"), excerpt: str(fd, "excerpt"), content: str(fd, "content"), author: str(fd, "author"), publishedOn: str(fd, "publishedOn") });
     if (!parsed.success) return fail("Please check the highlighted fields.", zodErrors(parsed.error));
@@ -271,7 +273,7 @@ export async function saveBlogPost(_prev: ActionState, fd: FormData): Promise<Ac
 }
 
 export async function deleteBlogPost(_prev: ActionState, fd: FormData): Promise<ActionState> {
-  return guarded(undefined, async () => {
+  return guarded("editor", async () => {
     const id = Number(str(fd, "id"));
     const [row] = await db.select({ coverPath: schema.blogPosts.coverPath }).from(schema.blogPosts).where(eq(schema.blogPosts.id, id)).limit(1);
     await db.delete(schema.blogPosts).where(eq(schema.blogPosts.id, id));

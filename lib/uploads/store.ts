@@ -9,8 +9,11 @@ const ALLOWED = new Set(["jpeg", "png", "webp", "avif"]);
 
 export type StoredImage = { filePath: string; width: number; height: number };
 
-/** Validates a real image, normalises it (rotate, fit 1600px, WebP q82, no metadata) and stores it under a random name. */
-export async function storeImage(file: File, folder: UploadFolder): Promise<StoredImage> {
+/**
+ * Validates a real image, normalises it (rotate, fit `maxSize` px — 1600 by default, more for full-width
+ * page banners — WebP q82, no metadata) and stores it under a random name.
+ */
+export async function storeImage(file: File, folder: UploadFolder, maxSize = 1600): Promise<StoredImage> {
   if (!(file instanceof File) || file.size === 0) throw new Error("Choose an image to upload.");
   if (file.size > maxUploadBytes()) throw new Error(`Image is too large. The limit is ${Math.round(maxUploadBytes() / 1024 / 1024)} MB.`);
 
@@ -25,7 +28,7 @@ export async function storeImage(file: File, folder: UploadFolder): Promise<Stor
 
   const { data, info } = await sharp(input, { limitInputPixels: 50_000_000 })
     .rotate()
-    .resize({ width: 1600, height: 1600, fit: "inside", withoutEnlargement: true })
+    .resize({ width: maxSize, height: maxSize, fit: "inside", withoutEnlargement: true })
     .webp({ quality: 82 })
     .toBuffer({ resolveWithObject: true });
 

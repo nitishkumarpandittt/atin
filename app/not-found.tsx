@@ -2,12 +2,12 @@ import Link from "next/link";
 import { ArrowRight, Search } from "lucide-react";
 import { SiteChrome } from "@/components/chrome/SiteChrome";
 import { PageHero } from "@/components/site/PageHero";
-import { photo } from "@/lib/site/photos";
+import { sitePhoto } from "@/lib/data/site-images";
 
-export default function NotFound() {
+export default async function NotFound() {
   return (
     <SiteChrome>
-      <PageHero eyebrow="Error 404" title="We couldn't find that page" intro="The link may be out of date, or the page may have moved." photo={photo("blog-2")} />
+      <PageHero eyebrow="Error 404" title="We couldn't find that page" intro="The link may be out of date, or the page may have moved." photo={await sitePhoto("not-found-hero")} />
       <section className="container-site py-10 md:py-16 lg:py-24">
         <div className="mx-auto grid max-w-3xl gap-4 sm:grid-cols-3">
           {[

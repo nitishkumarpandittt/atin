@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { pageMeta } from "@/lib/site/seo";
+import { seoMeta, staticPages } from "@/lib/data/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, MapPin } from "lucide-react";
@@ -7,22 +7,20 @@ import { PageHero } from "@/components/site/PageHero";
 import { SectionHeading } from "@/components/primitives/SectionHeading";
 import { divisions } from "@/lib/site/divisions";
 import { site } from "@/lib/site/config";
-import { photo } from "@/lib/site/photos";
+import { sitePhoto } from "@/lib/data/site-images";
 
-export const metadata: Metadata = pageMeta({
-  title: "Other divisions",
-  description: `The pharmaceutical companies in the same group as ${site.name}, each with its own portfolio and website.`,
-  path: "/divisions",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return seoMeta(staticPages["/divisions"]);
+}
 
-export default function DivisionsPage() {
+export default async function DivisionsPage() {
   return (
     <>
       <PageHero
         eyebrow="Group companies"
         title="Other divisions"
         intro={`${site.name} is one of several pharmaceutical companies under common management. Each division runs its own portfolio and website.`}
-        photo={photo("team")}
+        photo={await sitePhoto("divisions-hero")}
         crumbs={[{ label: "Other divisions" }]}
       />
 

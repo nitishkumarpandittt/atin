@@ -13,6 +13,8 @@ export const ac = createAccessControl(defaultStatements);
 export const roles = {
   admin: ac.newRole(adminAc.statements),
   editor: ac.newRole({ user: [], session: [] }),
+  // Staff: products, ranges, enquiries and callbacks only (enforced in lib/auth/dal.ts and each action).
+  staff: ac.newRole({ user: [], session: [] }),
 };
 
 function trustedOrigins(): string[] {

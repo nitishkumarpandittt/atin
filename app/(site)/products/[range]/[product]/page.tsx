@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { pageMeta } from "@/lib/site/seo";
+import { productSeoDefaults, seoMeta } from "@/lib/data/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
@@ -27,13 +27,8 @@ export async function generateMetadata({ params }: PageProps<"/products/[range]/
   const { product: slug } = await params;
   const product = await getProductBySlug(slug);
   if (!product) return {};
-  // The share image comes from ./opengraph-image.tsx (pack shot + details).
-  return pageMeta({
-    title: productTitle(product.brand, product.dosageForm),
-    description: `${product.brand} (${product.dosageForm}). Composition: ${product.composition}.${product.pack ? ` Pack: ${product.pack}.` : ""}`,
-    path: `/products/${product.rangeSlug}/${product.slug}`,
-    image: null,
-  });
+  // The share image comes from ./opengraph-image.tsx (pack shot + details) unless an admin override sets one.
+  return seoMeta(productSeoDefaults(product));
 }
 
 export default async function ProductPage({ params }: PageProps<"/products/[range]/[product]">) {

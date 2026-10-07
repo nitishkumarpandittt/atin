@@ -7,12 +7,12 @@ import { ActionButton } from "@/components/admin/form";
 import { deleteBlogPost } from "@/lib/admin/actions/content";
 import { listBlogPosts } from "@/lib/admin/queries";
 import { formatDate, resolveCover } from "@/lib/data/blog";
-import { requireStaff } from "@/lib/auth/dal";
+import { requireRole } from "@/lib/auth/dal";
 
 export const metadata: Metadata = { title: "Blog" };
 
 export default async function BlogAdminPage({ searchParams }: PageProps<"/admin/blog">) {
-  await requireStaff();
+  await requireRole("editor");
   const [posts, sp] = await Promise.all([listBlogPosts(), searchParams]);
   const today = new Date().toISOString().slice(0, 10);
   return (

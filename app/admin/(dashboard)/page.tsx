@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, CircleCheck, Circle, Inbox, Layers, Package, PhoneCall, Sparkles } from "lucide-react";
 import { Badge, Card, EmptyState, PageHeader, formatDateTime } from "@/components/admin/ui";
 import { getDashboardData } from "@/lib/admin/queries";
-import { requireStaff } from "@/lib/auth/dal";
+import { hasRole, requireStaff } from "@/lib/auth/dal";
 
 export const metadata: Metadata = { title: "Dashboard" };
 
@@ -12,6 +12,8 @@ export default async function DashboardPage({ searchParams }: PageProps<"/admin"
   const [data, sp] = await Promise.all([getDashboardData(), searchParams]);
   const done = data.checklist.filter((c) => c.done).length;
   const pct = Math.round((done / data.checklist.length) * 100);
+  // Staff accounts work on the catalogue and contacts only; the content checklist links to editor pages.
+  const showContent = hasRole(session.role, "editor");
 
   const stats = [
     { label: "Products", value: data.stats.products, sub: `${data.stats.published} published`, icon: Package, href: "/admin/products" },
@@ -22,11 +24,11 @@ export default async function DashboardPage({ searchParams }: PageProps<"/admin"
 
   return (
     <>
-      <PageHeader title={`Welcome, ${session.name.split(" ")[0]}`} description="An overview of the catalogue, contacts and website content." />
+      <PageHeader title={`Welcome, ${session.name.split(" ")[0]}`} description={showContent ? "An overview of the catalogue, contacts and website content." : "An overview of the catalogue and contacts."} />
 
       {sp.denied === "1" && (
         <p role="alert" className="mb-5 rounded-lg bg-amber-50 px-3 py-2.5 text-sm font-medium text-amber-900">
-          That page is only available to administrators.
+          {session.role === "staff" ? "Your account can manage products, ranges, enquiries and callback requests only." : "That page is only available to administrators."}
         </p>
       )}
 
@@ -44,7 +46,7 @@ export default async function DashboardPage({ searchParams }: PageProps<"/admin"
         ))}
       </ul>
 
-      <div className="mt-6 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+      <div className={`mt-6 grid gap-6 ${showContent ? "lg:grid-cols-[1.4fr_1fr]" : ""}`}>
         <Card
           title="Latest contacts"
           actions={
@@ -80,6 +82,7 @@ export default async function DashboardPage({ searchParams }: PageProps<"/admin"
           )}
         </Card>
 
+        {showContent && (
         <Card title="Website content" description={`${done} of ${data.checklist.length} complete`}>
           <div className="px-4 pt-4 sm:px-5">
             <div className="h-2 overflow-hidden rounded-full bg-slate-100" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label="Website content completeness">
@@ -97,6 +100,7 @@ export default async function DashboardPage({ searchParams }: PageProps<"/admin"
             ))}
           </ul>
         </Card>
+        )}
       </div>
 
       <Card title="Catalogue checks" className="mt-6">

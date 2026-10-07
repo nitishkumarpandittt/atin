@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { pageMeta } from "@/lib/site/seo";
+import { seoMeta, staticPages } from "@/lib/data/seo";
 import Image from "next/image";
 import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
@@ -9,13 +9,11 @@ import { telHref } from "@/lib/site/config";
 import { getProductBySlug } from "@/lib/data/catalogue";
 import { getPublicCompany } from "@/lib/data/site";
 import { productTitle } from "@/lib/utils/text";
-import { photo } from "@/lib/site/photos";
+import { sitePhoto } from "@/lib/data/site-images";
 
-export const metadata: Metadata = pageMeta({
-  title: "Contact",
-  description: "Send a trade enquiry to Atin HealthCare or request a call back from our team.",
-  path: "/contact",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return seoMeta(staticPages["/contact"]);
+}
 
 export default async function ContactPage({ searchParams }: PageProps<"/contact">) {
   const sp = await searchParams;
@@ -23,7 +21,7 @@ export default async function ContactPage({ searchParams }: PageProps<"/contact"
   // ?product= is either a catalogue slug (from a product page) or free text (e.g. a segment name).
   const [company, match] = await Promise.all([getPublicCompany(), /^[a-z0-9-]+$/.test(raw) ? getProductBySlug(raw) : null]);
   const product = match ? productTitle(match.brand, match.dosageForm) : raw || undefined;
-  const support = photo("contact");
+  const [support, panel] = await Promise.all([sitePhoto("contact-hero"), sitePhoto("contact-panel")]);
 
   const details = [
     company.phone && { icon: Phone, label: "Phone", value: company.phone, href: telHref(company.phone) },
@@ -48,7 +46,7 @@ export default async function ContactPage({ searchParams }: PageProps<"/contact"
         <div className="grid overflow-hidden rounded-3xl bg-white shadow-lift ring-1 ring-line md:rounded-[2rem] lg:grid-cols-[0.85fr_1.15fr]">
           {/* Details panel on photo */}
           <div className="relative isolate overflow-hidden bg-navy p-6 text-white sm:p-8 md:p-10">
-            {support && <Image src={support.src} alt="" fill sizes="(min-width: 1024px) 40vw, 100vw" className="-z-20 object-cover" />}
+            {panel && <Image src={panel.src} alt="" fill sizes="(min-width: 1024px) 40vw, 100vw" className="-z-20 object-cover" style={{ objectPosition: panel.position }} />}
             <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-b from-brand/95 via-brand/90 to-navy/95" />
             <div aria-hidden className="hex-pattern absolute inset-0 -z-10" />
             <h2 className="text-2xl font-bold !text-white">Contact details</h2>

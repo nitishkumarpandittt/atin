@@ -1,12 +1,13 @@
 import type { MetadataRoute } from "next";
 import { getMainImages, getPublishedProducts, getRanges } from "@/lib/data/catalogue";
 import { site } from "@/lib/site/config";
+import { noIndexPaths } from "@/lib/data/seo";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [ranges, products, images] = await Promise.all([getRanges(), getPublishedProducts(), getMainImages()]);
+  const [ranges, products, images, hidden] = await Promise.all([getRanges(), getPublishedProducts(), getMainImages(), noIndexPaths()]);
   const url = (path: string) => `${site.url}${path}`;
 
-  return [
+  const entries: MetadataRoute.Sitemap = [
     { url: url("/"), changeFrequency: "weekly", priority: 1 },
     { url: url("/about"), changeFrequency: "monthly", priority: 0.7 },
     { url: url("/quality-certifications"), changeFrequency: "monthly", priority: 0.5 },
@@ -25,4 +26,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       };
     }),
   ];
+  // Pages an admin hid from search engines (Admin → SEO) are left out.
+  return entries.filter((e) => !hidden.has(e.url.slice(site.url.length) || "/"));
 }

@@ -4,18 +4,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { BadgeCheck, Building2, ExternalLink, Inbox, LayoutDashboard, Layers, LogOut, Menu, MessageSquareQuote, Package, PhoneCall, Users, X } from "lucide-react";
+import { BadgeCheck, Building2, ExternalLink, ImageIcon, Inbox, LayoutDashboard, Layers, LogOut, Menu, MessageSquareQuote, Package, PhoneCall, SearchCheck, Users, X } from "lucide-react";
 import logo from "@/public/brand/atin-logo.png";
 import logoWhite from "@/public/brand/atin-logo-white.png";
 import { authClient } from "@/lib/auth/client";
 
 type Props = {
   children: React.ReactNode;
-  user: { name: string; email: string; role: "admin" | "editor" };
+  user: { name: string; email: string; role: "admin" | "editor" | "staff" };
   counts: { enquiries: number; callbacks: number };
 };
 
-type Item = { href: string; label: string; icon: typeof Package; count?: number; adminOnly?: boolean };
+/** `min`: lowest role that sees the item (staff < editor < admin); the server enforces the same rule. */
+type Item = { href: string; label: string; icon: typeof Package; count?: number; min?: "editor" | "admin" };
+
+const RANK = { staff: 1, editor: 2, admin: 3 } as const;
 
 export function AdminShell({ children, user, counts }: Props) {
   const pathname = usePathname();
@@ -53,12 +56,14 @@ export function AdminShell({ children, user, counts }: Props) {
     {
       title: "Website content",
       items: [
-        { href: "/admin/company", label: "Company details", icon: Building2 },
-        { href: "/admin/credentials", label: "Credentials", icon: BadgeCheck },
-        { href: "/admin/testimonials", label: "Testimonials", icon: MessageSquareQuote },
+        { href: "/admin/company", label: "Company details", icon: Building2, min: "editor" },
+        { href: "/admin/site-images", label: "Site images", icon: ImageIcon, min: "editor" },
+        { href: "/admin/credentials", label: "Credentials", icon: BadgeCheck, min: "editor" },
+        { href: "/admin/testimonials", label: "Testimonials", icon: MessageSquareQuote, min: "editor" },
+        { href: "/admin/seo", label: "SEO & tracking", icon: SearchCheck, min: "editor" },
       ],
     },
-    { title: "Settings", items: [{ href: "/admin/staff", label: "Staff accounts", icon: Users, adminOnly: true }] },
+    { title: "Settings", items: [{ href: "/admin/staff", label: "Staff accounts", icon: Users, min: "admin" }] },
   ];
 
   const isActive = (href: string) => (href === "/admin" ? pathname === "/admin" : pathname.startsWith(href));
@@ -72,7 +77,7 @@ export function AdminShell({ children, user, counts }: Props) {
   const nav = (
     <nav aria-label="Admin" className="admin-scroll flex-1 overflow-y-auto px-3 py-4">
       {groups.map((g, gi) => {
-        const items = g.items.filter((i) => !i.adminOnly || user.role === "admin");
+        const items = g.items.filter((i) => !i.min || RANK[user.role] >= RANK[i.min]);
         if (!items.length) return null;
         return (
           <div key={gi} className={gi ? "mt-5" : ""}>

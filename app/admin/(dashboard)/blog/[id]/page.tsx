@@ -8,12 +8,12 @@ import { BlogForm } from "@/components/admin/BlogForm";
 import { deleteBlogPost } from "@/lib/admin/actions/content";
 import { getBlogPost } from "@/lib/admin/queries";
 import { resolveCover } from "@/lib/data/blog";
-import { requireStaff } from "@/lib/auth/dal";
+import { requireRole } from "@/lib/auth/dal";
 
 export const metadata: Metadata = { title: "Edit post" };
 
 export default async function EditPostPage({ params, searchParams }: PageProps<"/admin/blog/[id]">) {
-  await requireStaff();
+  await requireRole("editor");
   const [{ id }, sp] = await Promise.all([params, searchParams]);
   const post = await getBlogPost(Number(id));
   if (!post) notFound();

@@ -48,7 +48,7 @@ export function AboutTeaser({ figures, photo }: Props) {
           <div aria-hidden className="absolute -right-5 -top-5 bottom-24 left-12 hidden rounded-[2rem] bg-surface sm:block md:-right-8" />
           <div aria-hidden className="dot-grid absolute -left-3 top-10 h-28 w-32 opacity-70" />
           <div className="relative aspect-[5/4] overflow-hidden rounded-3xl shadow-lift sm:aspect-[16/9] sm:rounded-[2rem] lg:aspect-[5/4]">
-            <Image src={photo.src} alt={photo.alt} fill sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" />
+            <Image src={photo.src} alt={photo.alt} fill sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" style={{ objectPosition: photo.position }} />
             <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-navy/50 via-transparent" />
           </div>
           <ul className="absolute inset-x-3 bottom-0 grid grid-cols-3 gap-2 sm:inset-x-6 sm:gap-4">

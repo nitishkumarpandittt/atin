@@ -5,7 +5,7 @@ import { z } from "zod";
 import { auth } from "@/lib/auth";
 import { fail, guarded, ok, str, zodErrors, type ActionState } from "@/lib/admin/action-utils";
 
-const role = z.enum(["admin", "editor"], { message: "Choose a role." });
+const role = z.enum(["admin", "editor", "staff"], { message: "Choose a role." });
 const password = z.string().min(12, "Use at least 12 characters.").max(128);
 
 function authError(e: unknown): string {
