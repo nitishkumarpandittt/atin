@@ -6,7 +6,7 @@ import { z } from "zod";
 import { db, schema } from "@/lib/db";
 import { companySchema, getCompany } from "@/lib/data/site";
 import { deleteImage, storeImage } from "@/lib/uploads/store";
-import { bool, fail, guarded, ok, refreshSite, slugify, str, zodErrors, type ActionState, refreshAdmin } from "@/lib/admin/action-utils";
+import { bool, fail, guarded, ok, refreshSite, slugify, str, zodErrors, type ActionState } from "@/lib/admin/action-utils";
 
 /* ------------------------------------------------------------------ ranges */
 
@@ -82,7 +82,6 @@ export async function setEnquiryStatus(_prev: ActionState, fd: FormData): Promis
   return guarded(undefined, async () => {
     const status = str(fd, "status") === "handled" ? "handled" : "new";
     await db.update(schema.enquiries).set({ status }).where(eq(schema.enquiries.id, Number(str(fd, "id"))));
-    refreshAdmin();
     return ok(status === "handled" ? "Marked as handled." : "Marked as new.");
   });
 }
@@ -90,7 +89,6 @@ export async function setEnquiryStatus(_prev: ActionState, fd: FormData): Promis
 export async function deleteEnquiry(_prev: ActionState, fd: FormData): Promise<ActionState> {
   return guarded(undefined, async () => {
     await db.delete(schema.enquiries).where(eq(schema.enquiries.id, Number(str(fd, "id"))));
-    refreshAdmin();
     return ok("Deleted.");
   });
 }

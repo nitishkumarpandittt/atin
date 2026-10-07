@@ -24,7 +24,15 @@ type Range = { id?: number; shortName: string; slug: string; icon: string; sortO
 export function RangeFields({ range, onSaved, submitLabel }: { range: Range; onSaved?: () => void; submitLabel: string }) {
   const [icon, setIcon] = useState(range.icon);
   return (
-    <AdminForm action={saveRange} onSuccess={onSaved} resetOnSuccess={!range.id} className="grid gap-3 sm:grid-cols-2 lg:grid-cols-[1.5fr_1.2fr_1fr_6rem_auto] lg:items-end">
+    <AdminForm
+      action={saveRange}
+      onSuccess={() => {
+        // The add form clears its text fields on success; the controlled icon picker must follow.
+        if (!range.id) setIcon(range.icon);
+        onSaved?.();
+      }}
+      resetOnSuccess={!range.id}
+      className="grid gap-3 sm:grid-cols-2 lg:grid-cols-[1.5fr_1.2fr_1fr_6rem_auto] lg:items-end">
       {({ errors, pending }) => (
         <>
           {range.id && <input type="hidden" name="id" value={range.id} />}

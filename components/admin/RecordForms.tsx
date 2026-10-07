@@ -34,7 +34,13 @@ type Testimonial = { id?: number; quote: string; name: string; role: string; org
 export function TestimonialForm({ value, submitLabel }: { value: Testimonial; submitLabel: string }) {
   const [permission, setPermission] = useState(value.hasPermission);
   return (
-    <AdminForm action={saveTestimonial} resetOnSuccess={!value.id} className="grid gap-3 sm:grid-cols-3">
+    <AdminForm
+      action={saveTestimonial}
+      resetOnSuccess={!value.id}
+      // The add form clears on success; the permission state that enables "Show on website" must too.
+      onSuccess={() => !value.id && setPermission(value.hasPermission)}
+      className="grid gap-3 sm:grid-cols-3"
+    >
       {({ errors, pending }) => (
         <>
           {value.id && <input type="hidden" name="id" value={value.id} />}

@@ -33,7 +33,7 @@ export default async function StaffPage() {
                     <p className="break-all text-sm text-muted">{u.email}</p>
                   </div>
                   <span className="flex flex-wrap items-center gap-1.5">
-                    <Badge tone={u.role === "admin" ? "blue" : "grey"}>{u.role === "admin" ? "Administrator" : "Editor"}</Badge>
+                    <Badge tone={u.role === "admin" ? "blue" : u.role === "editor" ? "grey" : "amber"}>{u.role === "admin" ? "Administrator" : u.role === "editor" ? "Editor" : "Staff"}</Badge>
                     {u.banned && <Badge tone="red">Blocked</Badge>}
                     <span className="text-xs text-muted">Added {formatDateTime(u.createdAt)}</span>
                   </span>

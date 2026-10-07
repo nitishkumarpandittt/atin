@@ -26,17 +26,16 @@ export function zodErrors(error: z.ZodError): Record<string, string> {
   return out;
 }
 
-/** Admin-only writes (enquiry status, deletes): refresh the panel's lists and sidebar counts. */
-export function refreshAdmin() {
-  revalidatePath("/admin", "layout");
-}
-
 /** Prerendered public pages refresh after every admin write. */
 export function refreshSite() {
   revalidatePath("/", "layout");
 }
 
-/** Runs an admin mutation: checks the session first and turns thrown errors into a form message. */
+/**
+ * Runs an admin mutation: checks the session first and turns thrown errors into a form message.
+ * Every successful mutation re-renders the whole admin panel (lists, badges, sidebar counts), so no
+ * page needs a manual refresh after a change; actions that also affect the public site call refreshSite().
+ */
 export async function guarded(role: "admin" | "editor" | undefined, fn: (session: StaffSession) => Promise<ActionState>): Promise<ActionState> {
   let session: StaffSession;
   try {
@@ -45,7 +44,9 @@ export async function guarded(role: "admin" | "editor" | undefined, fn: (session
     return fail(e instanceof Error ? e.message : "Not allowed.");
   }
   try {
-    return await fn(session);
+    const result = await fn(session);
+    if (result.status === "success") revalidatePath("/admin", "layout");
+    return result;
   } catch (e) {
     unstable_rethrow(e); // redirect()/notFound() must propagate
     const code = (e as { code?: string; cause?: { code?: string } })?.code ?? (e as { cause?: { code?: string } })?.cause?.code;
