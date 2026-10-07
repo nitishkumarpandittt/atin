@@ -15,6 +15,7 @@
     "db:seed": "tsx scripts/db-seed.ts",
     "catalogue:images": "tsx scripts/catalogue-images.ts",
     "admin:create": "tsx scripts/create-admin.ts",
+    "admin:reset-password": "tsx scripts/reset-password.ts",
     "whatsapp:test": "tsx scripts/whatsapp-test.ts",
     "check:copy": "tsx scripts/check-copy.ts"
   },
