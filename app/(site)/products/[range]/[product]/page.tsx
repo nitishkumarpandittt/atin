@@ -155,7 +155,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[rang
             </dl>
 
             <div className="btn-row mt-6 sm:mt-8">
-              <Link href={`/contact?product=${encodeURIComponent(product.slug)}`} className="btn btn-green">
+              <Link href={`/contact?product=${encodeURIComponent(product.slug)}`} className="btn btn-green whitespace-normal text-center leading-tight">
                 Enquire about this product <ArrowRight aria-hidden className="size-4" />
               </Link>
               <RequestCallButton className="btn btn-blue" />

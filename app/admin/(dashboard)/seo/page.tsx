@@ -47,7 +47,7 @@ export default async function SeoPage({ searchParams }: PageProps<"/admin/seo">)
                     return (
                       <li key={p.path}>
                         <Link href={`/admin/seo/page?path=${encodeURIComponent(p.path)}`} className="flex flex-wrap items-center gap-x-3 gap-y-1 px-4 py-3 hover:bg-slate-50 sm:px-5">
-                          <span className="min-w-0 flex-1">
+                          <span className="min-w-0 flex-[1_1_12rem]">
                             <span className="block truncate font-medium text-ink">{p.label}</span>
                             <span className="block truncate text-xs text-muted">{o?.title || (p.absolute ? p.title : `${p.title} | ${site.name}`)}</span>
                           </span>

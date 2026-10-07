@@ -67,7 +67,7 @@ export function Footer({ ranges, company }: { ranges: Range[]; company: PublicCo
             )}
             {company.phone && (
               <li className="flex gap-3">
-                <Phone aria-hidden className="mt-2 size-4 shrink-0 text-leaf" />
+                <Phone aria-hidden className="mt-2.5 size-4 shrink-0 text-leaf lg:mt-1.5" />
                 <a href={telHref(company.phone)} className={linkClass}>
                   {company.phone}
                 </a>
@@ -75,7 +75,7 @@ export function Footer({ ranges, company }: { ranges: Range[]; company: PublicCo
             )}
             {company.email && (
               <li className="flex gap-3">
-                <Mail aria-hidden className="mt-2 size-4 shrink-0 text-leaf" />
+                <Mail aria-hidden className="mt-2.5 size-4 shrink-0 text-leaf lg:mt-1.5" />
                 <a href={`mailto:${company.email}`} className={`${linkClass} break-all`}>
                   {company.email}
                 </a>
@@ -88,7 +88,7 @@ export function Footer({ ranges, company }: { ranges: Range[]; company: PublicCo
             </li>
             )}
             <li className="flex gap-3">
-              <MessageCircle aria-hidden className="mt-2 size-4 shrink-0 text-leaf" />
+              <MessageCircle aria-hidden className="mt-2.5 size-4 shrink-0 text-leaf lg:mt-1.5" />
               <Link href="/contact" className={linkClass}>
                 Send a trade enquiry
               </Link>
@@ -98,7 +98,7 @@ export function Footer({ ranges, company }: { ranges: Range[]; company: PublicCo
       </div>
 
       <div className="relative border-t border-white/10">
-        <div className="container-site flex flex-col gap-2 py-6 text-xs md:flex-row md:items-center md:justify-between md:gap-6">
+        <div className="container-site flex flex-col gap-2 pb-24 pt-6 text-xs sm:pb-6 md:flex-row md:items-center md:justify-between md:gap-6">
           <p>
             © {year} {site.legalName}. All rights reserved.
           </p>

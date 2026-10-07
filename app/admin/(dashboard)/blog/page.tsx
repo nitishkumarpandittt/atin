@@ -40,7 +40,7 @@ export default async function BlogAdminPage({ searchParams }: PageProps<"/admin/
                   <span className="relative hidden h-14 w-20 shrink-0 overflow-hidden rounded-lg bg-slate-100 ring-1 ring-line sm:block">
                     {cover.src && <Image src={cover.src} alt="" fill sizes="80px" className="object-cover" />}
                   </span>
-                  <span className="min-w-0 flex-1">
+                  <span className="min-w-0 flex-[1_1_14rem]">
                     <Link href={`/admin/blog/${p.id}`} className="font-semibold text-ink hover:text-blue-700 hover:underline">
                       {p.title}
                     </Link>

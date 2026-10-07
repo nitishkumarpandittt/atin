@@ -31,7 +31,7 @@ export default async function EditProductPage({ params, searchParams }: PageProp
           <span className="flex flex-wrap items-center gap-1.5">
             {product.isPublished ? <Badge tone="green">Published</Badge> : <Badge>Hidden</Badge>}
             {product.isNew && <Badge tone="blue">New addition</Badge>}
-            {product.reviewNote && <Badge tone="amber">{product.reviewNote}</Badge>}
+            {product.reviewNote && <Badge tone="amber" className="whitespace-normal">{product.reviewNote}</Badge>}
           </span>
         }
         actions={

@@ -92,7 +92,7 @@ export default async function DashboardPage({ searchParams }: PageProps<"/admin"
           <ul className="px-2 py-3 sm:px-3">
             {data.checklist.map((c) => (
               <li key={c.label}>
-                <Link href={c.href} className="flex min-h-9 items-center gap-2.5 rounded-lg px-2 py-1.5 text-sm hover:bg-slate-50">
+                <Link href={c.href} className="flex min-h-10 items-center gap-2.5 rounded-lg px-2 py-1.5 text-sm hover:bg-slate-50">
                   {c.done ? <CircleCheck aria-hidden className="size-4 shrink-0 text-emerald-600" /> : <Circle aria-hidden className="size-4 shrink-0 text-slate-300" />}
                   <span className={c.done ? "text-muted line-through decoration-slate-300" : "text-ink"}>{c.label}</span>
                 </Link>

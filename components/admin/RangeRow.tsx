@@ -32,7 +32,7 @@ export function RangeFields({ range, onSaved, submitLabel }: { range: Range; onS
         onSaved?.();
       }}
       resetOnSuccess={!range.id}
-      className="grid gap-3 sm:grid-cols-2 lg:grid-cols-[1.5fr_1.2fr_1fr_6rem_auto] lg:items-end">
+      className="grid gap-3 sm:grid-cols-2 lg:grid-cols-[1.5fr_1.2fr_1fr_6rem_auto] lg:items-start">
       {({ errors, pending }) => (
         <>
           {range.id && <input type="hidden" name="id" value={range.id} />}
@@ -40,12 +40,12 @@ export function RangeFields({ range, onSaved, submitLabel }: { range: Range; onS
           <TextField name="slug" label="Slug" defaultValue={range.slug} error={errors.slug} hint={range.id ? undefined : "Blank = from name"} />
           <div className="flex items-end gap-2">
             <SelectField name="icon" label="Icon" className="flex-1" value={icon} onChange={(e) => setIcon(e.target.value)} options={RANGE_ICONS} error={errors.icon} />
-            <span className="mb-0.5 grid size-10 shrink-0 place-items-center rounded-lg bg-blue-50 text-blue-700">
+            <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-blue-50 text-blue-700">
               <RangeIcon icon={icon} className="size-5" />
             </span>
           </div>
           <TextField name="sortOrder" label="Order" type="number" min={0} defaultValue={range.sortOrder} error={errors.sortOrder} />
-          <SubmitButton pending={pending}>{submitLabel}</SubmitButton>
+          <SubmitButton pending={pending} className="lg:mt-6">{submitLabel}</SubmitButton>
         </>
       )}
     </AdminForm>
@@ -81,7 +81,7 @@ export function RangeImageForm({ id, image, imageAlt, name }: { id: number; imag
             <TextField name="imageAlt" label="Image description" defaultValue={imageAlt} error={errors.imageAlt} hint="Describe the photo for screen readers." />
             {image && <Checkbox name="removeImage" label="Remove image (use the stock photo again)" />}
           </span>
-          <SubmitButton pending={pending} variant="secondary" className="mt-6">
+          <SubmitButton pending={pending} variant="secondary" className="sm:mt-6">
             Save image
           </SubmitButton>
         </>

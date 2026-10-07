@@ -121,7 +121,7 @@ export function AdminShell({ children, user, counts }: Props) {
           <span className="block truncate text-sm font-semibold text-white">{user.name}</span>
           <span className="block truncate text-xs capitalize text-slate-400">{user.role}</span>
         </span>
-        <button type="button" onClick={signOut} aria-label="Sign out" title="Sign out" className="grid size-9 place-items-center rounded-lg text-slate-300 hover:bg-white/10 hover:text-white">
+        <button type="button" onClick={signOut} aria-label="Sign out" title="Sign out" className="grid size-10 shrink-0 place-items-center rounded-lg text-slate-300 hover:bg-white/10 hover:text-white">
           <LogOut aria-hidden className="size-4" />
         </button>
       </div>

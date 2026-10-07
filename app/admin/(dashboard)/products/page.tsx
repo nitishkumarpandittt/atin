@@ -54,8 +54,8 @@ export default async function ProductsAdminPage({ searchParams }: PageProps<"/ad
       {one(sp.deleted) && <p role="status" className="mb-4 rounded-lg bg-emerald-50 px-3 py-2.5 text-sm font-medium text-emerald-800">Product deleted.</p>}
 
       <Card className="mb-4">
-        <form method="get" className="grid gap-3 p-4 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr_auto] lg:items-end sm:p-5">
-          <div className="sm:col-span-2 lg:col-span-1">
+        <form method="get" className="grid gap-3 p-4 sm:grid-cols-2 sm:p-5 lg:grid-cols-3 xl:grid-cols-[minmax(0,1.5fr)_repeat(3,minmax(0,1fr))_auto] xl:items-end">
+          <div className="sm:col-span-2 lg:col-span-3 xl:col-span-1">
             <label htmlFor="q" className="mb-1 block text-sm font-medium">Search</label>
             <div className="relative">
               <Search aria-hidden className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted" />
@@ -93,8 +93,8 @@ export default async function ProductsAdminPage({ searchParams }: PageProps<"/ad
           </div>
           {filters.status && <input type="hidden" name="status" value={filters.status} />}
           {filters.images && <input type="hidden" name="images" value={filters.images} />}
-          <div className="flex gap-2 sm:col-span-2 lg:col-span-1">
-            <button type="submit" className="admin-btn admin-btn-primary flex-1 lg:flex-none">Apply</button>
+          <div className="flex gap-2 sm:col-span-2 lg:col-span-3 xl:col-span-1">
+            <button type="submit" className="admin-btn admin-btn-primary flex-1 xl:flex-none">Apply</button>
             <Link href="/admin/products" className="admin-btn admin-btn-secondary">Reset</Link>
           </div>
         </form>
@@ -110,7 +110,7 @@ export default async function ProductsAdminPage({ searchParams }: PageProps<"/ad
                 key={c.label}
                 href={`/admin/products${qs.size ? `?${qs}` : ""}`}
                 aria-current={active ? "true" : undefined}
-                className={`rounded-full px-3 py-1.5 text-sm font-medium ${active ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200"}`}
+                className={`inline-flex min-h-9 items-center rounded-full px-3.5 text-sm font-medium ${active ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200"}`}
               >
                 {c.label}
               </Link>

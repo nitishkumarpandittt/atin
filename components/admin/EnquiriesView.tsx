@@ -30,7 +30,7 @@ export async function EnquiriesView({ kind, status, page }: { kind: "enquiry" | 
               key={t.value}
               href={t.value === "new" ? base : `${base}?status=${t.value}`}
               aria-current={status === t.value ? "true" : undefined}
-              className={`rounded-full px-3 py-1.5 text-sm font-medium ${status === t.value ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200"}`}
+              className={`inline-flex min-h-9 items-center rounded-full px-3.5 text-sm font-medium ${status === t.value ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200"}`}
             >
               {t.label}
             </Link>
@@ -85,7 +85,7 @@ export async function EnquiriesView({ kind, status, page }: { kind: "enquiry" | 
                     ))}
                 </div>
 
-                {e.message && <p className="mt-3 whitespace-pre-line rounded-lg bg-slate-50 p-3 text-sm leading-relaxed text-ink">{e.message}</p>}
+                {e.message && <p className="mt-3 whitespace-pre-line break-words rounded-lg bg-slate-50 p-3 text-sm leading-relaxed text-ink">{e.message}</p>}
 
                 <div className="mt-3 flex flex-wrap gap-2">
                   {e.status === "new" ? (

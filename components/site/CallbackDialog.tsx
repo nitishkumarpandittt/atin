@@ -76,7 +76,7 @@ export function CallbackDialog() {
       className="m-auto w-[min(34rem,calc(100vw-2rem))] max-h-[calc(100dvh-2rem)] overflow-y-auto overscroll-contain rounded-3xl bg-transparent p-0 backdrop:bg-navy-950/60 backdrop:backdrop-blur-sm"
     >
       <div className="relative overflow-hidden rounded-3xl bg-white shadow-lift">
-        <div className="relative bg-brand px-6 py-5 text-white sm:px-8">
+        <div className="relative bg-brand py-5 pl-6 pr-14 text-white sm:pl-8">
           <div aria-hidden className="hex-pattern absolute inset-0" />
           <div className="relative flex items-center gap-3">
             <span className="grid size-10 place-items-center rounded-xl bg-white/15">

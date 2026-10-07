@@ -7,7 +7,7 @@ export function WhatsAppButton({ number }: { number: string }) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp (opens in a new tab)"
-      className="fixed bottom-[calc(2rem+env(safe-area-inset-bottom))] right-[calc(2rem+env(safe-area-inset-right))] z-40 grid size-16 place-items-center rounded-full bg-[#25d366] text-white shadow-lift transition hover:scale-105"
+      className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-[calc(1rem+env(safe-area-inset-right))] z-40 grid size-14 sm:bottom-[calc(2rem+env(safe-area-inset-bottom))] sm:right-[calc(2rem+env(safe-area-inset-right))] sm:size-16 place-items-center rounded-full bg-[#25d366] text-white shadow-lift transition hover:scale-105"
     >
       {/* Official WhatsApp mark (Simple Icons path). */}
       <svg aria-hidden viewBox="0 0 24 24" className="size-9" fill="currentColor">

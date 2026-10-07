@@ -51,8 +51,8 @@ export function ProductForm({ values, ranges }: { values: ProductFormValues; ran
             />
           </fieldset>
 
-          <fieldset className="grid gap-4 border-t border-line pt-6 sm:grid-cols-3">
-            <legend className="mb-3 pt-6 text-sm font-semibold uppercase tracking-wide text-muted">Pricing and prescribing</legend>
+          <fieldset className="grid gap-4 sm:grid-cols-3">
+            <legend className="mb-3 w-full border-t border-line pt-6 text-sm font-semibold uppercase tracking-wide text-muted">Pricing and prescribing</legend>
             <TextField name="mrp" label="MRP (₹)" inputMode="decimal" defaultValue={values.mrp ?? ""} error={errors.mrp} />
             <TextField name="mrpNote" label="Price note" defaultValue={values.mrpNote ?? ""} error={errors.mrpNote} hint='e.g. "DPCO" when no fixed MRP' />
             <TextField name="gstRate" label="GST (%)" inputMode="decimal" defaultValue={values.gstRate ?? ""} error={errors.gstRate} />
@@ -66,8 +66,8 @@ export function ProductForm({ values, ranges }: { values: ProductFormValues; ran
             />
           </fieldset>
 
-          <fieldset className="grid gap-4 border-t border-line pt-6 sm:grid-cols-2">
-            <legend className="mb-3 pt-6 text-sm font-semibold uppercase tracking-wide text-muted">Visibility</legend>
+          <fieldset className="grid gap-4 sm:grid-cols-2">
+            <legend className="mb-3 w-full border-t border-line pt-6 text-sm font-semibold uppercase tracking-wide text-muted">Visibility</legend>
             <div className="space-y-1">
               <Checkbox name="isPublished" label="Published" hint="Visible on the website." defaultChecked={values.isPublished} />
               <Checkbox name="isNew" label="New addition" hint="Listed on the New additions page and home page." defaultChecked={values.isNew} />

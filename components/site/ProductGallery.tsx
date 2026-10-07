@@ -23,7 +23,7 @@ export function ProductGallery({ images, fallbackAlt }: { images: Img[]; fallbac
         />
       </div>
       {images.length > 1 && (
-        <ul className="flex gap-2 overflow-x-auto pb-1" aria-label="Product images">
+        <ul className="flex gap-2 overflow-x-auto p-0.5 pb-1" aria-label="Product images">
           {images.map((img, i) => (
             <li key={img.src} className="shrink-0">
               <button

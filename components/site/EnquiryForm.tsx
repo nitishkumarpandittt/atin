@@ -73,7 +73,7 @@ export function EnquiryForm({ product, productSlug }: { product?: string; produc
           <input
             type="checkbox"
             name="consent"
-            className="mt-px size-6 shrink-0 accent-green"
+            className="-mt-0.5 size-6 shrink-0 accent-green"
             aria-invalid={errors.consent ? true : undefined}
             aria-describedby={errors.consent ? "enq-consent-error" : undefined}
           />

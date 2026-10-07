@@ -147,7 +147,7 @@ export function ProductSearch({ ranges }: Props) {
             id={`${id}-range`}
             value={range}
             onChange={(e) => setRange(e.target.value)}
-            className="h-14 w-full rounded-xl border border-line bg-surface px-4 text-base text-ink sm:text-[0.95rem] focus:border-brand focus:bg-white focus:outline-none focus:ring-4 focus:ring-sky-100 md:w-52"
+            className="select-chevron h-14 w-full rounded-xl border border-line bg-surface pl-4 pr-10 text-base text-ink sm:text-[0.95rem] focus:border-brand focus:bg-white focus:outline-none focus:ring-4 focus:ring-sky-100 md:w-60"
           >
             <option value="">All segments</option>
             {ranges.map((r) => (
@@ -203,7 +203,7 @@ export function ProductSearch({ ranges }: Props) {
               onPointerDown={(e) => e.preventDefault()}
               onClick={() => go(-1)}
               onPointerMove={() => setActive(results.length)}
-              className={`mt-1 flex cursor-pointer items-center justify-between rounded-xl border-t border-line px-4 py-3 font-semibold text-brand ${
+              className={`mt-1 flex cursor-pointer items-center justify-between rounded-b-xl border-t border-line px-4 py-3 font-semibold text-brand ${
                 active === results.length ? "bg-surface" : ""
               }`}
             >

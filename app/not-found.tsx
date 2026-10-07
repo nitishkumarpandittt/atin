@@ -23,8 +23,8 @@ export default async function NotFound() {
             </Link>
           ))}
         </div>
-        <p className="mt-8 flex items-start justify-center gap-2 text-center text-sm text-muted md:mt-10 md:items-center">
-          <Search aria-hidden className="size-4" /> Looking for a product? Try searching by brand or composition on the products page.
+        <p className="mt-8 text-center text-sm text-muted md:mt-10">
+          <Search aria-hidden className="mr-1.5 inline size-4 align-[-3px]" /> Looking for a product? Try searching by brand or composition on the products page.
         </p>
       </section>
     </SiteChrome>

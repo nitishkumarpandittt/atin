@@ -59,7 +59,7 @@ export function FormMessage({ state }: { state: ActionState }) {
   return (
     <p
       role={success ? "status" : "alert"}
-      className={`mb-4 flex items-start gap-2 rounded-lg px-3 py-2.5 text-sm font-medium ${success ? "bg-emerald-50 text-emerald-800" : "bg-red-50 text-red-800"}`}
+      className={`col-span-full mb-4 flex basis-full items-start gap-2 rounded-lg px-3 py-2.5 text-sm font-medium ${success ? "bg-emerald-50 text-emerald-800" : "bg-red-50 text-red-800"}`}
     >
       {success ? <CircleCheck aria-hidden className="mt-0.5 size-4 shrink-0" /> : <CircleAlert aria-hidden className="mt-0.5 size-4 shrink-0" />}
       {state.message}
@@ -138,7 +138,7 @@ export function Checkbox({ name, label, hint, defaultChecked, error, ...rest }: 
   const id = `f-${name}`;
   return (
     <div>
-      <label htmlFor={id} className="flex cursor-pointer items-start gap-2.5 py-1">
+      <label htmlFor={id} className="flex cursor-pointer items-start gap-2.5 py-1 has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-60">
         <input id={id} name={name} type="checkbox" defaultChecked={defaultChecked} className="mt-0.5 size-4 shrink-0 accent-blue-600" {...rest} />
         <span>
           <span className="block text-sm font-medium text-ink">{label}</span>

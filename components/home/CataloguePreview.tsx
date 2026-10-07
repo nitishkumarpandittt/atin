@@ -15,18 +15,20 @@ export function CataloguePreview({ items, title, eyebrow }: { items: Item[]; tit
       <div className="container-site">
         <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-5">
           <SectionHeading id="preview-title" eyebrow={eyebrow} title={title} intro="A sample from each segment. Every listing shows composition and pack details." />
-          <Link href="/products" className="btn btn-blue" data-reveal>
-            All products <ArrowRight aria-hidden className="size-4" />
-          </Link>
+          <div data-reveal>
+            <Link href="/products" className="btn btn-blue">
+              All products <ArrowRight aria-hidden className="size-4" />
+            </Link>
+          </div>
         </div>
 
-        <ul className="-mx-5 mt-8 flex md:mt-12 snap-x snap-mandatory scroll-px-5 gap-5 overflow-x-auto px-5 pb-6 [scrollbar-width:thin] md:-mx-8 md:scroll-px-8 md:px-8">
+        <ul className="-mx-5 mt-6 flex snap-x pt-2 md:mt-10 snap-mandatory scroll-px-5 gap-5 overflow-x-auto px-5 pb-6 [scrollbar-width:thin] md:-mx-8 md:scroll-px-8 md:px-8">
           {items.map(({ product: p, range: r, image }, i) => {
             // No pack shot yet: the segment's photo stands in behind the icon tile.
             const fallback = image ? undefined : rangePhoto(r);
             return (
             <li key={p.slug} className="w-[78%] max-w-[17.5rem] shrink-0 snap-start sm:w-[17.5rem]" data-reveal style={{ "--reveal-delay": `${Math.min(i, 4) * 60}ms` } as React.CSSProperties}>
-              <article className="group flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] bg-white shadow-card ring-1 ring-line transition hover:-translate-y-1 hover:shadow-lift">
+              <article className="group relative flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] bg-white shadow-card ring-1 ring-line transition hover:-translate-y-1 hover:shadow-lift has-[a:focus-visible]:ring-2 has-[a:focus-visible]:ring-sky">
                 <div className={`relative grid h-36 place-items-center overflow-hidden ${i % 2 ? "bg-leaf-100" : "bg-sky-100"}`}>
                   <svg aria-hidden viewBox="0 0 120 120" className={`absolute -bottom-10 -right-8 size-40 ${i % 2 ? "text-leaf/25" : "text-sky/25"}`}>
                     <path d="M20 95 A50 50 0 1 1 100 92" fill="none" stroke="currentColor" strokeWidth="6" strokeLinecap="round" />
@@ -56,7 +58,7 @@ export function CataloguePreview({ items, title, eyebrow }: { items: Item[]; tit
                 </div>
                 <div className="flex flex-1 flex-col p-5">
                   <h3 className="text-lg font-bold leading-snug">
-                    <Link href={`/products/${r.slug}/${p.slug}`} className="after:absolute after:inset-0 focus-visible:outline-none">
+                    <Link href={`/products/${r.slug}/${p.slug}`} className="after:absolute after:inset-0 after:z-10 focus-visible:outline-none">
                       {p.brand}
                     </Link>
                   </h3>

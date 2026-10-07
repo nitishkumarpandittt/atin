@@ -136,11 +136,11 @@ function FigureChip({
 }) {
   return (
     <div
-      className={`absolute flex items-center gap-3 rounded-2xl bg-white/95 p-3 pr-5 shadow-lift ring-1 ring-line backdrop-blur ${
+      className={`absolute flex items-center gap-2 rounded-2xl bg-white/95 p-2 pr-3 shadow-lift sm:gap-3 sm:p-3 sm:pr-5 ring-1 ring-line backdrop-blur ${
         slow ? "motion-safe:animate-[float_8s_ease-in-out_infinite]" : "motion-safe:animate-float"
       } ${className}`}
     >
-      <span className={`grid size-10 place-items-center rounded-xl ${tint}`}>{icon}</span>
+      <span className={`grid size-10 shrink-0 place-items-center rounded-xl ${tint}`}>{icon}</span>
       <span>
         <span className="block font-display text-xl font-extrabold leading-none text-navy">{value}</span>
         <span className="text-xs font-medium text-muted">{label}</span>

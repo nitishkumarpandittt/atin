@@ -17,7 +17,7 @@ export function CreateStaffForm() {
         <>
           <TextField name="name" label="Name" required autoComplete="off" error={errors.name} />
           <TextField name="email" label="Email" type="email" required autoComplete="off" error={errors.email} />
-          <SelectField name="role" label="Role" defaultValue="editor" options={ROLE_OPTIONS} error={errors.role} />
+          <SelectField name="role" label="Role" defaultValue="editor" options={ROLE_OPTIONS} error={errors.role} className="sm:col-span-2" />
           <TextField name="password" label="Temporary password" type="password" required autoComplete="new-password" minLength={12} error={errors.password} hint="At least 12 characters. Ask them to change it after signing in." />
           <div className="sm:col-span-2">
             <SubmitButton pending={pending}>Create account</SubmitButton>
@@ -34,7 +34,7 @@ export function StaffRoleForm({ userId, role }: { userId: string; role: string }
       {({ errors, pending }) => (
         <>
           <input type="hidden" name="userId" value={userId} />
-          <SelectField name="role" label="Role" defaultValue={role === "admin" || role === "editor" ? role : "staff"} options={ROLE_OPTIONS} error={errors.role} className="min-w-64 flex-1" />
+          <SelectField name="role" label="Role" defaultValue={role === "admin" || role === "editor" ? role : "staff"} options={ROLE_OPTIONS} error={errors.role} className="min-w-0 flex-[1_1_16rem]" />
           <SubmitButton pending={pending} variant="secondary">
             Update role
           </SubmitButton>

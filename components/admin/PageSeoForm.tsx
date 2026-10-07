@@ -36,7 +36,7 @@ export function PageSeoForm({ path, siteName, siteUrl, defaults, values, hasOver
   const shownDescription = description.trim() || defaults.description;
 
   return (
-    <div className="grid gap-6 xl:grid-cols-[1fr_24rem]">
+    <div className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1fr)_24rem]">
       <AdminForm action={savePageSeo} onSuccess={() => router.refresh()}>
         {({ errors, pending }) => (
           <Card title="Search engine listing" description="Leave a field empty to keep the automatic text shown as its placeholder.">

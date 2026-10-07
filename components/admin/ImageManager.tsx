@@ -116,7 +116,7 @@ export function ImageManager({ productId, images, maxMb }: { productId: number; 
       {images.length === 0 ? (
         <p className="text-sm text-muted">No images yet. The website shows the range icon until one is added.</p>
       ) : (
-        <ul className="grid gap-3 sm:grid-cols-2">
+        <ul className="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
           {images.map((img, i) => (
             <li key={img.id} className="rounded-xl bg-white p-3 ring-1 ring-line">
               <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-slate-100">

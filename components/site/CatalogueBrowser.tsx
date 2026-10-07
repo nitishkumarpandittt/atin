@@ -128,7 +128,7 @@ export function CatalogueBrowser({ items, ranges, initial, rangePhotos }: Props)
           <fieldset className="mt-4 min-w-0 sm:mt-5">
             <legend className="text-sm font-semibold text-navy">Segment</legend>
             {/* One swipeable row on phones and tablets; a vertical list in the desktop sidebar. */}
-            <div className="-mx-4 mt-2 flex snap-x gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:-mx-5 sm:px-5 lg:mx-0 lg:flex-col lg:gap-1 lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden">
+            <div className="-mx-4 mt-2 flex snap-x gap-2 overflow-x-auto px-4 py-1 [scrollbar-width:none] sm:-mx-5 sm:px-5 lg:mx-0 lg:flex-col lg:gap-1 lg:overflow-visible lg:px-0 lg:py-0 [&::-webkit-scrollbar]:hidden">
               {segmentOptions.map((r) => {
                 const selected = range === r.slug;
                 return (
@@ -141,11 +141,11 @@ export function CatalogueBrowser({ items, ranges, initial, rangePhotos }: Props)
                       setForm("");
                       setShown(PAGE);
                     }}
-                    className={`flex shrink-0 snap-start items-center gap-2 whitespace-nowrap rounded-full px-4 py-2.5 text-left text-sm transition lg:rounded-xl lg:px-3 lg:py-2 ${
+                    className={`flex shrink-0 snap-start items-center gap-2 whitespace-nowrap rounded-full px-4 py-2.5 text-left text-sm transition lg:rounded-xl lg:whitespace-normal lg:px-3 lg:py-2 ${
                       selected ? "bg-brand font-semibold text-white" : "bg-surface text-ink hover:bg-sky-100 lg:bg-transparent"
                     }`}
                   >
-                    {r.icon && <RangeIcon icon={r.icon} className={`hidden size-4 lg:block ${selected ? "" : "text-brand"}`} />}
+                    {r.icon && <RangeIcon icon={r.icon} className={`hidden size-4 shrink-0 lg:block ${selected ? "" : "text-brand"}`} />}
                     <span className="lg:flex-1">{r.shortName}</span>
                     <span className={`text-xs ${selected ? "text-white/80" : "text-muted"}`}>{r.productCount}</span>
                   </button>
@@ -166,7 +166,7 @@ export function CatalogueBrowser({ items, ranges, initial, rangePhotos }: Props)
                   setForm(e.target.value);
                   setShown(PAGE);
                 }}
-                className="mt-1.5 h-12 w-full rounded-xl border border-line bg-surface px-3 text-base focus:border-brand focus:bg-white focus:outline-none focus:ring-4 focus:ring-sky-100 lg:h-11 lg:text-sm"
+                className="select-chevron mt-1.5 h-12 w-full rounded-xl border border-line bg-surface pl-3 pr-10 text-base focus:border-brand focus:bg-white focus:outline-none focus:ring-4 focus:ring-sky-100 lg:h-11 lg:text-sm"
               >
                 <option value="">All forms</option>
                 {forms.map((f) => (

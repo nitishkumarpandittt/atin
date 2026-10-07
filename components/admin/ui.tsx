@@ -43,8 +43,8 @@ const TONES = {
   red: "bg-red-50 text-red-700 ring-red-600/20",
 } as const;
 
-export function Badge({ tone = "grey", children }: { tone?: keyof typeof TONES; children: React.ReactNode }) {
-  return <span className={`inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium ring-1 ring-inset ${TONES[tone]}`}>{children}</span>;
+export function Badge({ tone = "grey", className = "", children }: { tone?: keyof typeof TONES; className?: string; children: React.ReactNode }) {
+  return <span className={`inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium ring-1 ring-inset ${TONES[tone]} ${className}`}>{children}</span>;
 }
 
 export function EmptyState({ title, text, action }: { title: string; text?: string; action?: React.ReactNode }) {

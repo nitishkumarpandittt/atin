@@ -57,10 +57,10 @@ export default async function ContactPage({ searchParams }: PageProps<"/contact"
                   <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-white/12 ring-1 ring-white/20">
                     <Icon aria-hidden className="size-5" />
                   </span>
-                  <span>
+                  <span className="min-w-0">
                     <span className="block text-xs font-semibold uppercase tracking-wider text-white/65">{label}</span>
                     {href ? (
-                      <a href={href} className="font-medium hover:underline" {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+                      <a href={href} className="font-medium wrap-anywhere hover:underline" {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
                         {value}
                       </a>
                     ) : (

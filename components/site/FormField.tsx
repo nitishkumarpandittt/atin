@@ -75,7 +75,7 @@ export function SelectField({
         required={required}
         aria-invalid={error ? true : undefined}
         aria-describedby={describedBy(id, error, hint)}
-        className={`${control} h-12 border-line focus:border-brand`}
+        className={`${control} select-chevron h-12 border-line pr-10 focus:border-brand`}
         {...select}
       >
         {placeholder && <option value="">{placeholder}</option>}

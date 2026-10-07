@@ -30,7 +30,7 @@ export function Audiences({ photo }: { photo: Photo }) {
             <p className="text-white/80 md:text-lg">
               Whether you run a distribution network or a single counter, we make it simple to source, enquire and reorder.
             </p>
-            <Link href="/contact" className="btn btn-white mt-6 w-full sm:w-auto">
+            <Link href="/contact" className="btn btn-white mt-6 w-full whitespace-normal text-center leading-tight sm:w-auto">
               Become a distribution partner <ArrowRight aria-hidden className="size-4" />
             </Link>
           </div>
