@@ -69,7 +69,7 @@ export function SiteImageCard({ placement, current, custom }: Props) {
       {/* Outside the save form: ActionButton is its own <form>, and forms cannot be nested. */}
       {custom && (
         <div className="border-t border-line px-4 py-3">
-          <ActionButton action={resetSiteImage} fields={{ key: placement.key }} variant="ghost" confirm="Go back to the default photo? The uploaded photo will be deleted.">
+          <ActionButton action={resetSiteImage} fields={{ key: placement.key }} variant="ghost" confirm={{ title: "Use the default photo?", message: "The uploaded photo is deleted and the original photo is shown again.", confirmLabel: "Use default photo", tone: "danger" }}>
             Use default photo
           </ActionButton>
         </div>

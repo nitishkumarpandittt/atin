@@ -250,3 +250,13 @@ html:not(.js) [data-collapse-toggle] { display: none; }
   scrollbar-width: thin;
   scrollbar-color: rgb(148 163 184 / 0.4) transparent;
 }
+
+/* Admin confirmation dialog (components/admin/ConfirmDialog.tsx): short fade-and-lift on open. */
+.admin-dialog[open] { animation: admin-dialog-in 0.18s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.admin-dialog[open]::backdrop { animation: admin-backdrop-in 0.18s ease-out; }
+@keyframes admin-dialog-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+}
+@keyframes admin-backdrop-in {
+  from { opacity: 0; }
+}

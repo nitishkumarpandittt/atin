@@ -38,7 +38,7 @@ export default async function RangesPage() {
                   {r.productCount} products ({r.publishedCount} published)
                 </Link>
                 {Number(r.productCount) === 0 ? (
-                  <ActionButton action={deleteRange} fields={{ id: r.id }} variant="danger" confirm={`Delete the range "${r.shortName}"?`}>
+                  <ActionButton action={deleteRange} fields={{ id: r.id }} variant="danger" confirm={{ title: `Delete "${r.shortName}"?`, message: "The range is removed from the website. Ranges that still contain products cannot be deleted.", confirmLabel: "Delete range" }}>
                     Delete range
                   </ActionButton>
                 ) : (

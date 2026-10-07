@@ -97,7 +97,11 @@ export async function EnquiriesView({ kind, status, page }: { kind: "enquiry" | 
                       Mark as new
                     </ActionButton>
                   )}
-                  <ActionButton action={deleteEnquiry} fields={{ id: e.id }} variant="danger" confirm={`Delete this ${kind === "callback" ? "callback request" : "enquiry"} from ${e.name}? This cannot be undone.`}>
+                  <ActionButton action={deleteEnquiry} fields={{ id: e.id }} variant="danger" confirm={{
+                      title: kind === "callback" ? "Delete callback request?" : "Delete enquiry?",
+                      message: `The ${kind === "callback" ? "callback request" : "enquiry"} from ${e.name} will be permanently deleted. This cannot be undone.`,
+                      confirmLabel: "Delete",
+                    }}>
                     Delete
                   </ActionButton>
                 </div>

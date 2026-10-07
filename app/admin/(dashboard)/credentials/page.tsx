@@ -33,7 +33,7 @@ export default async function CredentialsPage() {
                 </div>
                 <CredentialForm value={c} submitLabel="Save" />
                 <div className="mt-2">
-                  <ActionButton action={deleteCredential} fields={{ id: c.id }} variant="danger" confirm={`Delete "${c.name}"?`}>
+                  <ActionButton action={deleteCredential} fields={{ id: c.id }} variant="danger" confirm={{ title: "Delete credential?", message: `"${c.name}" is removed from the website.`, confirmLabel: "Delete credential" }}>
                     Delete
                   </ActionButton>
                 </div>

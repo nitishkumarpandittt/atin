@@ -32,7 +32,7 @@ export default async function TestimonialsPage() {
                 </div>
                 <TestimonialForm value={t} submitLabel="Save" />
                 <div className="mt-2">
-                  <ActionButton action={deleteTestimonial} fields={{ id: t.id }} variant="danger" confirm={`Delete the testimonial from ${t.name}?`}>
+                  <ActionButton action={deleteTestimonial} fields={{ id: t.id }} variant="danger" confirm={{ title: "Delete testimonial?", message: `The testimonial from ${t.name} is removed from the website.`, confirmLabel: "Delete testimonial" }}>
                     Delete
                   </ActionButton>
                 </div>

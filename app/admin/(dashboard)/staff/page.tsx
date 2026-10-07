@@ -43,7 +43,7 @@ export default async function StaffPage() {
                   <div className="flex flex-wrap items-end gap-2">
                     <ResetPasswordForm userId={u.id} />
                     {!self && (
-                      <ActionButton action={removeStaff} fields={{ userId: u.id }} variant="danger" confirm={`Remove ${u.name}'s account? They will be signed out and lose access.`}>
+                      <ActionButton action={removeStaff} fields={{ userId: u.id }} variant="danger" confirm={{ title: "Remove staff account?", message: `${u.name} (${u.email}) will be signed out and can no longer open the admin panel.`, confirmLabel: "Remove account" }}>
                         Remove
                       </ActionButton>
                     )}

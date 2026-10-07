@@ -44,7 +44,7 @@ export default async function EditProductPage({ params, searchParams }: PageProp
             <ActionButton action={duplicateProduct} fields={{ id: product.id }}>
               Duplicate
             </ActionButton>
-            <ActionButton action={deleteProduct} fields={{ id: product.id, redirect: "list" }} variant="danger" confirm={`Delete ${product.brand}? This also removes its images and cannot be undone.`}>
+            <ActionButton action={deleteProduct} fields={{ id: product.id, redirect: "list" }} variant="danger" confirm={{ title: `Delete ${product.brand}?`, message: "The product and all its images are removed from the website. This cannot be undone.", confirmLabel: "Delete product" }}>
               Delete
             </ActionButton>
           </>

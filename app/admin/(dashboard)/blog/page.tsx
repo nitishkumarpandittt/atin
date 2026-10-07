@@ -52,7 +52,7 @@ export default async function BlogAdminPage({ searchParams }: PageProps<"/admin/
                   <span className="flex gap-1">
                     <Link href={`/admin/blog/${p.id}`} className="admin-btn admin-btn-secondary">Edit</Link>
                     <Link href={`/admin/blog/${p.id}/preview`} className="admin-btn admin-btn-ghost">Preview</Link>
-                    <ActionButton action={deleteBlogPost} fields={{ id: p.id }} variant="danger" confirm={`Delete "${p.title}"?`}>
+                    <ActionButton action={deleteBlogPost} fields={{ id: p.id }} variant="danger" confirm={{ title: "Delete blog post?", message: `"${p.title}" will be permanently deleted.`, confirmLabel: "Delete post" }}>
                       Delete
                     </ActionButton>
                   </span>

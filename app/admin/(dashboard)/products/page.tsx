@@ -175,7 +175,7 @@ export default async function ProductsAdminPage({ searchParams }: PageProps<"/ad
                         <ActionButton action={duplicateProduct} fields={{ id: p.id }} variant="ghost" title="Duplicate as a hidden copy">
                           Duplicate
                         </ActionButton>
-                        <ActionButton action={deleteProduct} fields={{ id: p.id }} variant="danger" confirm={`Delete ${p.brand}? This also removes its images and cannot be undone.`}>
+                        <ActionButton action={deleteProduct} fields={{ id: p.id }} variant="danger" confirm={{ title: `Delete ${p.brand}?`, message: "The product and all its images are removed from the website. This cannot be undone.", confirmLabel: "Delete product" }}>
                           Delete
                         </ActionButton>
                       </span>

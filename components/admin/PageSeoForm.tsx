@@ -95,7 +95,7 @@ export function PageSeoForm({ path, siteName, siteUrl, defaults, values, hasOver
         {hasOverride && (
           <Card title="Reset" description="Remove all changes for this page and use the automatic title, description and image.">
             <div className="p-4 sm:p-5">
-              <ActionButton action={resetPageSeo} fields={{ path }} variant="danger" confirm="Reset this page to its automatic SEO?">
+              <ActionButton action={resetPageSeo} fields={{ path }} variant="danger" confirm={{ title: "Reset to automatic SEO?", message: "The custom title, description, share image and search setting for this page are removed.", confirmLabel: "Reset page" }}>
                 Reset to automatic
               </ActionButton>
             </div>

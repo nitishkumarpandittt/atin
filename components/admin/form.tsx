@@ -1,8 +1,9 @@
 "use client";
 
-import { startTransition, useActionState, useEffect, useRef } from "react";
+import { startTransition, useActionState, useEffect, useRef, useState } from "react";
 import { CircleAlert, CircleCheck, Loader2 } from "lucide-react";
 import type { ActionState } from "@/lib/admin/action-utils";
+import { ConfirmDialog, type ConfirmOptions } from "@/components/admin/ConfirmDialog";
 
 type Action = (prev: ActionState, fd: FormData) => Promise<ActionState>;
 
@@ -158,7 +159,11 @@ export function SubmitButton({ pending, children, variant = "primary", className
   );
 }
 
-/** A one-button form for row actions (delete, mark handled…), with an optional confirmation. */
+/**
+ * A one-button form for row actions (delete, mark handled…). With `confirm`, the action only runs after
+ * the in-app confirmation dialog; the dialog stays open (with a spinner) until it succeeds, and shows the
+ * error if it fails. A plain string is used as the dialog's message.
+ */
 export function ActionButton({
   action,
   fields,
@@ -171,19 +176,40 @@ export function ActionButton({
   action: Action;
   fields: Record<string, string | number>;
   children: React.ReactNode;
-  confirm?: string;
+  confirm?: string | ConfirmOptions;
   variant?: "primary" | "secondary" | "danger" | "ghost";
   className?: string;
   title?: string;
 }) {
   const [state, formAction, pending] = useActionState(action, { status: "idle" } as ActionState);
+  const options: ConfirmOptions | null = !confirm
+    ? null
+    : typeof confirm === "string"
+      ? { title: "Are you sure?", message: confirm, confirmLabel: typeof children === "string" ? children : "Confirm", tone: variant === "danger" ? "danger" : "primary" }
+      : { tone: variant === "danger" ? "danger" : "primary", ...confirm };
+  const [asking, setAsking] = useState(false);
+  const [openedAt, setOpenedAt] = useState(0);
+  const [pendingData, setPendingData] = useState<FormData | null>(null);
+  // Close the dialog once the confirmed action succeeds (derived during render, not in an effect).
+  const [seenAt, setSeenAt] = useState(state.at);
+  if (state.at !== seenAt) {
+    setSeenAt(state.at);
+    if (state.status === "success") setAsking(false);
+  }
+  const dialogError = asking && state.status === "error" && (state.at ?? 0) >= openedAt ? state.message : undefined;
+
   return (
     <form
       className="inline"
       onSubmit={(e) => {
         e.preventDefault();
-        if (confirm && !window.confirm(confirm)) return;
         const fd = new FormData(e.currentTarget);
+        if (options) {
+          setPendingData(fd);
+          setOpenedAt(Date.now());
+          setAsking(true);
+          return;
+        }
         startTransition(() => formAction(fd));
       }}
     >
@@ -194,10 +220,20 @@ export function ActionButton({
         {pending ? <Loader2 aria-hidden className="size-4 animate-spin" /> : null}
         {children}
       </button>
-      {state.status === "error" && (
+      {state.status === "error" && !asking && (
         <span role="alert" className="ml-2 text-xs font-medium text-red-700">
           {state.message}
         </span>
+      )}
+      {options && (
+        <ConfirmDialog
+          {...options}
+          open={asking}
+          pending={pending}
+          error={dialogError}
+          onCancel={() => setAsking(false)}
+          onConfirm={() => pendingData && startTransition(() => formAction(pendingData))}
+        />
       )}
     </form>
   );

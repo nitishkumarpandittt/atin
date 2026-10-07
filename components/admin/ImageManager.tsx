@@ -6,6 +6,7 @@ import { useRef, useState, useTransition } from "react";
 import { ImagePlus, Loader2, Star, Trash2 } from "lucide-react";
 import { deleteProductImage, makeMainImage, updateImageAlt, uploadProductImage } from "@/lib/admin/actions/products";
 import type { ActionState } from "@/lib/admin/action-utils";
+import { ConfirmDialog } from "@/components/admin/ConfirmDialog";
 
 type Img = { id: number; src: string; alt: string; isVisualAid: boolean };
 
@@ -19,6 +20,7 @@ export function ImageManager({ productId, images, maxMb }: { productId: number; 
   const [jobs, setJobs] = useState<Job[]>([]);
   const [dragging, setDragging] = useState(false);
   const [busy, setBusy] = useState<number | null>(null);
+  const [toDelete, setToDelete] = useState<number | null>(null);
   const [message, setMessage] = useState<ActionState>(idle);
   const [, startTransition] = useTransition();
 
@@ -153,9 +155,7 @@ export function ImageManager({ productId, images, maxMb }: { productId: number; 
                 <button
                   type="button"
                   disabled={busy === img.id}
-                  onClick={() => {
-                    if (window.confirm("Delete this image?")) run(img.id, deleteProductImage);
-                  }}
+                  onClick={() => setToDelete(img.id)}
                   className="admin-btn admin-btn-danger ml-auto"
                 >
                   {busy === img.id ? <Loader2 aria-hidden className="size-4 animate-spin" /> : <Trash2 aria-hidden className="size-4" />} Delete
@@ -165,6 +165,19 @@ export function ImageManager({ productId, images, maxMb }: { productId: number; 
           ))}
         </ul>
       )}
+      <ConfirmDialog
+        open={toDelete !== null}
+        title="Delete this image?"
+        message="It is removed from the product and from the website. This cannot be undone."
+        confirmLabel="Delete image"
+        pending={toDelete !== null && busy === toDelete}
+        onCancel={() => setToDelete(null)}
+        onConfirm={async () => {
+          if (toDelete === null) return;
+          await run(toDelete, deleteProductImage);
+          setToDelete(null);
+        }}
+      />
     </div>
   );
 }

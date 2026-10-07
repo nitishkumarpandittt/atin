@@ -27,7 +27,7 @@ export default async function EditPostPage({ params, searchParams }: PageProps<"
             <Link href={`/admin/blog/${post.id}/preview`} className="admin-btn admin-btn-secondary">
               <Eye aria-hidden className="size-4" /> Preview
             </Link>
-            <ActionButton action={deleteBlogPost} fields={{ id: post.id, redirect: "list" }} variant="danger" confirm={`Delete "${post.title}"?`}>
+            <ActionButton action={deleteBlogPost} fields={{ id: post.id, redirect: "list" }} variant="danger" confirm={{ title: "Delete blog post?", message: `"${post.title}" will be permanently deleted.`, confirmLabel: "Delete post" }}>
               Delete
             </ActionButton>
           </>
