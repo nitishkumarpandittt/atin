@@ -25,7 +25,7 @@ export const nav = [
     href: "/about",
     children: [
       { label: "Company profile", href: "/about" },
-      { label: "Vision & mission", href: "/about#vision" },
+      { label: "Vision & mission", href: "/vision" },
       { label: "Quality & certifications", href: "/quality-certifications" },
     ],
   },

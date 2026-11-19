@@ -87,7 +87,7 @@ export async function saveProduct(_prev: ActionState, fd: FormData): Promise<Act
     if (id) {
       await db.update(products).set(values).where(eq(products.id, id));
       refreshSite();
-      return ok("Product saved.");
+      redirect(`/admin/products/${id}?saved=1`);
     }
     const [res] = await db.insert(products).values(values);
     refreshSite();

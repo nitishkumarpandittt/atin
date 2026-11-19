@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink, Plus, Search } from "lucide-react";
+import { ExternalLink, Plus } from "lucide-react";
 import { Badge, Card, EmptyState, PageHeader, Pagination } from "@/components/admin/ui";
 import { ActionButton } from "@/components/admin/form";
 import { deleteProduct, duplicateProduct } from "@/lib/admin/actions/products";
 import { listProducts, listRangesWithCounts, type ProductFilters } from "@/lib/admin/queries";
 import { requireStaff } from "@/lib/auth/dal";
 import { uploadUrl } from "@/lib/uploads/url";
+import { ProductFiltersForm } from "@/components/admin/ProductFiltersForm";
 
 export const metadata: Metadata = { title: "Products" };
 
@@ -54,50 +55,7 @@ export default async function ProductsAdminPage({ searchParams }: PageProps<"/ad
       {one(sp.deleted) && <p role="status" className="mb-4 rounded-lg bg-emerald-50 px-3 py-2.5 text-sm font-medium text-emerald-800">Product deleted.</p>}
 
       <Card className="mb-4">
-        <form method="get" className="grid gap-3 p-4 sm:grid-cols-2 sm:p-5 lg:grid-cols-3 xl:grid-cols-[minmax(0,1.5fr)_repeat(3,minmax(0,1fr))_auto] xl:items-end">
-          <div className="sm:col-span-2 lg:col-span-3 xl:col-span-1">
-            <label htmlFor="q" className="mb-1 block text-sm font-medium">Search</label>
-            <div className="relative">
-              <Search aria-hidden className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted" />
-              <input id="q" name="q" type="search" defaultValue={filters.q} placeholder="Brand, composition, pack, price note" className="admin-input pl-9" />
-            </div>
-          </div>
-          <div>
-            <label htmlFor="range" className="mb-1 block text-sm font-medium">Range</label>
-            <select id="range" name="range" defaultValue={filters.range} className="admin-input">
-              <option value="">All ranges</option>
-              {ranges.map((r) => (
-                <option key={r.id} value={r.slug}>
-                  {r.shortName} ({r.productCount})
-                </option>
-              ))}
-              <option value="none">No range</option>
-            </select>
-          </div>
-          <div>
-            <label htmlFor="mrp" className="mb-1 block text-sm font-medium">MRP</label>
-            <select id="mrp" name="mrp" defaultValue={filters.mrp} className="admin-input">
-              <option value="">Any</option>
-              <option value="set">MRP or note set</option>
-              <option value="missing">No MRP</option>
-            </select>
-          </div>
-          <div>
-            <label htmlFor="sort" className="mb-1 block text-sm font-medium">Sort</label>
-            <select id="sort" name="sort" defaultValue={filters.sort} className="admin-input">
-              <option value="catalogue">Catalogue order</option>
-              <option value="updated">Recently updated</option>
-              <option value="name">Brand A–Z</option>
-              <option value="mrp">MRP low–high</option>
-            </select>
-          </div>
-          {filters.status && <input type="hidden" name="status" value={filters.status} />}
-          {filters.images && <input type="hidden" name="images" value={filters.images} />}
-          <div className="flex gap-2 sm:col-span-2 lg:col-span-3 xl:col-span-1">
-            <button type="submit" className="admin-btn admin-btn-primary flex-1 xl:flex-none">Apply</button>
-            <Link href="/admin/products" className="admin-btn admin-btn-secondary">Reset</Link>
-          </div>
-        </form>
+        <ProductFiltersForm filters={filters} ranges={ranges} />
         <div className="flex flex-wrap gap-2 border-t border-line px-4 py-3 sm:px-5">
           {statusChips.map((c) => {
             const qs = new URLSearchParams();

@@ -91,6 +91,7 @@ export function ImageManager({ productId, images, maxMb }: { productId: number; 
           }}
         />
         <p className="mt-2 text-xs text-muted">JPEG, PNG, WebP or AVIF, up to {maxMb} MB each. Resized and converted to WebP.</p>
+        <p className="mt-1 text-xs text-muted">Uploads are saved as soon as they finish. In production, UPLOAD_DIR must point to persistent storage so images remain available after redeploys.</p>
       </div>
 
       {jobs.length > 0 && (

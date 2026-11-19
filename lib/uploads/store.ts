@@ -15,6 +15,9 @@ export type StoredImage = { filePath: string; width: number; height: number };
  */
 export async function storeImage(file: File, folder: UploadFolder, maxSize = 1600): Promise<StoredImage> {
   if (!(file instanceof File) || file.size === 0) throw new Error("Choose an image to upload.");
+  if (process.env.NODE_ENV === "production" && !process.env.UPLOAD_DIR?.trim()) {
+    throw new Error("Image uploads need persistent storage. Set UPLOAD_DIR before uploading in production.");
+  }
   if (file.size > maxUploadBytes()) throw new Error(`Image is too large. The limit is ${Math.round(maxUploadBytes() / 1024 / 1024)} MB.`);
 
   const input = Buffer.from(await file.arrayBuffer());

@@ -30,6 +30,7 @@ export function ProductCard({ product: p, rangeName, icon, tone = "blue", fallba
             fill
             sizes="(min-width: 1280px) 300px, (min-width: 1024px) 35vw, 50vw"
             className={`transition duration-500 group-hover:scale-105 ${p.image ? "object-contain p-5 mix-blend-multiply" : "object-cover"}`}
+            unoptimized
           />
           {!p.image && <span aria-hidden className="absolute inset-0 bg-gradient-to-t from-navy/35 to-transparent" />}
           <span className="absolute inset-x-3 top-3 flex flex-wrap items-start justify-end gap-1.5">
@@ -44,7 +45,7 @@ export function ProductCard({ product: p, rangeName, icon, tone = "blue", fallba
           {p.image ? (
             /* Phones: the pack shot stands in for the icon tile so collapsible lists stay short. */
             <span className="relative size-16 shrink-0 overflow-hidden rounded-xl bg-surface ring-1 ring-line">
-              <Image src={p.image} alt="" fill sizes="64px" className="object-contain p-1 mix-blend-multiply" />
+              <Image src={p.image} alt="" fill sizes="64px" className="object-contain p-1 mix-blend-multiply" unoptimized />
             </span>
           ) : (
             <span className={`grid size-10 shrink-0 place-items-center rounded-xl sm:size-12 ${tile}`}>

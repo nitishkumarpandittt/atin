@@ -50,9 +50,9 @@ export default async function EditProductPage({ params, searchParams }: PageProp
           </>
         }
       />
-      {(sp.created || sp.duplicated) && (
+      {(sp.created || sp.duplicated || sp.saved) && (
         <p role="status" className="mb-4 rounded-lg bg-emerald-50 px-3 py-2.5 text-sm font-medium text-emerald-800">
-          {sp.created ? "Product created. You can add images below." : "Copy created. It is hidden and has no images until you edit it."}
+          {sp.created ? "Product created. You can add images below." : sp.duplicated ? "Copy created. It is hidden and has no images until you edit it." : "Product saved."}
         </p>
       )}
 

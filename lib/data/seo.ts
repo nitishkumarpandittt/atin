@@ -74,6 +74,7 @@ export type SeoDefaults = {
 export const staticPages: Record<string, SeoDefaults & { label: string }> = {
   "/": { path: "/", label: "Home", title: `${site.name} | Pharmaceutical Marketing & Distribution`, absolute: true, description: site.description },
   "/about": { path: "/about", label: "About us", title: "About us", description: "Atin HealthCare Pvt Ltd is a pharmaceutical marketing and distribution company serving the pharma trade across segments." },
+  "/vision": { path: "/vision", label: "Vision & mission", title: "Vision & mission", description: "The vision and mission that guide Atin HealthCare's work with the pharma trade." },
   "/products": { path: "/products", label: "All products", title: "Products", description: "Browse the Atin HealthCare product catalogue by segment, dosage form, brand or composition." },
   "/products/new-additions": { path: "/products/new-additions", label: "New additions", title: "New additions", description: "Recently added products in the Atin HealthCare catalogue." },
   "/quality-certifications": { path: "/quality-certifications", label: "Quality & certifications", title: "Quality & certifications", description: "How Atin HealthCare handles product information and documentation, and how to request licences and certificates." },

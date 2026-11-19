@@ -90,7 +90,7 @@ export default async function AboutPage() {
       </section>
 
       {/* Vision & mission */}
-      <section id="vision" className="scroll-mt-24 py-14 md:py-20 lg:py-28">
+      <section className="scroll-mt-24 py-14 md:py-20 lg:py-28">
         <div className="container-site">
           <SectionHeading align="center" eyebrow="Vision & mission" title="What guides our work" />
           {(vision || mission.length > 0) && (
